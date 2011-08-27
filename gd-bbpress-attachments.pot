@@ -1,0 +1,115 @@
+#: forms/meta_forum.php:14
+#: forms/meta_forum.php:15
+#: forms/attachments.php:25
+msgid "Maximum files to upload"
+msgstr ""
+
+#: forms/meta_forum.php:9
+#: forms/meta_forum.php:8
+#: forms/attachments.php:18
+msgid "Maximum file size"
+msgstr ""
+
+#: forms/uploader.php:5
+#: gd-bbpress-attachments.php:317
+#: gd-bbpress-attachments.php:175
+#: gd-bbpress-attachments.php:113
+msgid "Attachments"
+msgstr ""
+
+#: forms/meta_files.php:4
+msgid "No attachments here."
+msgstr ""
+
+#: forms/attachments.php:76
+msgid "Dev4Press Premium Plugins And Themes"
+msgstr ""
+
+#: forms/meta_forum.php:3
+#: forms/meta_forum.php:2
+msgid "Override Defaults"
+msgstr ""
+
+#: gd-bbpress-attachments.php:168
+msgid "Settings"
+msgstr ""
+
+#: gd-bbpress-attachments.php:127
+#: gd-bbpress-attachments.php:126
+msgid "Attachments List"
+msgstr ""
+
+#: forms/uploader.php:1
+msgid "Maximum file size allowed is"
+msgstr ""
+
+#: forms/uploader.php:8
+msgid "Add another file"
+msgstr ""
+
+#: gd-bbpress-attachments.php:125
+msgid "Attachments Settings"
+msgstr ""
+
+#: forms/attachments.php:75
+msgid "Fan Page"
+msgstr ""
+
+#: forms/attachments.php:32
+#: forms/attachments.php:35
+msgid "Allow upload to"
+msgstr ""
+
+#: forms/attachments.php:28
+msgid "For single topic or reply"
+msgstr ""
+
+#: forms/attachments.php:47
+msgid "JavaScript and CSS Settings"
+msgstr ""
+
+#: forms/attachments.php:13
+msgid "Global Attachments Settings"
+msgstr ""
+
+#: forms/attachments.php:6
+msgid "Settings saved."
+msgstr ""
+
+#: forms/attachments.php:14
+msgid "Settings on this page can be overriden for individual forums."
+msgstr ""
+
+#: forms/attachments.php:72
+#: forms/attachments.php:74
+msgid "on"
+msgstr ""
+
+#: forms/attachments.php:71
+msgid "Home Page"
+msgstr ""
+
+#: forms/attachments.php:73
+msgid "Dev4Press Important Links"
+msgstr ""
+
+#: forms/attachments.php:70
+msgid "Important Plugin Links"
+msgstr ""
+
+#: forms/attachments.php:52
+msgid "Inlcude JavaScript"
+msgstr ""
+
+#: forms/attachments.php:48
+msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
+msgstr ""
+
+#: forms/attachments.php:65
+msgid "Save Changes"
+msgstr ""
+
+#: forms/attachments.php:58
+msgid "Inlcude CSS"
+msgstr ""
+

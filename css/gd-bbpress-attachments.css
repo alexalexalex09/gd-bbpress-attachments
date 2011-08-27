@@ -1,0 +1,9 @@
+.bbp-attachments { 
+    border-top: 1px solid #dddddd;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.bbp-attachments h6 {
+    margin: 0 0 5px;
+}
