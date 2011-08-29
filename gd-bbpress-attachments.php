@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.0.1
+Version: 1.0.2
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -69,6 +69,14 @@ class gdbbPressAttachments {
 
         if ($this->o["build"] != $gdd->default_options["build"]) {
             $this->o = $this->_upgrade($this->o, $gdd->default_options);
+
+            $this->o["version"] = $gdd->default_options["version"];
+            $this->o["date"] = $gdd->default_options["date"];
+            $this->o["status"] = $gdd->default_options["status"];
+            $this->o["build"] = $gdd->default_options["build"];
+            $this->o["revision"] = $gdd->default_options["revision"];
+            $this->o["edition"] = $gdd->default_options["edition"];
+
             update_option("gd-bbpress-attachments", $this->o);
         }
 
@@ -110,12 +118,54 @@ class gdbbPressAttachments {
         }
     }
 
-    function admin_post_columns($columns) {
+    public function get_file_size($global_only = false) {
+        $value = $this->o["max_file_size"];
+        if (!$global_only) {
+            $meta = get_post_meta(bbp_get_forum_id(), "_gdbbatt_settings", true);
+            if (is_array($meta) && $meta["to_override"] == 1) {
+                $value = $meta["max_file_size"];
+            }
+        }
+        return $value;
+    }
+
+    public function get_max_files($global_only = false) {
+        $value = $this->o["max_to_upload"];
+        if (!$global_only) {
+            $meta = get_post_meta(bbp_get_forum_id(), "_gdbbatt_settings", true);
+            if (is_array($meta) && $meta["to_override"] == 1) {
+                $value = $meta["max_to_upload"];
+            }
+        }
+        return $value;
+    }
+
+    public function is_right_size($file) {
+        $file_size = apply_filters("d4p_bbpressattchment_max_file_size", $this->get_file_size(), bbp_get_forum_id());
+        return $file["size"] < $file_size * 1024;
+    }
+
+    public function is_user_allowed() {
+        if (is_user_logged_in()) {
+            $value = $this->o["roles_to_upload"];
+            if (!is_array($value)) return true;
+
+            global $current_user;
+            if (is_array($current_user->roles)) {
+                $matched = array_intersect($current_user->roles, $value);
+                return !empty($matched);
+            }
+        }
+
+        return fals;
+    }
+
+    public function admin_post_columns($columns) {
         $columns["gdbbatt_count"] = __("Attachments", "gd-bbpress-attachments");
         return $columns;
     }
 
-    function admin_columns_data($column, $id) {
+    public function admin_columns_data($column, $id) {
         if ($column == "gdbbatt_count") {
             $attachments = d4p_get_post_attachments($id);
             echo count($attachments);
@@ -242,41 +292,16 @@ class gdbbPressAttachments {
         wp_enqueue_script("jquery");
     }
 
-    public function get_file_size($global_only = false) {
-        $value = $this->o["max_file_size"];
-        if (!$global_only) {
-            $meta = get_post_meta(bbp_get_forum_id(), "_gdbbatt_settings", true);
-            if (is_array($meta) && $meta["to_override"] == 1) {
-                $value = $meta["max_file_size"];
-            }
-        }
-        return $value;
-    }
-
-    public function get_max_files($global_only = false) {
-        $value = $this->o["max_to_upload"];
-        if (!$global_only) {
-            $meta = get_post_meta(bbp_get_forum_id(), "_gdbbatt_settings", true);
-            if (is_array($meta) && $meta["to_override"] == 1) {
-                $value = $meta["max_to_upload"];
-            }
-        }
-        return $value;
-    }
-
-    public function is_right_size($file) {
-        $file_size = apply_filters("d4p_bbpressattchment_max_file_size", $this->get_file_size(), bbp_get_forum_id());
-        return $file["size"] < $file_size * 1024;
-    }
-
     public function save_topic($topic_id, $forum_id, $anonymous_data, $topic_author) {
-        $this->save_reply(0, $topic_id, $forum_id, $anonymous_data, $reply_author);
+        $this->save_reply(0, $topic_id, $forum_id, $anonymous_data, $topic_author);
     }
 
     public function save_reply($reply_id, $topic_id, $forum_id, $anonymous_data, $reply_author) {
         $uploads = array();
+
         if (!empty($_FILES) && !empty($_FILES["d4p_attachment"])) {
             require_once(ABSPATH.'wp-admin/includes/file.php');
+
             $overrides = array("test_form" => false, "upload_error_handler" => "d4p_bbattachment_handle_upload_error");
             foreach ($_FILES["d4p_attachment"]["error"] as $key => $error) {
                 if ($error == UPLOAD_ERR_OK) {
@@ -329,7 +354,7 @@ class gdbbPressAttachments {
     }
 
     public function embed_form() {
-        $can_upload = apply_filters("d4p_bbpressattchment_allow_upload", is_user_logged_in(), bbp_get_forum_id());
+        $can_upload = apply_filters("d4p_bbpressattchment_allow_upload", $this->is_user_allowed(), bbp_get_forum_id());
         if (!$can_upload) return;
 
         $file_size = apply_filters("d4p_bbpressattchment_max_file_size", $this->get_file_size(), bbp_get_forum_id());

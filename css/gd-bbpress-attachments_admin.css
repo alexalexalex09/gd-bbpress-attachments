@@ -2,8 +2,18 @@
     float: left;
 }
 
+.d4p-plugin {
+    border-bottom: 1px solid #CC0000;
+    padding-bottom: 1em;
+}
+
+.d4p-plugin h3 {
+    margin: 0 0 0.1em;
+    color: #CC0000;
+}
+
 .d4p-copyright {
-    margin-top: 15px;
+    margin-top: 20px;
     padding-top: 15px;
     font-size: 11px;
     border-top: 1px solid #CC0000;
@@ -13,6 +23,6 @@
     margin-right: 15px;
     padding-right: 15px;
     border-right: 1px solid #CC0000;
-    width: 480px;
+    width: 460px;
     float: left;
 }

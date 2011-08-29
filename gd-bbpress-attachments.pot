@@ -1,71 +1,84 @@
+#: forms/meta_forum.php:3
+#: forms/meta_forum.php:2
+msgid "Override Defaults"
+msgstr ""
+
+#: forms/meta_forum.php:8
+#: forms/meta_forum.php:9
+#: forms/attachments.php:18
+msgid "Maximum file size"
+msgstr ""
+
 #: forms/meta_forum.php:14
 #: forms/meta_forum.php:15
 #: forms/attachments.php:25
 msgid "Maximum files to upload"
 msgstr ""
 
-#: forms/meta_forum.php:9
-#: forms/meta_forum.php:8
-#: forms/attachments.php:18
-msgid "Maximum file size"
+#: forms/attachments.php:98
+#: forms/attachments.php:96
+msgid "on"
 msgstr ""
 
-#: forms/uploader.php:5
-#: gd-bbpress-attachments.php:317
-#: gd-bbpress-attachments.php:175
-#: gd-bbpress-attachments.php:113
-msgid "Attachments"
+#: forms/attachments.php:97
+msgid "Dev4Press Important Links"
+msgstr ""
+
+#: forms/attachments.php:99
+msgid "Fan Page"
 msgstr ""
 
 #: forms/meta_files.php:4
 msgid "No attachments here."
 msgstr ""
 
-#: forms/attachments.php:76
+#: forms/attachments.php:100
 msgid "Dev4Press Premium Plugins And Themes"
 msgstr ""
 
-#: forms/meta_forum.php:3
-#: forms/meta_forum.php:2
-msgid "Override Defaults"
-msgstr ""
-
-#: gd-bbpress-attachments.php:168
-msgid "Settings"
-msgstr ""
-
-#: gd-bbpress-attachments.php:127
-#: gd-bbpress-attachments.php:126
+#: gd-bbpress-attachments.php:177
+#: gd-bbpress-attachments.php:176
 msgid "Attachments List"
 msgstr ""
 
-#: forms/uploader.php:1
-msgid "Maximum file size allowed is"
+#: gd-bbpress-attachments.php:218
+msgid "Settings"
+msgstr ""
+
+#: gd-bbpress-attachments.php:342
+#: gd-bbpress-attachments.php:225
+#: forms/uploader.php:5
+#: gd-bbpress-attachments.php:163
+msgid "Attachments"
 msgstr ""
 
 #: forms/uploader.php:8
 msgid "Add another file"
 msgstr ""
 
-#: gd-bbpress-attachments.php:125
+#: forms/uploader.php:1
+msgid "Maximum file size allowed is"
+msgstr ""
+
+#: gd-bbpress-attachments.php:175
 msgid "Attachments Settings"
 msgstr ""
 
-#: forms/attachments.php:75
-msgid "Fan Page"
-msgstr ""
-
-#: forms/attachments.php:32
-#: forms/attachments.php:35
-msgid "Allow upload to"
+#: forms/attachments.php:33
+msgid "Users Upload Restrictions"
 msgstr ""
 
 #: forms/attachments.php:28
 msgid "For single topic or reply"
 msgstr ""
 
-#: forms/attachments.php:47
-msgid "JavaScript and CSS Settings"
+#: forms/attachments.php:34
+msgid "Only users having one of the selected roles will be able to attach files."
+msgstr ""
+
+#: forms/attachments.php:41
+#: forms/attachments.php:38
+msgid "Allow upload to"
 msgstr ""
 
 #: forms/attachments.php:13
@@ -77,39 +90,46 @@ msgid "Settings saved."
 msgstr ""
 
 #: forms/attachments.php:14
-msgid "Settings on this page can be overriden for individual forums."
+msgid "These settings can be overriden for individual forums."
 msgstr ""
 
-#: forms/attachments.php:72
-#: forms/attachments.php:74
-msgid "on"
+#: forms/attachments.php:53
+msgid "JavaScript and CSS Settings"
 msgstr ""
 
-#: forms/attachments.php:71
-msgid "Home Page"
+#: forms/attachments.php:89
+msgid "Build: "
 msgstr ""
 
-#: forms/attachments.php:73
-msgid "Dev4Press Important Links"
+#: forms/attachments.php:87
+msgid "Status: "
 msgstr ""
 
-#: forms/attachments.php:70
+#: forms/attachments.php:94
 msgid "Important Plugin Links"
 msgstr ""
 
-#: forms/attachments.php:52
-msgid "Inlcude JavaScript"
-msgstr ""
-
-#: forms/attachments.php:48
-msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
-msgstr ""
-
-#: forms/attachments.php:65
-msgid "Save Changes"
+#: forms/attachments.php:95
+msgid "Home Page"
 msgstr ""
 
 #: forms/attachments.php:58
+msgid "Inlcude JavaScript"
+msgstr ""
+
+#: forms/attachments.php:54
+msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
+msgstr ""
+
+#: forms/attachments.php:64
 msgid "Inlcude CSS"
+msgstr ""
+
+#: forms/attachments.php:85
+msgid "Release Date: "
+msgstr ""
+
+#: forms/attachments.php:71
+msgid "Save Changes"
 msgstr ""
 

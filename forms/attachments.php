@@ -12,7 +12,7 @@
         <form action="" method="post">
         <?php wp_nonce_field("gd-bbpress-attachments"); ?>
         <h3><?php _e("Global Attachments Settings", "gd-bbpress-attachments"); ?></h3>
-        <p><?php _e("Settings on this page can be overriden for individual forums.", "gd-bbpress-attachments"); ?></p>
+        <p><?php _e("These settings can be overriden for individual forums.", "gd-bbpress-attachments"); ?></p>
         <table class="form-table">
             <tbody>
                 <tr valign="top">
@@ -29,6 +29,12 @@
                         <span class="description"><?php _e("For single topic or reply", "gd-bbpress-attachments"); ?></span>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <h3><?php _e("Users Upload Restrictions", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Only users having one of the selected roles will be able to attach files.", "gd-bbpress-attachments"); ?></p>
+        <table class="form-table">
+            <tbody>
                 <tr valign="top">
                     <th scope="row"><?php _e("Allow upload to", "gd-bbpress-attachments") ?></th>
                     <td>
@@ -36,7 +42,7 @@
                             <legend class="screen-reader-text"><span><?php _e("Allow upload to", "gd-bbpress-attachments"); ?></span></legend>
                             <?php foreach ($wp_roles->role_names as $role => $title) { ?>
                             <label for="roles_to_upload_<?php echo $role; ?>">
-                                <input type="checkbox" <?php if (is_null($options["roles_to_upload"]) || in_array($role, $options["roles_to_upload"])) echo " checked"; ?> value="<?php echo $role; ?>" id="roles_to_upload_<?php echo $role; ?>" name="roles_to_upload[]" />
+                                <input type="checkbox" <?php if (!isset($options["roles_to_upload"]) || is_null($options["roles_to_upload"]) || in_array($role, $options["roles_to_upload"])) echo " checked"; ?> value="<?php echo $role; ?>" id="roles_to_upload_<?php echo $role; ?>" name="roles_to_upload[]" />
                                 <?php echo $title; ?>
                             </label><br/>
                             <?php } ?>
@@ -68,6 +74,24 @@
     </div>
 
     <div class="d4p-information">
+        <div class="d4p-plugin">
+            <h3>GD bbPress Attachments <?php echo $options["version"]; ?></h3>
+            <?php
+            
+            $status = ucfirst($options["status"]);
+            if ($options["revision"] > 0) {
+                $status.= " #".$options["revision"];
+            }
+
+            _e("Release Date: ", "gd-bbpress-attachments");
+            echo '<strong>'.$options["date"]."</strong> | ";
+            _e("Status: ", "gd-bbpress-attachments");
+            echo '<strong>'.$status."</strong> | ";
+            _e("Build: ", "gd-bbpress-attachments");
+            echo '<strong>'.$options["build"]."</strong>";
+
+            ?>
+        </div>
         <h3><?php _e("Important Plugin Links", "gd-bbpress-attachments"); ?></h3>
         <a target="_blank" href="http://www.dev4press.com/plugins/gd-bbpress-attachments/">GD bbPress Attachments <?php _e("Home Page", "gd-bbpress-attachments"); ?></a><br/>
         <a target="_blank" href="http://wordpress.org/extend/plugins/gd-bbpress-attachments/">GD bbPress Attachments <?php _e("on", "gd-bbpress-attachments"); ?> WordPress.org</a>
