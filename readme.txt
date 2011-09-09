@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.0.2
+Version: 1.0.3
 Tags: bbpress, attachments, gdragon, dev4press, upload
 Requires at least: 3.2
 Tested up to: 3.3
@@ -42,6 +42,10 @@ Open the Forums menu, and you will see Attachments item there. This will open a 
 No. Plugin requires the plugin versions of bbPress.
 
 == Changelog ==
+= 1.0.3 =
+* Serbian Translation
+* Dutch Translation
+
 = 1.0.2 =
 * Improvements to the main settings panel
 * Fixed missing variable for topic attachments saving
@@ -53,8 +57,8 @@ No. Plugin requires the plugin versions of bbPress.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.0.2 =
-* Improvements to the main settings panel. Fixed missing variable for topic attachments saving. Fixed ignoring selected roles to display upload form elements. Fixed upgrading plugin settings process. Fixed few more undefined variables warnings.
+= 1.0.3 =
+* Serbian Translation. Dutch Translation.
 
 == Screenshots ==
 1. Main plugins settings
