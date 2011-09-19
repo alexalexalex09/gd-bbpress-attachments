@@ -7,3 +7,12 @@
 .bbp-attachments h6 {
     margin: 0 0 5px;
 }
+
+.bbp-attachments-count {
+    background: transparent url(../gfx/icons.png);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 4px;
+}

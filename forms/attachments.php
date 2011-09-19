@@ -51,6 +51,18 @@
                 </tr>
             </tbody>
         </table>
+        <h3><?php _e("Forums Integration", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("With these options you can modify the forums to include attachment elements.", "gd-bbpress-attachments"); ?></p>
+        <table class="form-table">
+            <tbody>
+                <tr valign="top">
+                    <th scope="row"><label for="attachment_icon"><?php _e("Attachment Icon", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["attachment_icon"] == 1) echo " checked"; ?> name="attachment_icon" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <h3><?php _e("JavaScript and CSS Settings", "gd-bbpress-attachments"); ?></h3>
         <p><?php _e("You can disable including styles and JavaScript by the plugin, if you want to do it some other way.", "gd-bbpress-attachments"); ?></p>
         <table class="form-table">
@@ -100,6 +112,7 @@
         <a target="_blank" href="http://www.facebook.com/dev4press">Dev4Press Facebook <?php _e("Fan Page", "gd-bbpress-attachments"); ?></a>
         <h3><?php _e("Dev4Press Premium Plugins And Themes", "gd-bbpress-attachments"); ?></h3>
         <a target="_blank" href="http://www.dev4press.com/gd-press-tools/">GD Press Tools</a><br/>
+        <a target="_blank" href="http://www.dev4press.com/gd-products-center/">GD Products Center</a><br/>
         <a target="_blank" href="http://www.dev4press.com/gd-taxonomies-tools/">GD Custom Posts And Taxonomies Tools</a><br/>
         <a target="_blank" href="http://www.gdaffiliatecenter.com/">GD Affiliate Center</a><br/>
         <a target="_blank" href="http://www.dev4press.com/plugins/gd-azon-fusion/">GD aZon FUSION</a><br/>

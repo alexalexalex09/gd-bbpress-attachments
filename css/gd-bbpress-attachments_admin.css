@@ -26,3 +26,12 @@
     width: 460px;
     float: left;
 }
+
+.d4p-settings .form-table th {
+    padding: 5px;
+}
+
+.d4p-settings .form-table td {
+    vertical-align: middle;
+    padding: 5px;
+}

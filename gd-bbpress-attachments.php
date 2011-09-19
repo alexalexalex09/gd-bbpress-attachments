@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.0.3
+Version: 1.0.4
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -115,6 +115,18 @@ class gdbbPressAttachments {
             add_action("bbp_new_topic", array(&$this, "save_topic"), 10, 4);
             add_action("bbp_get_reply_content", array(&$this, "embed_attachments"), 10, 2);
             add_action("bbp_get_topic_content", array(&$this, "embed_attachments"), 10, 2);
+
+            if ($this->o["attachment_icon"] == 1) {
+                add_action("bbp_theme_before_topic_title", array(&$this, "show_attachments_icon"));
+            }
+        }
+    }
+
+    public function show_attachments_icon() {
+        $topic_id = bbp_get_topic_id();
+        $count = d4p_topic_attachments_count($topic_id, true);
+        if ($count > 0) {
+            echo '<span class="bbp-attachments-count" title="'.$count.' '._n("attachment", "attachments", $count, "gd-bbpress-attachments").'"></span>';
         }
     }
 
@@ -247,6 +259,7 @@ class gdbbPressAttachments {
             $this->o["max_file_size"] = absint(intval($_POST["max_file_size"]));
             $this->o["max_to_upload"] = absint(intval($_POST["max_to_upload"]));
             $this->o["roles_to_upload"] = (array)$_POST["roles_to_upload"];
+            $this->o["attachment_icon"] = isset($_POST["attachment_icon"]) ? 1 : 0;
             $this->o["include_js"] = isset($_POST["include_js"]) ? 1 : 0;
             $this->o["include_css"] = isset($_POST["include_css"]) ? 1 : 0;
 
@@ -271,6 +284,7 @@ class gdbbPressAttachments {
                 /*<![CDATA[*/
                 .bbp-attachments { border-top: 1px solid #dddddd; margin-top: 20px; padding: 5px; }
                 .bbp-attachments h6 { margin: 0 0 5px; }
+                .bbp-attachments-count { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png); display: inline-block; width: 16px; height: 16px; float: left; margin-right: 4px; }
                 /*]]>*/
             </style>
         <?php } ?>
