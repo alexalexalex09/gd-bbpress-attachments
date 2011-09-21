@@ -1,8 +1,13 @@
-#: gd-bbpress-attachments.php:128
+#: gd-bbpress-attachments.php:147
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
+
+#: forms/meta_forum.php:3
+#: forms/meta_forum.php:2
+msgid "Override Defaults"
+msgstr ""
 
 #: forms/meta_forum.php:8
 #: forms/meta_forum.php:9
@@ -10,51 +15,46 @@ msgstr[1] ""
 msgid "Maximum file size"
 msgstr ""
 
-#: forms/meta_forum.php:3
-#: forms/meta_forum.php:2
-msgid "Override Defaults"
-msgstr ""
-
-#: forms/meta_forum.php:15
 #: forms/meta_forum.php:14
+#: forms/meta_forum.php:15
 #: forms/attachments.php:25
 msgid "Maximum files to upload"
-msgstr ""
-
-#: forms/attachments.php:110
-#: forms/attachments.php:108
-msgid "on"
-msgstr ""
-
-#: forms/attachments.php:109
-msgid "Dev4Press Important Links"
-msgstr ""
-
-#: forms/attachments.php:111
-msgid "Fan Page"
 msgstr ""
 
 #: forms/meta_files.php:4
 msgid "No attachments here."
 msgstr ""
 
-#: forms/attachments.php:112
+#: forms/attachments.php:115
+msgid "Dev4Press Important Links"
+msgstr ""
+
+#: forms/attachments.php:114
+#: forms/attachments.php:116
+msgid "on"
+msgstr ""
+
+#: forms/attachments.php:118
 msgid "Dev4Press Premium Plugins And Themes"
 msgstr ""
 
-#: gd-bbpress-attachments.php:230
+#: forms/attachments.php:117
+msgid "Fan Page"
+msgstr ""
+
+#: gd-bbpress-attachments.php:249
 msgid "Settings"
 msgstr ""
 
-#: gd-bbpress-attachments.php:189
-#: gd-bbpress-attachments.php:188
+#: gd-bbpress-attachments.php:208
+#: gd-bbpress-attachments.php:207
 msgid "Attachments List"
 msgstr ""
 
-#: gd-bbpress-attachments.php:237
-#: gd-bbpress-attachments.php:356
+#: gd-bbpress-attachments.php:256
+#: gd-bbpress-attachments.php:406
 #: forms/uploader.php:5
-#: gd-bbpress-attachments.php:175
+#: gd-bbpress-attachments.php:194
 msgid "Attachments"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Maximum file size allowed is"
 msgstr ""
 
-#: gd-bbpress-attachments.php:187
+#: gd-bbpress-attachments.php:206
 msgid "Attachments Settings"
 msgstr ""
 
@@ -107,47 +107,51 @@ msgstr ""
 msgid "For single topic or reply"
 msgstr ""
 
-#: forms/attachments.php:99
-msgid "Status: "
-msgstr ""
-
-#: forms/attachments.php:97
-msgid "Release Date: "
-msgstr ""
-
-#: forms/attachments.php:101
-msgid "Build: "
-msgstr ""
-
-#: forms/attachments.php:107
-msgid "Home Page"
-msgstr ""
-
-#: forms/attachments.php:106
-msgid "Important Plugin Links"
-msgstr ""
-
-#: forms/attachments.php:83
-msgid "Save Changes"
-msgstr ""
-
-#: forms/attachments.php:65
-msgid "JavaScript and CSS Settings"
-msgstr ""
-
 #: forms/attachments.php:58
 msgid "Attachment Icon"
 msgstr ""
 
-#: forms/attachments.php:66
+#: forms/attachments.php:105
+msgid "Status: "
+msgstr ""
+
+#: forms/attachments.php:103
+msgid "Release Date: "
+msgstr ""
+
+#: forms/attachments.php:107
+msgid "Build: "
+msgstr ""
+
+#: forms/attachments.php:113
+msgid "Home Page"
+msgstr ""
+
+#: forms/attachments.php:112
+msgid "Important Plugin Links"
+msgstr ""
+
+#: forms/attachments.php:89
+msgid "Save Changes"
+msgstr ""
+
+#: forms/attachments.php:71
+msgid "JavaScript and CSS Settings"
+msgstr ""
+
+#: forms/attachments.php:64
+msgid "File Type Icons"
+msgstr ""
+
+#: forms/attachments.php:72
 msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
 msgstr ""
 
-#: forms/attachments.php:76
+#: forms/attachments.php:82
 msgid "Inlcude CSS"
 msgstr ""
 
-#: forms/attachments.php:70
+#: forms/attachments.php:76
 msgid "Inlcude JavaScript"
 msgstr ""
 

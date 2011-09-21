@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.0.4
+Version: 1.1.0
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -36,6 +36,25 @@ class gdbbPressAttachments {
     private $plugin_path;
     private $plugin_url;
     private $admin_plugin = false;
+
+    private $icons = array(
+        "code" => "c|cc|h|js|class", 
+        "xml" => "xml", 
+        "excel" => "xla|xls|xlsx|xlt|xlw|xlam|xlsb|xlsm|xltm", 
+        "word" => "docx|dotx|docm|dotm", 
+        "image" => "png|gif|jpg|jpeg|jpe|jp|bmp|tif|tiff", 
+        "psd" => "psd", 
+        "ai" => "ai", 
+        "archive" => "zip|rar|gz|gzip|tar",
+        "text" => "txt|asc|nfo", 
+        "powerpoint" => "pot|pps|ppt|pptx|ppam|pptm|sldm|ppsm|potm", 
+        "pdf" => "pdf", 
+        "html" => "htm|html|css", 
+        "video" => "avi|asf|asx|wax|wmv|wmx|divx|flv|mov|qt|mpeg|mpg|mpe|mp4|m4v|ogv|mkv", 
+        "documents" => "odt|odp|ods|odg|odc|odb|odf|wp|wpd|rtf",
+        "audio" => "mp3|m4a|m4b|mp4|m4v|wav|ra|ram|ogg|oga|mid|midi|wma|mka",
+        "icon" => "ico"
+    );
 
     function __construct() {
         $this->_init();
@@ -260,6 +279,7 @@ class gdbbPressAttachments {
             $this->o["max_to_upload"] = absint(intval($_POST["max_to_upload"]));
             $this->o["roles_to_upload"] = (array)$_POST["roles_to_upload"];
             $this->o["attachment_icon"] = isset($_POST["attachment_icon"]) ? 1 : 0;
+            $this->o["attchment_icons"] = isset($_POST["attchment_icons"]) ? 1 : 0;
             $this->o["include_js"] = isset($_POST["include_js"]) ? 1 : 0;
             $this->o["include_css"] = isset($_POST["include_css"]) ? 1 : 0;
 
@@ -284,7 +304,29 @@ class gdbbPressAttachments {
                 /*<![CDATA[*/
                 .bbp-attachments { border-top: 1px solid #dddddd; margin-top: 20px; padding: 5px; }
                 .bbp-attachments h6 { margin: 0 0 5px; }
+                .bbp-attachments ol { margin: 0 0 5px; list-style: decimal inside none; }
+                .bbp-attachments ol.with-icons { list-style: none; }
+                .bbp-attachments li { line-height: 16px; height: 16px; margin: 0 0 4px; }
+                .bbp-attachments ol.with-icons li { padding: 0 0 0 18px; }
                 .bbp-attachments-count { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png); display: inline-block; width: 16px; height: 16px; float: left; margin-right: 4px; }
+                .bbp-atticon { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png) no-repeat; }
+                .bbp-atticon-generic { background-position: 0 -16px; }
+                .bbp-atticon-code { background-position: 0 -32px; }
+                .bbp-atticon-xml { background-position: 0 -48px; }
+                .bbp-atticon-excel { background-position: 0 -64px; }
+                .bbp-atticon-word { background-position: 0 -80px; }
+                .bbp-atticon-image { background-position: 0 -96px; }
+                .bbp-atticon-psd { background-position: 0 -112px; }
+                .bbp-atticon-ai { background-position: 0 -128px; }
+                .bbp-atticon-archive { background-position: 0 -144px; }
+                .bbp-atticon-text { background-position: 0 -160px; }
+                .bbp-atticon-powerpoint { background-position: 0 -176px; }
+                .bbp-atticon-pdf { background-position: 0 -192px; }
+                .bbp-atticon-html { background-position: 0 -208px; }
+                .bbp-atticon-video { background-position: 0 -224px; }
+                .bbp-atticon-documents { background-position: 0 -240px; }
+                .bbp-atticon-audio { background-position: 0 -256px; }
+                .bbp-atticon-icon { background-position: 0 -272px; }
                 /*]]>*/
             </style>
         <?php } ?>
@@ -350,18 +392,37 @@ class gdbbPressAttachments {
         }
     }
 
+    private function detect_icon($ext) {
+        foreach ($this->icons as $icon => $list) {
+            $list = explode("|", $list);
+            if (in_array($ext, $list)) return $icon;
+        }
+        return "generic";
+    }
+
     public function embed_attachments($content, $id) {
         $attachments = d4p_get_post_attachments($id);
         if (!empty($attachments)) {
             $content.= '<div class="bbp-attachments">';
             $content.= '<h6>'.__("Attachments", "gd-bbpress-attachments").':</h6>';
-            $content.= '<ol>';
+            $content.= '<ol';
+            if ($this->o["attchment_icons"] == 1) {
+                $content.= ' class="with-icons"';
+            }
+            $content.= '>';
+
             foreach ($attachments as $attachment) {
                 $file = get_attached_file($attachment->ID);
                 $url = wp_get_attachment_url($attachment->ID);
                 $filename = pathinfo($file, PATHINFO_BASENAME);
-                $content.= '<li><a href="'.$url.'">'.$filename.'</a></li>';
+                $content.= '<li';
+                if ($this->o["attchment_icons"] == 1) {
+                    $ext = pathinfo($file, PATHINFO_EXTENSION);
+                    $content.= ' class="bbp-atticon bbp-atticon-'.$this->detect_icon($ext).'"';
+                }
+                $content.= '><a href="'.$url.'">'.$filename.'</a></li>';
             }
+
             $content.= '</ol></div>';
         }
         return $content;

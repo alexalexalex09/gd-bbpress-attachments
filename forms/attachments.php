@@ -61,6 +61,12 @@
                         <input type="checkbox" <?php if ($options["attachment_icon"] == 1) echo " checked"; ?> name="attachment_icon" />
                     </td>
                 </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="attachment_icon"><?php _e("File Type Icons", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["attchment_icons"] == 1) echo " checked"; ?> name="attchment_icons" />
+                    </td>
+                </tr>
             </tbody>
         </table>
         <h3><?php _e("JavaScript and CSS Settings", "gd-bbpress-attachments"); ?></h3>

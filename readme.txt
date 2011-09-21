@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.0.4
+Version: 1.1.0
 Tags: bbpress, attachments, gdragon, dev4press, upload
 Requires at least: 3.2
 Tested up to: 3.3
@@ -13,6 +13,8 @@ Implements attachments upload to the topics and replies in bbPress plugin throug
 Attachments for forum topic and replies are handled through WordPress media library. You can control file sizes from the main plugin settings panel, or you can do it individually for each forum you have set. You can limit number of files user can attach for each topic and reply.
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments.
+
+Supported languages: English, Serbian, Dutch
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
@@ -42,6 +44,9 @@ Open the Forums menu, and you will see Attachments item there. This will open a 
 No. Plugin requires the plugin versions of bbPress.
 
 == Changelog ==
+= 1.1.0 =
+* Attachments icons in the attachment lists
+
 = 1.0.4 =
 * Attachment icon of forums
 
@@ -65,4 +70,6 @@ No. Plugin requires the plugin versions of bbPress.
 
 == Screenshots ==
 1. Main plugins settings
-2. Reply with 2 attachments
+2. Reply with attachments and file type icons
+3. Icons for the forums with attachments
+4. Attachments upload elements in the form
