@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.1.0
+Version: 1.2.0
 Tags: bbpress, attachments, gdragon, dev4press, upload
 Requires at least: 3.2
 Tested up to: 3.3
@@ -18,12 +18,15 @@ Supported languages: English, Serbian, Dutch
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
+[Support Forum](http://www.dev4press.com/forums/forum/free-plugins/gd-bbpress-attachments/) |
 [Feedburner](http://feeds2.feedburner.com/dev4press) |
-[Twitter](http://twitter.com/milangd)
+[Twitter](http://twitter.com/milangd) |
+[Facebook Page](http://www.facebook.com/dev4press)
 
 == Installation ==
 = General Requirements =
 * PHP: 5.x.x
+* bbPress: 2.x.x
 
 = WordPress Requirements =
 * WordPress: 3.2
@@ -41,9 +44,13 @@ Supported languages: English, Serbian, Dutch
 Open the Forums menu, and you will see Attachments item there. This will open a panel with global plugin settings.
 
 * Will this plugin work with standalone bbPress instalation?
-No. Plugin requires the plugin versions of bbPress.
+No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 
 == Changelog ==
+= 1.2.0 =
+* Disable attachments for individual forums
+* Improved admin side topic and reply editor integration
+
 = 1.1.0 =
 * Attachments icons in the attachment lists
 
@@ -65,11 +72,12 @@ No. Plugin requires the plugin versions of bbPress.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.0.4 =
-* Attachment icon of forums.
+= 1.2.0 =
+Disable attachments for individual forums. Improved admin side topic and reply editor integration.
 
 == Screenshots ==
 1. Main plugins settings
 2. Reply with attachments and file type icons
 3. Icons for the forums with attachments
 4. Attachments upload elements in the form
+5. Single forum meta box with settings

@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.1.0
+Version: 1.2.0
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -117,6 +117,7 @@ class gdbbPressAttachments {
             add_action("admin_init", array(&$this, "admin_init"));
             add_action("admin_menu", array(&$this, "admin_menu"));
             add_action("admin_menu", array(&$this, "admin_meta"));
+            add_action("admin_head", array(&$this, "admin_head"));
             add_action("save_post", array(&$this, "save_edit_forum"));
 
             add_filter("plugin_action_links", array(&$this, "plugin_actions"), 10, 2);
@@ -147,6 +148,11 @@ class gdbbPressAttachments {
         if ($count > 0) {
             echo '<span class="bbp-attachments-count" title="'.$count.' '._n("attachment", "attachments", $count, "gd-bbpress-attachments").'"></span>';
         }
+    }
+
+    public function enabled_for_forum($id = 0) {
+        $meta = get_post_meta(bbp_get_forum_id($id), "_gdbbatt_settings", true);
+        return !isset($meta["disable"]) || (isset($meta["disable"]) && $meta["disable"] == 0);
     }
 
     public function get_file_size($global_only = false) {
@@ -192,7 +198,7 @@ class gdbbPressAttachments {
     }
 
     public function admin_post_columns($columns) {
-        $columns["gdbbatt_count"] = __("Attachments", "gd-bbpress-attachments");
+        $columns["gdbbatt_count"] = '<img src="'.GDBBPRESSATTACHMENTS_URL.'gfx/attachment.png" width="16" height="12" alt="'.__("Attachments", "gd-bbpress-attachments").'" title="'.__("Attachments", "gd-bbpress-attachments").'" />';
         return $columns;
     }
 
@@ -220,6 +226,7 @@ class gdbbPressAttachments {
                 "to_override" => isset($data["to_override"]) ? 1 : 0,
                 "max_file_size" => absint(intval($data["max_file_size"])),
                 "max_to_upload" => absint(intval($data["max_to_upload"])),
+                "disable" => isset($data["disable"]) ? 1 : 0
             );
             update_post_meta($post_id, "_gdbbatt_settings", $meta);
         }
@@ -230,7 +237,7 @@ class gdbbPressAttachments {
 
         $meta = get_post_meta($post_ID, "_gdbbatt_settings", true);
         if (!is_array($meta)) {
-            $meta = array("to_override" => 0, "max_file_size" => $this->get_file_size(true), "max_to_upload" => $this->get_max_files(true));
+            $meta = array("disable" => 0, "to_override" => 0, "max_file_size" => $this->get_file_size(true), "max_to_upload" => $this->get_max_files(true));
         }
 
         include(GDBBPRESSATTACHMENTS_PATH."forms/meta_forum.php");
@@ -296,6 +303,14 @@ class gdbbPressAttachments {
         if ($this->admin_plugin) {
             wp_enqueue_style("gd-bbpress-attachments", GDBBPRESSATTACHMENTS_URL."css/gd-bbpress-attachments_admin.css", array(), GDBBPRESSATTACHMENTS_VERSION);
         }
+    }
+
+    public function admin_head() { ?>
+        <style type="text/css">
+            /*<![CDATA[*/
+            th.column-gdbbatt_count, td.column-gdbbatt_count { width: 3%; text-align: center; }
+            /*]]>*/
+        </style><?php
     }
 
     public function bbp_head() { 
@@ -431,6 +446,9 @@ class gdbbPressAttachments {
     public function embed_form() {
         $can_upload = apply_filters("d4p_bbpressattchment_allow_upload", $this->is_user_allowed(), bbp_get_forum_id());
         if (!$can_upload) return;
+
+        $is_enabled = apply_filters("d4p_bbpressattchment_forum_enabled", $this->enabled_for_forum(), bbp_get_forum_id());
+        if (!$is_enabled) return;
 
         $file_size = apply_filters("d4p_bbpressattchment_max_file_size", $this->get_file_size(), bbp_get_forum_id());
         include(GDBBPRESSATTACHMENTS_PATH."forms/uploader.php");

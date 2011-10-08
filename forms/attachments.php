@@ -74,13 +74,13 @@
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="max_file_size"><?php _e("Inlcude JavaScript", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label for="max_file_size"><?php _e("Include JavaScript", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="checkbox" <?php if ($options["include_js"] == 1) echo " checked"; ?> name="include_js" />
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="max_file_size"><?php _e("Inlcude CSS", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label for="max_file_size"><?php _e("Include CSS", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="checkbox" <?php if ($options["include_css"] == 1) echo " checked"; ?> name="include_css" />
                     </td>

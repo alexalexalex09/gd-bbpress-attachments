@@ -1,37 +1,24 @@
-#: gd-bbpress-attachments.php:147
+#: gd-bbpress-attachments.php:148
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: forms/meta_forum.php:3
-#: forms/meta_forum.php:2
-msgid "Override Defaults"
-msgstr ""
-
-#: forms/meta_forum.php:8
-#: forms/meta_forum.php:9
+#: forms/meta_forum.php:13
+#: forms/meta_forum.php:14
 #: forms/attachments.php:18
 msgid "Maximum file size"
 msgstr ""
 
-#: forms/meta_forum.php:14
-#: forms/meta_forum.php:15
+#: forms/meta_forum.php:8
+#: forms/meta_forum.php:7
+msgid "Override Defaults"
+msgstr ""
+
+#: forms/meta_forum.php:20
+#: forms/meta_forum.php:19
 #: forms/attachments.php:25
 msgid "Maximum files to upload"
-msgstr ""
-
-#: forms/meta_files.php:4
-msgid "No attachments here."
-msgstr ""
-
-#: forms/attachments.php:115
-msgid "Dev4Press Important Links"
-msgstr ""
-
-#: forms/attachments.php:114
-#: forms/attachments.php:116
-msgid "on"
 msgstr ""
 
 #: forms/attachments.php:118
@@ -42,45 +29,68 @@ msgstr ""
 msgid "Fan Page"
 msgstr ""
 
-#: gd-bbpress-attachments.php:249
-msgid "Settings"
+#: forms/attachments.php:116
+#: forms/attachments.php:114
+msgid "on"
 msgstr ""
 
-#: gd-bbpress-attachments.php:208
-#: gd-bbpress-attachments.php:207
-msgid "Attachments List"
+#: forms/meta_forum.php:3
+#: forms/meta_forum.php:2
+msgid "Disable Attachments"
+msgstr ""
+
+#: forms/meta_files.php:4
+msgid "No attachments here."
 msgstr ""
 
 #: gd-bbpress-attachments.php:256
-#: gd-bbpress-attachments.php:406
-#: forms/uploader.php:5
-#: gd-bbpress-attachments.php:194
-msgid "Attachments"
+msgid "Settings"
+msgstr ""
+
+#: gd-bbpress-attachments.php:214
+#: gd-bbpress-attachments.php:213
+msgid "Attachments List"
 msgstr ""
 
 #: forms/attachments.php:6
 msgid "Settings saved."
 msgstr ""
 
-#: forms/uploader.php:8
-msgid "Add another file"
+#: gd-bbpress-attachments.php:421
+#: gd-bbpress-attachments.php:263
+#: forms/uploader.php:5
+#: gd-bbpress-attachments.php:200
+#: gd-bbpress-attachments.php:200
+msgid "Attachments"
 msgstr ""
 
 #: forms/uploader.php:1
 msgid "Maximum file size allowed is"
 msgstr ""
 
-#: gd-bbpress-attachments.php:206
+#: forms/uploader.php:8
+msgid "Add another file"
+msgstr ""
+
+#: gd-bbpress-attachments.php:212
 msgid "Attachments Settings"
 msgstr ""
 
-#: forms/attachments.php:38
+#: forms/attachments.php:115
+msgid "Dev4Press Important Links"
+msgstr ""
+
 #: forms/attachments.php:41
+#: forms/attachments.php:38
 msgid "Allow upload to"
 msgstr ""
 
 #: forms/attachments.php:34
 msgid "Only users having one of the selected roles will be able to attach files."
+msgstr ""
+
+#: forms/attachments.php:58
+msgid "Attachment Icon"
 msgstr ""
 
 #: forms/attachments.php:54
@@ -91,10 +101,6 @@ msgstr ""
 msgid "Forums Integration"
 msgstr ""
 
-#: forms/attachments.php:33
-msgid "Users Upload Restrictions"
-msgstr ""
-
 #: forms/attachments.php:14
 msgid "These settings can be overriden for individual forums."
 msgstr ""
@@ -103,12 +109,16 @@ msgstr ""
 msgid "Global Attachments Settings"
 msgstr ""
 
+#: forms/attachments.php:33
+msgid "Users Upload Restrictions"
+msgstr ""
+
 #: forms/attachments.php:28
 msgid "For single topic or reply"
 msgstr ""
 
-#: forms/attachments.php:58
-msgid "Attachment Icon"
+#: forms/attachments.php:107
+msgid "Build: "
 msgstr ""
 
 #: forms/attachments.php:105
@@ -119,10 +129,6 @@ msgstr ""
 msgid "Release Date: "
 msgstr ""
 
-#: forms/attachments.php:107
-msgid "Build: "
-msgstr ""
-
 #: forms/attachments.php:113
 msgid "Home Page"
 msgstr ""
@@ -131,8 +137,8 @@ msgstr ""
 msgid "Important Plugin Links"
 msgstr ""
 
-#: forms/attachments.php:89
-msgid "Save Changes"
+#: forms/attachments.php:72
+msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
 msgstr ""
 
 #: forms/attachments.php:71
@@ -143,15 +149,15 @@ msgstr ""
 msgid "File Type Icons"
 msgstr ""
 
-#: forms/attachments.php:72
-msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
+#: forms/attachments.php:89
+msgid "Save Changes"
 msgstr ""
 
 #: forms/attachments.php:82
-msgid "Inlcude CSS"
+msgid "Include CSS"
 msgstr ""
 
 #: forms/attachments.php:76
-msgid "Inlcude JavaScript"
+msgid "Include JavaScript"
 msgstr ""
 
