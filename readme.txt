@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.2.0
+Version: 1.2.1
 Tags: bbpress, attachments, gdragon, dev4press, upload
 Requires at least: 3.2
 Tested up to: 3.3
@@ -14,7 +14,7 @@ Attachments for forum topic and replies are handled through WordPress media libr
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments.
 
-Supported languages: English, Serbian, Dutch
+Supported languages: English, Serbian, Dutch, German.
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
@@ -47,6 +47,10 @@ Open the Forums menu, and you will see Attachments item there. This will open a 
 No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 
 == Changelog ==
+= 1.2.1 =
+* German Translation
+* Check for the bbPress to add JavaScript and CSS
+
 = 1.2.0 =
 * Disable attachments for individual forums
 * Improved admin side topic and reply editor integration
@@ -72,8 +76,8 @@ No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.2.0 =
-Disable attachments for individual forums. Improved admin side topic and reply editor integration.
+= 1.2.1 =
+German Translation. Check for the bbPress to add JavaScript and CSS.
 
 == Screenshots ==
 1. Main plugins settings
@@ -81,3 +85,10 @@ Disable attachments for individual forums. Improved admin side topic and reply e
 3. Icons for the forums with attachments
 4. Attachments upload elements in the form
 5. Single forum meta box with settings
+
+== Other Notes ==
+= Translations =
+* English
+* Serbian
+* Dutch
+* German: David Decker - http://deckerweb.de/

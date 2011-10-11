@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.2.0
+Version: 1.2.1
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -140,6 +140,14 @@ class gdbbPressAttachments {
                 add_action("bbp_theme_before_topic_title", array(&$this, "show_attachments_icon"));
             }
         }
+    }
+
+    private function detect_icon($ext) {
+        foreach ($this->icons as $icon => $list) {
+            $list = explode("|", $list);
+            if (in_array($ext, $list)) return $icon;
+        }
+        return "generic";
     }
 
     public function show_attachments_icon() {
@@ -314,7 +322,7 @@ class gdbbPressAttachments {
     }
 
     public function bbp_head() { 
-        if ($this->o["include_css"] == 1) { ?>
+        if (d4p_is_bbpress() && $this->o["include_css"] == 1) { ?>
             <style type="text/css">
                 /*<![CDATA[*/
                 .bbp-attachments { border-top: 1px solid #dddddd; margin-top: 20px; padding: 5px; }
@@ -344,7 +352,7 @@ class gdbbPressAttachments {
                 .bbp-atticon-icon { background-position: 0 -272px; }
                 /*]]>*/
             </style>
-        <?php } ?>
+        <?php } if (d4p_is_bbpress()) { ?>
             <script type='text/javascript'>
                 /* <![CDATA[ */
                 var gdbbPressAttachmentsInit = {
@@ -356,11 +364,13 @@ class gdbbPressAttachments {
                 <?php } ?>
                 /* ]]> */
             </script>
-        <?php
+        <?php }
     }
 
     public function bbp_init() {
-        wp_enqueue_script("jquery");
+        if (d4p_is_bbpress()) {
+            wp_enqueue_script("jquery");
+        }
     }
 
     public function save_topic($topic_id, $forum_id, $anonymous_data, $topic_author) {
@@ -405,14 +415,6 @@ class gdbbPressAttachments {
                 wp_update_attachment_metadata($attach_id, $attach_data);
             }
         }
-    }
-
-    private function detect_icon($ext) {
-        foreach ($this->icons as $icon => $list) {
-            $list = explode("|", $list);
-            if (in_array($ext, $list)) return $icon;
-        }
-        return "generic";
     }
 
     public function embed_attachments($content, $id) {
