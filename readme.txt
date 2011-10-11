@@ -46,6 +46,12 @@ Open the Forums menu, and you will see Attachments item there. This will open a 
 * Will this plugin work with standalone bbPress instalation?
 No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 
+== Translations ==
+* English
+* Serbian
+* Dutch
+* German: David Decker - http://deckerweb.de/
+
 == Changelog ==
 = 1.2.1 =
 * German Translation
@@ -85,10 +91,3 @@ German Translation. Check for the bbPress to add JavaScript and CSS.
 3. Icons for the forums with attachments
 4. Attachments upload elements in the form
 5. Single forum meta box with settings
-
-== Other Notes ==
-= Translations =
-* English
-* Serbian
-* Dutch
-* German: David Decker - http://deckerweb.de/
