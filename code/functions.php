@@ -6,7 +6,11 @@
  * @return bool true if the current page is the forum related
  */
 function d4p_is_bbpress() {
-    return bbp_get_forum_id() > 0;
+    if (function_exists("bbp_get_forum_id")) {
+        return bbp_get_forum_id() > 0;
+    } else {
+        return false;
+    }
 }
 
 /**

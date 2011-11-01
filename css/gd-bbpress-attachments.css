@@ -8,12 +8,6 @@
 	margin: 0 0 5px;
 }
 
-.bbp-attachments li {
-	line-height: 16px;
-	height: 16px;
-	margin: 0 0 4px;
-}
-
 .bbp-attachments ol {
 	margin: 0 0 5px;
 	list-style: decimal inside none;
@@ -21,6 +15,12 @@
 
 .bbp-attachments ol.with-icons {
 	list-style: none;
+}
+
+.bbp-attachments li {
+	line-height: 16px;
+	height: 16px;
+	margin: 0 0 4px;
 }
 
 .bbp-attachments ol.with-icons li {

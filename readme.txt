@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.2.2
+Version: 1.2.3
 Tags: bbpress, attachments, gdragon, dev4press, upload
 Requires at least: 3.2
 Tested up to: 3.3
@@ -54,6 +54,10 @@ No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.2.3 =
+* Minor change to user roles detection
+* Fixed problem with displaying attachments to visitors
+
 = 1.2.2 =
 * Spanish Translation
 
@@ -86,8 +90,8 @@ No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.2.2 =
-Spanish Translation.
+= 1.2.3 =
+Minor change to user roles detection. Fixed problem with displaying attachments to visitors.
 
 == Screenshots ==
 1. Main plugins settings
