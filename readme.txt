@@ -1,8 +1,8 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.2.3
-Tags: bbpress, attachments, gdragon, dev4press, upload
+Version: 1.2.4
+Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
 Requires at least: 3.2
 Tested up to: 3.3
 Stable tag: trunk
@@ -10,7 +10,7 @@ Stable tag: trunk
 Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
 
 == Description ==
-Attachments for forum topic and replies are handled through WordPress media library. You can control file sizes from the main plugin settings panel, or you can do it individually for each forum you have set. You can limit number of files user can attach for each topic and reply.
+Attachments for forum topics and replies are handled through WordPress media library. You can control file sizes from the main plugin settings panel, or you can do it individually for each forum you have set. You can limit number of files user can attach for each topic and reply.
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments.
 
@@ -25,7 +25,7 @@ Supported languages: English, Serbian, Dutch, German, Spanish.
 
 == Installation ==
 = General Requirements =
-* PHP: 5.x.x
+* PHP: 5.2.x
 * bbPress: 2.x.x
 
 = WordPress Requirements =
@@ -46,14 +46,25 @@ Open the Forums menu, and you will see Attachments item there. This will open a 
 * Will this plugin work with standalone bbPress instalation?
 No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 
+* What are the common problems that can prevent upload to work?
+In some cases, it can happen that jQuery is not included in the page, even so the bbPress requires it to be loaded. That can happen if something else is unloading jQuery. If the jQuery is not present, upload will not work.
+Other common issue is that WordPress Media Library upload is not working. If that is not set up, attachments upload can't work.
+
+* Why is Media Library required?
+All attachments uploads are handled by the WordPress Media Library, and plugin uses native WordPress upload functions. When file is uploaded it will be available through Media Library. Consult WordPress documentation about Media Library requirements.
+
 == Translations ==
 * English
 * Serbian
-* Dutch
+* Dutch: Wouter van Vliet - http://www.interpotential.com/
 * German: David Decker - http://deckerweb.de/
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.2.4 =
+* Improved Dutch Translation
+* Updated Frequently Asked Questions
+
 = 1.2.3 =
 * Minor change to user roles detection
 * Fixed problem with displaying attachments to visitors
@@ -90,8 +101,8 @@ No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.2.3 =
-Minor change to user roles detection. Fixed problem with displaying attachments to visitors.
+= 1.2.4 =
+Improved Dutch Translation. Updated Frequently Asked Questions.
 
 == Screenshots ==
 1. Main plugins settings
