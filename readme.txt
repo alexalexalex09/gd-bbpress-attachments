@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.2.4
+Version: 1.5
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
 Requires at least: 3.2
 Tested up to: 3.3
@@ -61,6 +61,14 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.5 =
+* Improved tabbed admin interface
+* Image attachments display and styling
+* Error logging displayed to admin and author
+* Fixed upload from edit topic and reply
+* Fixed including of jQuery into header
+* Fixed bbPress detection for edit pages
+
 = 1.2.4 =
 * Improved Dutch Translation
 * Updated Frequently Asked Questions
@@ -101,12 +109,13 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.2.4 =
-Improved Dutch Translation. Updated Frequently Asked Questions.
+= 1.5 =
+Improved tabbed admin interface. Image attachments display and styling. Error logging displayed to admin and author. Fixed upload from edit topic and reply. Fixed including of jQuery into header. Fixed bbPress detection for edit pages.
 
 == Screenshots ==
-1. Main plugins settings
+1. Main plugins settings panel
 2. Reply with attachments and file type icons
-3. Icons for the forums with attachments
-4. Attachments upload elements in the form
-5. Single forum meta box with settings
+3. Image attachments with upload errors
+4. Icons for the forums with attachments
+5. Attachments upload elements in the form
+6. Single forum meta box with settings

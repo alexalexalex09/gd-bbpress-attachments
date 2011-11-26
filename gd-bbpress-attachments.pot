@@ -1,163 +1,278 @@
-#: gd-bbpress-attachments.php:148
+#: gd-bbpress-attachments.php:162
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: forms/meta_forum.php:13
-#: forms/meta_forum.php:14
-#: forms/attachments.php:18
-msgid "Maximum file size"
+#: code/defaults.php:36
+msgid "File not uploaded."
 msgstr ""
 
-#: forms/meta_forum.php:8
-#: forms/meta_forum.php:7
-msgid "Override Defaults"
+#: code/defaults.php:37
+msgid "Upload file size exceeds PHP maximum file size allowed."
 msgstr ""
 
-#: forms/meta_forum.php:20
-#: forms/meta_forum.php:19
-#: forms/attachments.php:25
-msgid "Maximum files to upload"
+#: code/defaults.php:38
+msgid "Upload file size exceeds FORM specified file size."
 msgstr ""
 
-#: forms/attachments.php:118
-msgid "Dev4Press Premium Plugins And Themes"
+#: code/defaults.php:39
+msgid "Upload file only partially uploaded."
 msgstr ""
 
-#: forms/attachments.php:117
-msgid "Fan Page"
+#: code/defaults.php:40
+msgid "Can't write file to the disk."
 msgstr ""
 
-#: forms/attachments.php:116
-#: forms/attachments.php:114
+#: code/defaults.php:41
+msgid "Temporary folder for upload is missing."
+msgstr ""
+
+#: code/defaults.php:42
+msgid "Server extension restriction stopped upload."
+msgstr ""
+
+#: forms/tabs/about.php:10
+msgid "Release Date: "
+msgstr ""
+
+#: forms/tabs/about.php:12
+msgid "Status: "
+msgstr ""
+
+#: forms/tabs/about.php:14
+msgid "Build: "
+msgstr ""
+
+#: forms/tabs/about.php:19
+msgid "Important Plugin Links"
+msgstr ""
+
+#: forms/tabs/about.php:20
+msgid "Home Page"
+msgstr ""
+
+#: forms/tabs/about.php:21
+#: forms/tabs/about.php:27
 msgid "on"
 msgstr ""
 
-#: forms/meta_forum.php:3
-#: forms/meta_forum.php:2
-msgid "Disable Attachments"
+#: forms/tabs/about.php:22
+msgid "Plugin Support"
+msgstr ""
+
+#: forms/tabs/about.php:23
+msgid "Plugin Support Forum on Dev4Press"
+msgstr ""
+
+#: forms/tabs/about.php:26
+msgid "Dev4Press Important Links"
+msgstr ""
+
+#: forms/tabs/about.php:28
+#: forms/tabs/about.php:29
+msgid "Page"
+msgstr ""
+
+#: forms/tabs/about.php:30
+msgid "Dev4Press Premium Plugins And Themes"
+msgstr ""
+
+#: forms/tabs/settings.php:2
+msgid "Settings saved."
+msgstr ""
+
+#: forms/tabs/settings.php:9
+msgid "Global Attachments Settings"
+msgstr ""
+
+#: forms/tabs/settings.php:10
+msgid "These settings can be overriden for individual forums."
+msgstr ""
+
+#: forms/tabs/settings.php:14
+#: forms/meta_forum.php:13
+#: forms/meta_forum.php:14
+msgid "Maximum file size"
+msgstr ""
+
+#: forms/tabs/settings.php:21
+#: forms/meta_forum.php:19
+#: forms/meta_forum.php:20
+msgid "Maximum files to upload"
+msgstr ""
+
+#: forms/tabs/settings.php:24
+msgid "For single topic or reply"
+msgstr ""
+
+#: forms/tabs/settings.php:29
+msgid "Users Upload Restrictions"
+msgstr ""
+
+#: forms/tabs/settings.php:30
+msgid "Only users having one of the selected roles will be able to attach files."
+msgstr ""
+
+#: forms/tabs/settings.php:34
+#: forms/tabs/settings.php:37
+msgid "Allow upload to"
+msgstr ""
+
+#: forms/tabs/settings.php:49
+msgid "Error logging"
+msgstr ""
+
+#: forms/tabs/settings.php:50
+msgid "Each failed upload will be logged in postmeta table. Administrators and topic/reply authors can see the log."
+msgstr ""
+
+#: forms/tabs/settings.php:54
+#: forms/tabs/settings.php:116
+msgid "Activated"
+msgstr ""
+
+#: forms/tabs/settings.php:60
+msgid "Visible to administrators"
+msgstr ""
+
+#: forms/tabs/settings.php:66
+msgid "Visible to author"
+msgstr ""
+
+#: forms/tabs/settings.php:73
+msgid "JavaScript and CSS Settings"
+msgstr ""
+
+#: forms/tabs/settings.php:74
+msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
+msgstr ""
+
+#: forms/tabs/settings.php:78
+msgid "Include JavaScript"
+msgstr ""
+
+#: forms/tabs/settings.php:84
+msgid "Include CSS"
+msgstr ""
+
+#: forms/tabs/settings.php:93
+msgid "Forums Integration"
+msgstr ""
+
+#: forms/tabs/settings.php:94
+msgid "With these options you can modify the forums to include attachment elements."
+msgstr ""
+
+#: forms/tabs/settings.php:98
+msgid "Attachment Icon"
+msgstr ""
+
+#: forms/tabs/settings.php:104
+msgid "File Type Icons"
+msgstr ""
+
+#: forms/tabs/settings.php:111
+msgid "Display of image attachments"
+msgstr ""
+
+#: forms/tabs/settings.php:112
+msgid "Attached images can be displayed as thumbnails, and from here you can control this."
+msgstr ""
+
+#: forms/tabs/settings.php:122
+msgid "With caption"
+msgstr ""
+
+#: forms/tabs/settings.php:128
+msgid "REL attribute"
+msgstr ""
+
+#: forms/tabs/settings.php:134
+msgid "CSS class"
+msgstr ""
+
+#: forms/tabs/settings.php:141
+msgid "Image thumbnails size"
+msgstr ""
+
+#: forms/tabs/settings.php:142
+msgid "Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using"
+msgstr ""
+
+#: forms/tabs/settings.php:142
+msgid "plugin"
+msgstr ""
+
+#: forms/tabs/settings.php:146
+msgid "Thumbnail width"
+msgstr ""
+
+#: forms/tabs/settings.php:153
+msgid "Thumbnail height"
+msgstr ""
+
+#: forms/tabs/settings.php:163
+msgid "Save Changes"
 msgstr ""
 
 #: forms/meta_files.php:4
 msgid "No attachments here."
 msgstr ""
 
-#: gd-bbpress-attachments.php:256
+#: forms/meta_forum.php:2
+#: forms/meta_forum.php:3
+msgid "Disable Attachments"
+msgstr ""
+
+#: forms/meta_forum.php:7
+#: forms/meta_forum.php:8
+msgid "Override Defaults"
+msgstr ""
+
+#: forms/panels.php:3
+#: gd-bbpress-attachments.php:277
 msgid "Settings"
 msgstr ""
 
-#: gd-bbpress-attachments.php:214
-#: gd-bbpress-attachments.php:213
-msgid "Attachments List"
+#: forms/panels.php:3
+msgid "FAQ"
 msgstr ""
 
-#: forms/attachments.php:6
-msgid "Settings saved."
+#: forms/panels.php:3
+msgid "About"
 msgstr ""
 
-#: gd-bbpress-attachments.php:421
-#: gd-bbpress-attachments.php:263
 #: forms/uploader.php:5
-#: gd-bbpress-attachments.php:200
-#: gd-bbpress-attachments.php:200
+#: gd-bbpress-attachments.php:220
+#: gd-bbpress-attachments.php:220
+#: gd-bbpress-attachments.php:284
+#: gd-bbpress-attachments.php:483
 msgid "Attachments"
-msgstr ""
-
-#: forms/uploader.php:1
-msgid "Maximum file size allowed is"
 msgstr ""
 
 #: forms/uploader.php:8
 msgid "Add another file"
 msgstr ""
 
-#: gd-bbpress-attachments.php:212
+#: forms/uploader.php:1
+msgid "Maximum file size allowed is"
+msgstr ""
+
+#: gd-bbpress-attachments.php:232
 msgid "Attachments Settings"
 msgstr ""
 
-#: forms/attachments.php:115
-msgid "Dev4Press Important Links"
+#: gd-bbpress-attachments.php:233
+#: gd-bbpress-attachments.php:234
+msgid "Attachments List"
 msgstr ""
 
-#: forms/attachments.php:41
-#: forms/attachments.php:38
-msgid "Allow upload to"
+#: gd-bbpress-attachments.php:537
+msgid "Upload Errors"
 msgstr ""
 
-#: forms/attachments.php:34
-msgid "Only users having one of the selected roles will be able to attach files."
-msgstr ""
-
-#: forms/attachments.php:58
-msgid "Attachment Icon"
-msgstr ""
-
-#: forms/attachments.php:54
-msgid "With these options you can modify the forums to include attachment elements."
-msgstr ""
-
-#: forms/attachments.php:53
-msgid "Forums Integration"
-msgstr ""
-
-#: forms/attachments.php:14
-msgid "These settings can be overriden for individual forums."
-msgstr ""
-
-#: forms/attachments.php:13
-msgid "Global Attachments Settings"
-msgstr ""
-
-#: forms/attachments.php:33
-msgid "Users Upload Restrictions"
-msgstr ""
-
-#: forms/attachments.php:28
-msgid "For single topic or reply"
-msgstr ""
-
-#: forms/attachments.php:107
-msgid "Build: "
-msgstr ""
-
-#: forms/attachments.php:105
-msgid "Status: "
-msgstr ""
-
-#: forms/attachments.php:103
-msgid "Release Date: "
-msgstr ""
-
-#: forms/attachments.php:113
-msgid "Home Page"
-msgstr ""
-
-#: forms/attachments.php:112
-msgid "Important Plugin Links"
-msgstr ""
-
-#: forms/attachments.php:72
-msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
-msgstr ""
-
-#: forms/attachments.php:71
-msgid "JavaScript and CSS Settings"
-msgstr ""
-
-#: forms/attachments.php:64
-msgid "File Type Icons"
-msgstr ""
-
-#: forms/attachments.php:89
-msgid "Save Changes"
-msgstr ""
-
-#: forms/attachments.php:82
-msgid "Include CSS"
-msgstr ""
-
-#: forms/attachments.php:76
-msgid "Include JavaScript"
+#: code/defaults.php:35
+msgid "File exceeds allowed file size."
 msgstr ""
 

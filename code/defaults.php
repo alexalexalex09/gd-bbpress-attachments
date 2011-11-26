@@ -2,13 +2,15 @@
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        "version" => "1.2.4",
-        "date" => "2011.11.14.",
+        "version" => "1.5",
+        "date" => "2011.11.27.",
         "status" => "Stable",
         "product_id" => "gd-bbpress-attachments",
         "edition" => "free",
         "revision" => 0,
-        "build" => 635,
+        "build" => 652,
+        "grid_topic_counter" => 1,
+        "grid_reply_counter" => 1,
         "include_js" => 1,
         "include_css" => 1,
         "max_file_size" => 512,
@@ -16,12 +18,29 @@ class gdbbPressAttachments_Defaults {
         "roles_to_upload" => null,
         "attachment_icon" => 1,
         "attchment_icons" => 1,
-        "log_upload_errors" => 0,
-        "errors_visible_to_roles" => array("administrator"),
+        "image_thumbnail_active" => 1,
+        "image_thumbnail_caption" => 0,
+        "image_thumbnail_rel" => "lightbox",
+        "image_thumbnail_css" => "",
+        "image_thumbnail_size_x" => 128,
+        "image_thumbnail_size_y" => 72,
+        "log_upload_errors" => 1,
+        "errors_visible_to_admins" => 1,
         "errors_visible_to_author" => 1
     );
 
     function __construct() { }
 }
+
+$d4p_upload_error_messages = array(
+    __("File exceeds allowed file size.", "gd-bbpress-attachments"),
+    __("File not uploaded.", "gd-bbpress-attachments"),
+    __("Upload file size exceeds PHP maximum file size allowed.", "gd-bbpress-attachments"),
+    __("Upload file size exceeds FORM specified file size.", "gd-bbpress-attachments"),
+    __("Upload file only partially uploaded.", "gd-bbpress-attachments"),
+    __("Can't write file to the disk.", "gd-bbpress-attachments"),
+    __("Temporary folder for upload is missing.", "gd-bbpress-attachments"),
+    __("Server extension restriction stopped upload.", "gd-bbpress-attachments")
+);
 
 ?>

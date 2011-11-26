@@ -6,8 +6,30 @@
  * @return bool true if the current page is the forum related
  */
 function d4p_is_bbpress() {
+    $is = false;
+
     if (function_exists("bbp_get_forum_id")) {
-        return bbp_get_forum_id() > 0;
+        $is = bbp_get_forum_id() > 0;
+        if (!$is) {
+            global $template;
+            $templates = array("single-reply-edit.php", "single-topic-edit.php");
+            $file = pathinfo($template, PATHINFO_BASENAME);
+            $is = in_array($file, $templates);
+        }
+    }
+
+    return $is;
+}
+
+/**
+ * Checks to see if the currently logged user is admin.
+ *
+ * @return bool is user admin or not
+ */
+function d4p_is_user_admin() {
+    global $current_user;
+    if (is_array($current_user->roles)) {
+        return in_array("administrator", $current_user->roles);
     } else {
         return false;
     }
@@ -45,7 +67,7 @@ function d4p_topic_attachments_count($topic_id, $include_replies = false) {
 }
 
 function d4p_bbattachment_handle_upload_error(&$file, $message) {
-    return new WP_Error("file_upload_failed", $message);
+    return new WP_Error("wp_upload_error", $message);
 }
 
 ?>

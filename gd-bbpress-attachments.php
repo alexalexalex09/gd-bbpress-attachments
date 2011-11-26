@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.2.4
+Version: 1.5
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -111,7 +111,8 @@ class gdbbPressAttachments {
     }
 
     public function load() {
-        add_action("init", array($this, "load_translation"));
+        add_action("init", array(&$this, "load_translation"));
+        add_action("init", array(&$this, "init_thumbnail_size"), 1);
 
         if (is_admin()) {
             add_action("admin_init", array(&$this, "admin_init"));
@@ -126,11 +127,12 @@ class gdbbPressAttachments {
             add_action("manage_topic_posts_custom_column", array(&$this, "admin_columns_data"), 1000, 2);
             add_action("manage_reply_posts_custom_column", array(&$this, "admin_columns_data"), 1000, 2);
         } else {
-            add_action("bbp_init", array(&$this, "bbp_init"));
             add_action("bbp_head", array(&$this, "bbp_head"));
 
             add_action("bbp_theme_after_reply_form_tags", array(&$this, "embed_form"));
             add_action("bbp_theme_after_topic_form_tags", array(&$this, "embed_form"));
+            add_action("bbp_edit_reply", array(&$this, "save_reply"), 10, 5);
+            add_action("bbp_edit_topic", array(&$this, "save_topic"), 10, 4);
             add_action("bbp_new_reply", array(&$this, "save_reply"), 10, 5);
             add_action("bbp_new_topic", array(&$this, "save_topic"), 10, 4);
             add_action("bbp_get_reply_content", array(&$this, "embed_attachments"), 10, 2);
@@ -140,6 +142,10 @@ class gdbbPressAttachments {
                 add_action("bbp_theme_before_topic_title", array(&$this, "show_attachments_icon"));
             }
         }
+    }
+
+    public function init_thumbnail_size() {
+        add_image_size("d4p-bbp-thumb", $this->o["image_thumbnail_size_x"], $this->o["image_thumbnail_size_y"], true);
     }
 
     private function detect_icon($ext) {
@@ -192,9 +198,14 @@ class gdbbPressAttachments {
 
     public function is_user_allowed() {
         if (is_user_logged_in()) {
-            if (!isset($this->o["roles_to_upload"])) return true;
+            if (!isset($this->o["roles_to_upload"])) {
+                return true;
+            }
+
             $value = $this->o["roles_to_upload"];
-            if (!is_array($value)) return true;
+            if (!is_array($value)) {
+                return true;
+            }
 
             global $current_user;
             if (is_array($current_user->roles)) {
@@ -235,8 +246,7 @@ class gdbbPressAttachments {
                 "to_override" => isset($data["to_override"]) ? 1 : 0,
                 "max_file_size" => absint(intval($data["max_file_size"])),
                 "max_to_upload" => absint(intval($data["max_to_upload"])),
-                "disable" => isset($data["disable"]) ? 1 : 0
-            );
+                "disable" => isset($data["disable"]) ? 1 : 0);
             update_post_meta($post_id, "_gdbbatt_settings", $meta);
         }
     }
@@ -246,7 +256,9 @@ class gdbbPressAttachments {
 
         $meta = get_post_meta($post_ID, "_gdbbatt_settings", true);
         if (!is_array($meta)) {
-            $meta = array("disable" => 0, "to_override" => 0, "max_file_size" => $this->get_file_size(true), "max_to_upload" => $this->get_max_files(true));
+            $meta = array("disable" => 0, "to_override" => 0, 
+                "max_file_size" => $this->get_file_size(true), 
+                "max_to_upload" => $this->get_max_files(true));
         }
 
         include(GDBBPRESSATTACHMENTS_PATH."forms/meta_forum.php");
@@ -276,7 +288,7 @@ class gdbbPressAttachments {
     public function menu_attachments() {
         global $wp_roles;
         $options = $this->o;
-        include(GDBBPRESSATTACHMENTS_PATH."forms/attachments.php");
+        include(GDBBPRESSATTACHMENTS_PATH."forms/panels.php");
     }
 
     public function load_translation() {
@@ -298,9 +310,17 @@ class gdbbPressAttachments {
             $this->o["attchment_icons"] = isset($_POST["attchment_icons"]) ? 1 : 0;
             $this->o["include_js"] = isset($_POST["include_js"]) ? 1 : 0;
             $this->o["include_css"] = isset($_POST["include_css"]) ? 1 : 0;
+            $this->o["image_thumbnail_active"] = isset($_POST["image_thumbnail_active"]) ? 1 : 0;
+            $this->o["image_thumbnail_caption"] = isset($_POST["image_thumbnail_caption"]) ? 1 : 0;
+            $this->o["image_thumbnail_rel"] = strip_tags($_POST["image_thumbnail_rel"]);
+            $this->o["image_thumbnail_css"] = strip_tags($_POST["image_thumbnail_css"]);
+            $this->o["image_thumbnail_size_x"] = absint(intval($_POST["image_thumbnail_size_x"]));
+            $this->o["image_thumbnail_size_y"] = absint(intval($_POST["image_thumbnail_size_y"]));
+            $this->o["log_upload_errors"] = isset($_POST["log_upload_errors"]) ? 1 : 0;
+            $this->o["errors_visible_to_admins"] = isset($_POST["errors_visible_to_admins"]) ? 1 : 0;
+            $this->o["errors_visible_to_author"] = isset($_POST["errors_visible_to_author"]) ? 1 : 0;
 
             update_option("gd-bbpress-attachments", $this->o);
-
             wp_redirect(add_query_arg("settings-updated", "true"));
             exit();
         }
@@ -323,38 +343,42 @@ class gdbbPressAttachments {
     }
 
     public function bbp_head() { 
-        if (d4p_is_bbpress() && $this->o["include_css"] == 1) { ?>
-            <style type="text/css">
-                /*<![CDATA[*/
-                .bbp-attachments { border-top: 1px solid #dddddd; margin-top: 20px; padding: 5px; }
-                .bbp-attachments h6 { margin: 0 0 5px; }
-                .bbp-attachments ol { margin: 0 0 5px; list-style: decimal inside none; }
-                .bbp-attachments ol.with-icons { list-style: none; }
-                .bbp-attachments li { line-height: 16px; height: 16px; margin: 0 0 4px; }
-                .bbp-attachments ol.with-icons li { padding: 0 0 0 18px; }
-                .bbp-attachments-count { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png); display: inline-block; width: 16px; height: 16px; float: left; margin-right: 4px; }
-                .bbp-atticon { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png) no-repeat; }
-                .bbp-atticon-generic { background-position: 0 -16px; }
-                .bbp-atticon-code { background-position: 0 -32px; }
-                .bbp-atticon-xml { background-position: 0 -48px; }
-                .bbp-atticon-excel { background-position: 0 -64px; }
-                .bbp-atticon-word { background-position: 0 -80px; }
-                .bbp-atticon-image { background-position: 0 -96px; }
-                .bbp-atticon-psd { background-position: 0 -112px; }
-                .bbp-atticon-ai { background-position: 0 -128px; }
-                .bbp-atticon-archive { background-position: 0 -144px; }
-                .bbp-atticon-text { background-position: 0 -160px; }
-                .bbp-atticon-powerpoint { background-position: 0 -176px; }
-                .bbp-atticon-pdf { background-position: 0 -192px; }
-                .bbp-atticon-html { background-position: 0 -208px; }
-                .bbp-atticon-video { background-position: 0 -224px; }
-                .bbp-atticon-documents { background-position: 0 -240px; }
-                .bbp-atticon-audio { background-position: 0 -256px; }
-                .bbp-atticon-icon { background-position: 0 -272px; }
-                /*]]>*/
-            </style>
-        <?php } if (d4p_is_bbpress()) { ?>
-            <script type='text/javascript'>
+        if (d4p_is_bbpress()) {
+            wp_enqueue_script("jquery");
+            if ($this->o["include_css"] == 1) { ?>
+                <style type="text/css">
+                    /*<![CDATA[*/
+                    .bbp-attachments, .bbp-attachments-errors { border-top: 1px solid #dddddd; margin-top: 15px; padding: 5px 0; }
+                    .bbp-attachments h6 { margin: 0 0 5px; }
+                    .bbp-attachments ol { margin: 0; list-style: decimal inside none; }
+                    .bbp-attachments ol.with-icons { list-style: none; }
+                    .bbp-attachments li { line-height: 16px; height: 16px; margin: 0 0 4px; }
+                    .bbp-attachments ol.with-icons li { padding: 0 0 0 18px; }
+                    .bbp-attachments ol.with-icons li.bbp-atthumb { padding: 0; height: auto; }
+                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption { padding: 5px 5px 0; margin: 0; height: auto; }
+                    .bbp-attachments-count { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png); display: inline-block; width: 16px; height: 16px; float: left; margin-right: 4px; }
+                    .bbp-atticon { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png) no-repeat; }
+                    .bbp-atticon-generic { background-position: 0 -16px; }
+                    .bbp-atticon-code { background-position: 0 -32px; }
+                    .bbp-atticon-xml { background-position: 0 -48px; }
+                    .bbp-atticon-excel { background-position: 0 -64px; }
+                    .bbp-atticon-word { background-position: 0 -80px; }
+                    .bbp-atticon-image { background-position: 0 -96px; }
+                    .bbp-atticon-psd { background-position: 0 -112px; }
+                    .bbp-atticon-ai { background-position: 0 -128px; }
+                    .bbp-atticon-archive { background-position: 0 -144px; }
+                    .bbp-atticon-text { background-position: 0 -160px; }
+                    .bbp-atticon-powerpoint { background-position: 0 -176px; }
+                    .bbp-atticon-pdf { background-position: 0 -192px; }
+                    .bbp-atticon-html { background-position: 0 -208px; }
+                    .bbp-atticon-video { background-position: 0 -224px; }
+                    .bbp-atticon-documents { background-position: 0 -240px; }
+                    .bbp-atticon-audio { background-position: 0 -256px; }
+                    .bbp-atticon-icon { background-position: 0 -272px; }
+                    /*]]>*/
+                </style>
+            <?php } ?>
+            <script type="text/javascript">
                 /* <![CDATA[ */
                 var gdbbPressAttachmentsInit = {
                     max_files: <?php echo apply_filters("d4p_bbpressattchment_allow_upload", $this->get_max_files(), bbp_get_forum_id()); ?>
@@ -368,12 +392,6 @@ class gdbbPressAttachments {
         <?php }
     }
 
-    public function bbp_init() {
-        if (d4p_is_bbpress()) {
-            wp_enqueue_script("jquery");
-        }
-    }
-
     public function save_topic($topic_id, $forum_id, $anonymous_data, $topic_author) {
         $this->save_reply(0, $topic_id, $forum_id, $anonymous_data, $topic_author);
     }
@@ -384,10 +402,12 @@ class gdbbPressAttachments {
         if (!empty($_FILES) && !empty($_FILES["d4p_attachment"])) {
             require_once(ABSPATH.'wp-admin/includes/file.php');
 
+            $errors = new WP_Error();
             $overrides = array("test_form" => false, "upload_error_handler" => "d4p_bbattachment_handle_upload_error");
             foreach ($_FILES["d4p_attachment"]["error"] as $key => $error) {
+                $file_name = $_FILES["d4p_attachment"]["name"][$key];
                 if ($error == UPLOAD_ERR_OK) {
-                    $file = array("name" => $_FILES["d4p_attachment"]["name"][$key],
+                    $file = array("name" => $file_name,
                         "type" => $_FILES["d4p_attachment"]["type"][$key],
                         "size" => $_FILES["d4p_attachment"]["size"][$key],
                         "tmp_name" => $_FILES["d4p_attachment"]["tmp_name"][$key],
@@ -396,21 +416,58 @@ class gdbbPressAttachments {
                         $upload = wp_handle_upload($file, $overrides);
                         if (!is_wp_error($upload)) {
                             $uploads[] = $upload;
+                        } else {
+                            $errors->add("wp_upload_error", $upload->errors["wp_upload_error"][0], $file_name);
                         }
+                    } else {
+                        $errors->add("d4p_upload_error", "File exceeds allowed file size.", $file_name);
+                    }
+                } else {
+                    switch ($error) {
+                        default:
+                        case "UPLOAD_ERR_NO_FILE":
+                            $errors->add("php_upload_error", "File not uploaded.", $file_name);
+                            break;
+                        case "UPLOAD_ERR_INI_SIZE":
+                            $errors->add("php_upload_error", "Upload file size exceeds PHP maximum file size allowed.", $file_name);
+                            break;
+                        case "UPLOAD_ERR_FORM_SIZE":
+                            $errors->add("php_upload_error", "Upload file size exceeds FORM specified file size.", $file_name);
+                            break;
+                        case "UPLOAD_ERR_PARTIAL":
+                            $errors->add("php_upload_error", "Upload file only partially uploaded.", $file_name);
+                            break;
+                        case "UPLOAD_ERR_CANT_WRITE":
+                            $errors->add("php_upload_error", "Can't write file to the disk.", $file_name);
+                            break;
+                        case "UPLOAD_ERR_NO_TMP_DIR":
+                            $errors->add("php_upload_error", "Temporary folder for upload is missing.", $file_name);
+                            break;
+                        case "UPLOAD_ERR_EXTENSION":
+                            $errors->add("php_upload_error", "Server extension restriction stopped upload.", $file_name);
+                            break;
                     }
                 }
             }
         }
 
-        if (!empty($uploads)) {
-            require_once(ABSPATH.'wp-admin/includes/image.php');
+        $post_id = $reply_id == 0 ? $topic_id : $reply_id;
 
-            $post_id = $reply_id == 0 ? $topic_id : $reply_id;
+        if (!empty($errors->errors) && $this->o["log_upload_errors"] == 1) {
+            foreach ($errors->errors as $code => $messages) {
+                add_post_meta($post_id, "_bbp_attachment_upload_error", array(
+                    "file" => $errors->error_data[$code], "message" => $messages[0]));
+            }
+        }
+
+        if (!empty($uploads)) {
+            require_once(ABSPATH."wp-admin/includes/image.php");
+
             foreach ($uploads as $upload) {
                 $wp_filetype = wp_check_filetype(basename($upload["file"]), null );
-                $attachment = array('post_mime_type' => $wp_filetype['type'],
-                    'post_title' => preg_replace('/\.[^.]+$/', '', basename($upload["file"])),
-                    'post_content' => '','post_status' => 'inherit');
+                $attachment = array("post_mime_type" => $wp_filetype["type"],
+                    "post_title" => preg_replace('/\.[^.]+$/', '', basename($upload["file"])),
+                    "post_content" => "","post_status" => "inherit");
                 $attach_id = wp_insert_attachment($attachment, $upload["file"], $post_id);
                 $attach_data = wp_generate_attachment_metadata($attach_id, $upload["file"]);
                 wp_update_attachment_metadata($attach_id, $attach_data);
@@ -419,6 +476,8 @@ class gdbbPressAttachments {
     }
 
     public function embed_attachments($content, $id) {
+        global $user_ID;
+
         $attachments = d4p_get_post_attachments($id);
         if (!empty($attachments)) {
             $content.= '<div class="bbp-attachments">';
@@ -431,18 +490,60 @@ class gdbbPressAttachments {
 
             foreach ($attachments as $attachment) {
                 $file = get_attached_file($attachment->ID);
-                $url = wp_get_attachment_url($attachment->ID);
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
                 $filename = pathinfo($file, PATHINFO_BASENAME);
-                $content.= '<li';
-                if ($this->o["attchment_icons"] == 1) {
-                    $ext = pathinfo($file, PATHINFO_EXTENSION);
-                    $content.= ' class="bbp-atticon bbp-atticon-'.$this->detect_icon($ext).'"';
+                $url = wp_get_attachment_url($attachment->ID);
+
+                $html = $class_li = $class_a = $rel_a = "";
+                $a_title = $filename;
+                $caption = false;
+                if ($this->o["image_thumbnail_active"] == 1) {
+                    $html = wp_get_attachment_image($attachment->ID, "d4p-bbp-thumb");
+                    if ($html != "") {
+                        $class_li = "bbp-atthumb";
+                        $class_a = $this->o["image_thumbnail_css"];
+                        $rel_a = ' rel="'.$this->o["image_thumbnail_rel"].'"';
+                        $caption = $this->o["image_thumbnail_caption"] == 1;
+                    }
                 }
-                $content.= '><a href="'.$url.'">'.$filename.'</a></li>';
+                if ($html == "") {
+                    $html = $filename;
+                    if ($this->o["attchment_icons"] == 1) {
+                        $class_li = "bbp-atticon bbp-atticon-".$this->detect_icon($ext);
+                    }
+                }
+
+                $content.= '<li id="d4p-bbp-attachment_'.$attachment->ID.'" class="d4p-bbp-attachment d4p-bbp-attachment-'.$ext.' '.$class_li.'">';
+                if ($caption) {
+                    $content.= '<div style="width: '.$this->o["image_thumbnail_size_x"].'px" class="wp-caption">';
+                }
+                $content.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$url.'" title="'.$a_title.'">'.$html.'</a>';
+                if ($caption) {
+                    $content.= '<p class="wp-caption-text">'.$a_title.'</p></div>';
+                }
+
+                $content.= '</li>';
             }
 
             $content.= '</ol></div>';
         }
+
+        $post = get_post($id);
+        $author_id = $post->post_author;
+
+        if (($this->o["errors_visible_to_author"] == 1 && $author_id == $user_ID) || ($this->o["errors_visible_to_admins"] == 1 && d4p_is_user_admin())) {
+            $errors = get_post_meta($id, "_bbp_attachment_upload_error");
+            if (!empty($errors)) {
+                $content.= '<div class="bbp-attachments-errors">';
+                $content.= '<h6>'.__("Upload Errors", "gd-bbpress-attachments").':</h6>';
+                $content.= '<ol>';
+                foreach ($errors as $error) {
+                    $content.= '<li><strong>'.$error["file"].'</strong>: '.__($error["message"], "gd-bbpress-attachments").'</li>';
+                }
+                $content.= '</ol></div>';
+            }
+        }
+
         return $content;
     }
 

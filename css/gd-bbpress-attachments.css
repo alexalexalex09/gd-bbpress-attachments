@@ -1,7 +1,7 @@
-.bbp-attachments {
+.bbp-attachments, .bbp-attachments-errors {
 	border-top: 1px solid #dddddd;
-	margin-top: 20px;
-	padding: 5px;
+	margin-top: 15px;
+	padding: 5px 0;
 }
 
 .bbp-attachments h6 {
@@ -9,7 +9,7 @@
 }
 
 .bbp-attachments ol {
-	margin: 0 0 5px;
+	margin: 0;
 	list-style: decimal inside none;
 }
 
@@ -25,6 +25,17 @@
 
 .bbp-attachments ol.with-icons li {
 	padding: 0 0 0 18px;
+}
+
+.bbp-attachments ol.with-icons li.bbp-atthumb {
+	padding: 0;
+        height: auto;
+}
+
+.bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption {
+	padding: 5px 5px 0;
+        margin: 0;
+        height: auto;
 }
 
 .bbp-attachments-count {
