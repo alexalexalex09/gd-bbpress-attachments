@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.5
+Version: 1.5.1
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -400,7 +400,7 @@ class gdbbPressAttachments {
         $uploads = array();
 
         if (!empty($_FILES) && !empty($_FILES["d4p_attachment"])) {
-            require_once(ABSPATH.'wp-admin/includes/file.php');
+            require_once(ABSPATH."wp-admin/includes/file.php");
 
             $errors = new WP_Error();
             $overrides = array("test_form" => false, "upload_error_handler" => "d4p_bbattachment_handle_upload_error");
@@ -455,8 +455,10 @@ class gdbbPressAttachments {
 
         if (!empty($errors->errors) && $this->o["log_upload_errors"] == 1) {
             foreach ($errors->errors as $code => $messages) {
-                add_post_meta($post_id, "_bbp_attachment_upload_error", array(
-                    "file" => $errors->error_data[$code], "message" => $messages[0]));
+                if ($errors->error_data[$code] != "") {
+                    add_post_meta($post_id, "_bbp_attachment_upload_error", array(
+                        "file" => $errors->error_data[$code], "message" => $messages[0]));
+                }
             }
         }
 

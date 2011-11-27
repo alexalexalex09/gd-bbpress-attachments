@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.5
+Version: 1.5.1
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
 Requires at least: 3.2
 Tested up to: 3.3
@@ -61,6 +61,9 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.5.1 =
+* Fixed logging of empty error messages
+
 = 1.5 =
 * Improved tabbed admin interface
 * Image attachments display and styling
