@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: gdragon
 Donate link: http://www.dev4press.com/
-Version: 1.5.1
+Version: 1.5.2
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
 Requires at least: 3.2
 Tested up to: 3.3
@@ -10,9 +10,9 @@ Stable tag: trunk
 Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
 
 == Description ==
-Attachments for forum topics and replies are handled through WordPress media library. You can control file sizes from the main plugin settings panel, or you can do it individually for each forum you have set. You can limit number of files user can attach for each topic and reply.
+Attachments for forum topics and replies are handled through WordPress media library. You can control file sizes from the main plugin settings panel, or you can do it individually for each forum you have set. You can limit number of files user can attach for each topic and reply. Plugin can embed list of attached files into topics and replies, and images can be displayed as thumbnails. All upload errors are logged and topic/reply author and administrators can see those errors.
 
-On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments.
+On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments and upload errors.
 
 Supported languages: English, Serbian, Dutch, German, Spanish.
 
@@ -61,6 +61,12 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.5.2 =
+* Rel attribute allows use of topic or reply ID
+* Admin topic and reply editor list of errors
+* Updated German and Serbian translations
+* Updated readme file with error logging information
+
 = 1.5.1 =
 * Fixed logging of empty error messages
 

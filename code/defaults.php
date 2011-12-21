@@ -2,13 +2,13 @@
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        "version" => "1.5.1",
-        "date" => "2011.11.27.",
+        "version" => "1.5.2",
+        "date" => "2011.12.21.",
+        "build" => 690,
         "status" => "Stable",
         "product_id" => "gd-bbpress-attachments",
         "edition" => "free",
         "revision" => 0,
-        "build" => 653,
         "grid_topic_counter" => 1,
         "grid_reply_counter" => 1,
         "include_js" => 1,

@@ -13,4 +13,16 @@ if (empty($attachments)) {
     echo '</ul>';
 }
 
+if (($this->o["errors_visible_to_author"] == 1 && $author_id == $user_ID) || ($this->o["errors_visible_to_admins"] == 1 && d4p_is_user_admin())) {
+    $errors = get_post_meta($post_ID, "_bbp_attachment_upload_error");
+    if (!empty($errors)) {
+        echo '<h4>'.__("Upload Errors", "gd-bbpress-attachments").':</h4>';
+        echo '<ul style="list-style: decimal outside; margin-left: 1.5em;">';
+        foreach ($errors as $error) {
+            echo '<li><strong>'.$error["file"].'</strong>: '.__($error["message"], "gd-bbpress-attachments").'</li>';
+        }
+        echo '</ul>';
+    }
+}
+
 ?>

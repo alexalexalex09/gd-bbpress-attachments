@@ -126,15 +126,16 @@
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="image_thumbnail_rel"><?php _e("REL attribute", "gd-bbpress-attachments"); ?></label></th>
-                    <td>
-                        <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_rel"]; ?>" id="image_thumbnail_rel" name="image_thumbnail_rel" />
-                    </td>
-                </tr>
-                <tr valign="top">
                     <th scope="row"><label for="image_thumbnail_css"><?php _e("CSS class", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_css"]; ?>" id="image_thumbnail_css" name="image_thumbnail_css" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="image_thumbnail_rel"><?php _e("REL attribute", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_rel"]; ?>" id="image_thumbnail_rel" name="image_thumbnail_rel" /><br/>
+                        <em><?php _e("You can use these tags"); ?>:<br/>%ID%, %TOPIC%</em>
                     </td>
                 </tr>
             </tbody>

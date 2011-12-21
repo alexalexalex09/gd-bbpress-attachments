@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.5.1
+Version: 1.5.2
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -110,6 +110,14 @@ class gdbbPressAttachments {
         add_action("after_setup_theme", array($this, "load"));
     }
 
+    private function _icon($ext) {
+        foreach ($this->icons as $icon => $list) {
+            $list = explode("|", $list);
+            if (in_array($ext, $list)) return $icon;
+        }
+        return "generic";
+    }
+
     public function load() {
         add_action("init", array(&$this, "load_translation"));
         add_action("init", array(&$this, "init_thumbnail_size"), 1);
@@ -146,14 +154,6 @@ class gdbbPressAttachments {
 
     public function init_thumbnail_size() {
         add_image_size("d4p-bbp-thumb", $this->o["image_thumbnail_size_x"], $this->o["image_thumbnail_size_y"], true);
-    }
-
-    private function detect_icon($ext) {
-        foreach ($this->icons as $icon => $list) {
-            $list = explode("|", $list);
-            if (in_array($ext, $list)) return $icon;
-        }
-        return "generic";
     }
 
     public function show_attachments_icon() {
@@ -265,7 +265,9 @@ class gdbbPressAttachments {
     }
 
     public function metabox_files() {
-        global $post_ID;
+        global $post_ID, $user_ID;
+        $post = get_post($post_ID);
+        $author_id = $post->post_author;
 
         include(GDBBPRESSATTACHMENTS_PATH."forms/meta_files.php");
     }
@@ -504,14 +506,16 @@ class gdbbPressAttachments {
                     if ($html != "") {
                         $class_li = "bbp-atthumb";
                         $class_a = $this->o["image_thumbnail_css"];
-                        $rel_a = ' rel="'.$this->o["image_thumbnail_rel"].'"';
                         $caption = $this->o["image_thumbnail_caption"] == 1;
+                        $rel_a = ' rel="'.$this->o["image_thumbnail_rel"].'"';
+                        $rel_a = str_replace("%ID%", $id, $rel_a);
+                        $rel_a = str_replace("%TOPIC%", bbp_get_topic_id(), $rel_a);
                     }
                 }
                 if ($html == "") {
                     $html = $filename;
                     if ($this->o["attchment_icons"] == 1) {
-                        $class_li = "bbp-atticon bbp-atticon-".$this->detect_icon($ext);
+                        $class_li = "bbp-atticon bbp-atticon-".$this->_icon($ext);
                     }
                 }
 
