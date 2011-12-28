@@ -1,4 +1,4 @@
-#: gd-bbpress-attachments.php:162
+#: gd-bbpress-attachments.php:169
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
@@ -185,39 +185,48 @@ msgid "With caption"
 msgstr ""
 
 #: forms/tabs/settings.php:128
-msgid "REL attribute"
-msgstr ""
-
-#: forms/tabs/settings.php:134
 msgid "CSS class"
 msgstr ""
 
-#: forms/tabs/settings.php:141
+#: forms/tabs/settings.php:134
+msgid "REL attribute"
+msgstr ""
+
+#: forms/tabs/settings.php:137
+msgid "You can use these tags"
+msgstr ""
+
+#: forms/tabs/settings.php:142
 msgid "Image thumbnails size"
 msgstr ""
 
-#: forms/tabs/settings.php:142
+#: forms/tabs/settings.php:143
 msgid "Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using"
 msgstr ""
 
-#: forms/tabs/settings.php:142
+#: forms/tabs/settings.php:143
 msgid "plugin"
 msgstr ""
 
-#: forms/tabs/settings.php:146
+#: forms/tabs/settings.php:147
 msgid "Thumbnail width"
 msgstr ""
 
-#: forms/tabs/settings.php:153
+#: forms/tabs/settings.php:154
 msgid "Thumbnail height"
 msgstr ""
 
-#: forms/tabs/settings.php:163
+#: forms/tabs/settings.php:164
 msgid "Save Changes"
 msgstr ""
 
 #: forms/meta_files.php:4
 msgid "No attachments here."
+msgstr ""
+
+#: forms/meta_files.php:18
+#: gd-bbpress-attachments.php:591
+msgid "Upload Errors"
 msgstr ""
 
 #: forms/meta_forum.php:2
@@ -231,7 +240,7 @@ msgid "Override Defaults"
 msgstr ""
 
 #: forms/panels.php:3
-#: gd-bbpress-attachments.php:277
+#: gd-bbpress-attachments.php:286
 msgid "Settings"
 msgstr ""
 
@@ -244,10 +253,10 @@ msgid "About"
 msgstr ""
 
 #: forms/uploader.php:5
-#: gd-bbpress-attachments.php:220
-#: gd-bbpress-attachments.php:220
-#: gd-bbpress-attachments.php:284
-#: gd-bbpress-attachments.php:483
+#: gd-bbpress-attachments.php:227
+#: gd-bbpress-attachments.php:227
+#: gd-bbpress-attachments.php:293
+#: gd-bbpress-attachments.php:535
 msgid "Attachments"
 msgstr ""
 
@@ -259,17 +268,101 @@ msgstr ""
 msgid "Maximum file size allowed is"
 msgstr ""
 
-#: gd-bbpress-attachments.php:232
+#: gd-bbpress-attachments.php:239
 msgid "Attachments Settings"
 msgstr ""
 
-#: gd-bbpress-attachments.php:233
-#: gd-bbpress-attachments.php:234
+#: gd-bbpress-attachments.php:240
+#: gd-bbpress-attachments.php:241
 msgid "Attachments List"
 msgstr ""
 
-#: gd-bbpress-attachments.php:537
-msgid "Upload Errors"
+#: gd-bbpress-attachments.php:311
+msgid "Website"
+msgstr ""
+
+#: gd-bbpress-attachments.php:312
+msgid "On Twitter"
+msgstr ""
+
+#: gd-bbpress-attachments.php:313
+msgid "On Facebook"
+msgstr ""
+
+#: gd-bbpress-attachments.php:317
+msgid "Get Help"
+msgstr ""
+
+#: gd-bbpress-attachments.php:318
+msgid "General Plugin Information"
+msgstr ""
+
+#: gd-bbpress-attachments.php:319
+msgid "Home Page on Dev4Press.com"
+msgstr ""
+
+#: gd-bbpress-attachments.php:320
+msgid "Home Page on WordPress.org"
+msgstr ""
+
+#: gd-bbpress-attachments.php:321
+msgid "Getting Plugin Support"
+msgstr ""
+
+#: gd-bbpress-attachments.php:322
+msgid "Support Forum on Dev4Press.com"
+msgstr ""
+
+#: gd-bbpress-attachments.php:323
+msgid "Support Forum on WordPress.org"
+msgstr ""
+
+#: gd-bbpress-attachments.php:324
+msgid "Plugin Support Sources"
+msgstr ""
+
+#: gd-bbpress-attachments.php:329
+msgid "On Dev4Press website you can find many useful plugins, themes and tutorials, all for WordPress. Please, take a few minutes to browse some of these resources, you might find some of them very useful."
+msgstr ""
+
+#: gd-bbpress-attachments.php:330
+msgid "Plugins"
+msgstr ""
+
+#: gd-bbpress-attachments.php:330
+msgid "We have more than 10 plugins available, some of them are commercial and some are available for free."
+msgstr ""
+
+#: gd-bbpress-attachments.php:331
+msgid "Themes"
+msgstr ""
+
+#: gd-bbpress-attachments.php:331
+msgid "All our themes are based on our own xScape Theme Framework, and only available as premium."
+msgstr ""
+
+#: gd-bbpress-attachments.php:332
+msgid "Tutorials"
+msgstr ""
+
+#: gd-bbpress-attachments.php:332
+msgid "Premium and free tutorials for our plugins themes, and many general and practical WordPress tutorials."
+msgstr ""
+
+#: gd-bbpress-attachments.php:333
+msgid "Central Documentation"
+msgstr ""
+
+#: gd-bbpress-attachments.php:333
+msgid "Growing collection of functions, classes, hooks, constants with examples for our plugins and themes."
+msgstr ""
+
+#: gd-bbpress-attachments.php:334
+msgid "Support Forums"
+msgstr ""
+
+#: gd-bbpress-attachments.php:334
+msgid "Premium support forum for all with valid licenses to get help. Also, report bugs and leave suggestions."
 msgstr ""
 
 #: code/defaults.php:35

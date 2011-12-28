@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.5.2
+Version: 1.5.3
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -30,9 +30,12 @@ require_once(dirname(__FILE__)."/code/defaults.php");
 require_once(dirname(__FILE__)."/code/functions.php");
 
 class gdbbPressAttachments {
+    private $page_ids = array();
+
     private $l;
     private $o;
 
+    private $wp_version;
     private $plugin_path;
     private $plugin_url;
     private $admin_plugin = false;
@@ -78,6 +81,10 @@ class gdbbPressAttachments {
     }
 
     private function _init() {
+        global $wp_version;
+        $this->wp_version = substr(str_replace(".", "", $wp_version), 0, 2);
+        define("GDBBPRESSATTACHMENTS_WPV", intval($this->wp_version));
+
         $gdd = new gdbbPressAttachments_Defaults();
 
         $this->o = get_option("gd-bbpress-attachments");
@@ -284,7 +291,48 @@ class gdbbPressAttachments {
     }
 
     public function admin_menu() {
-        add_submenu_page("edit.php?post_type=forum", "GD bbPress Attachments", __("Attachments", "gd-bbpress-attachments"), "edit_posts", "gdbbpress_attachments", array(&$this, "menu_attachments"));
+        $this->page_ids[] = add_submenu_page("edit.php?post_type=forum", "GD bbPress Attachments", __("Attachments", "gd-bbpress-attachments"), "edit_posts", "gdbbpress_attachments", array(&$this, "menu_attachments"));
+
+        $this->admin_load_hooks();
+    }
+
+    function admin_load_hooks() {
+        if (GDBBPRESSATTACHMENTS_WPV < 33) return;
+
+        foreach ($this->page_ids as $id) {
+            add_action("load-".$id, array(&$this, "load_admin_page"));
+        }
+    }
+
+    function load_admin_page() {
+        $screen = get_current_screen();
+
+        $screen->set_help_sidebar('
+            <p><strong>Dev4Press:</strong></p>
+            <p><a target="_blank" href="http://www.dev4press.com/">'.__("Website", "gd-bbpress-attachments").'</a></p>
+            <p><a target="_blank" href="http://twitter.com/milangd">'.__("On Twitter", "gd-bbpress-attachments").'</a></p>
+            <p><a target="_blank" href="http://facebook.com/dev4press">'.__("On Facebook", "gd-bbpress-attachments").'</a></p>');
+
+        $screen->add_help_tab(array(
+            "id" => "gdpt-screenhelp-help",
+            "title" => __("Get Help", "gd-bbpress-attachments"),
+            "content" => '<h5>'.__("General Plugin Information", "gd-bbpress-attachments").'</h5>
+                <p><a href="http://www.dev4press.com/plugins/gd-bbpress-attachments/" target="_blank">'.__("Home Page on Dev4Press.com", "gd-bbpress-attachments").'</a> | 
+                <a href="http://wordpress.org/extend/plugins/gd-bbpress-attachments/" target="_blank">'.__("Home Page on WordPress.org", "gd-bbpress-attachments").'</a></p> 
+                <h5>'.__("Getting Plugin Support", "gd-bbpress-attachments").'</h5>
+                <p><a href="http://www.dev4press.com/forums/forum/free-plugins/gd-bbpress-attachments/" target="_blank">'.__("Support Forum on Dev4Press.com", "gd-bbpress-attachments").'</a> | 
+                <a href="http://wordpress.org/tags/gd-bbpress-attachments?forum_id=10" target="_blank">'.__("Support Forum on WordPress.org", "gd-bbpress-attachments").'</a> | 
+                <a href="http://www.dev4press.com/plugins/gd-bbpress-attachments/support/" target="_blank">'.__("Plugin Support Sources", "gd-bbpress-attachments").'</a></p>'));
+
+        $screen->add_help_tab(array(
+            "id" => "gdpt-screenhelp-website",
+            "title" => "Dev4Press", "sfc",
+            "content" => '<p>'.__("On Dev4Press website you can find many useful plugins, themes and tutorials, all for WordPress. Please, take a few minutes to browse some of these resources, you might find some of them very useful.", "gd-bbpress-attachments").'</p>
+                <p><a href="http://www.dev4press.com/plugins/" target="_blank"><strong>'.__("Plugins", "gd-bbpress-attachments").'</strong></a> - '.__("We have more than 10 plugins available, some of them are commercial and some are available for free.", "gd-bbpress-attachments").'</p>
+                <p><a href="http://www.dev4press.com/themes/" target="_blank"><strong>'.__("Themes", "gd-bbpress-attachments").'</strong></a> - '.__("All our themes are based on our own xScape Theme Framework, and only available as premium.", "gd-bbpress-attachments").'</p>
+                <p><a href="http://www.dev4press.com/category/tutorials/" target="_blank"><strong>'.__("Tutorials", "gd-bbpress-attachments").'</strong></a> - '.__("Premium and free tutorials for our plugins themes, and many general and practical WordPress tutorials.", "gd-bbpress-attachments").'</p>
+                <p><a href="http://www.dev4press.com/documentation/" target="_blank"><strong>'.__("Central Documentation", "gd-bbpress-attachments").'</strong></a> - '.__("Growing collection of functions, classes, hooks, constants with examples for our plugins and themes.", "gd-bbpress-attachments").'</p>
+                <p><a href="http://www.dev4press.com/forums/" target="_blank"><strong>'.__("Support Forums", "gd-bbpress-attachments").'</strong></a> - '.__("Premium support forum for all with valid licenses to get help. Also, report bugs and leave suggestions.", "gd-bbpress-attachments").'</p>'));
     }
 
     public function menu_attachments() {

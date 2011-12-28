@@ -2,9 +2,9 @@
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        "version" => "1.5.2",
-        "date" => "2011.12.21.",
-        "build" => 690,
+        "version" => "1.5.3",
+        "date" => "2011.12.28.",
+        "build" => 702,
         "status" => "Stable",
         "product_id" => "gd-bbpress-attachments",
         "edition" => "free",

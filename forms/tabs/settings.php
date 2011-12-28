@@ -135,7 +135,7 @@
                     <th scope="row"><label for="image_thumbnail_rel"><?php _e("REL attribute", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_rel"]; ?>" id="image_thumbnail_rel" name="image_thumbnail_rel" /><br/>
-                        <em><?php _e("You can use these tags"); ?>:<br/>%ID%, %TOPIC%</em>
+                        <em><?php _e("You can use these tags", "gd-bbpress-attachments"); ?>:<br/>%ID%, %TOPIC%</em>
                     </td>
                 </tr>
             </tbody>
