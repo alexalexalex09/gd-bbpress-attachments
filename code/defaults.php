@@ -2,17 +2,19 @@
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        "version" => "1.5.3",
-        "date" => "2011.12.28.",
-        "build" => 702,
+        "version" => "1.6",
+        "date" => "2012.02.28.",
+        "build" => 753,
         "status" => "Stable",
         "product_id" => "gd-bbpress-attachments",
         "edition" => "free",
         "revision" => 0,
         "grid_topic_counter" => 1,
         "grid_reply_counter" => 1,
+        "delete_attachments" => "detach",
         "include_js" => 1,
         "include_css" => 1,
+        "hide_from_visitors" => 1,
         "max_file_size" => 512,
         "max_to_upload" => 4,
         "roles_to_upload" => null,

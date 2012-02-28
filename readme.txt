@@ -1,10 +1,10 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.5.3
+Version: 1.6
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
 Requires at least: 3.2
-Tested up to: 3.3
+Tested up to: 3.4
 Stable tag: trunk
 
 Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
@@ -14,7 +14,7 @@ Attachments for forum topics and replies are handled through WordPress media lib
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments and upload errors.
 
-Supported languages: English, Serbian, Dutch, German, Spanish.
+Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
@@ -56,11 +56,19 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 == Translations ==
 * English
 * Serbian
+* Polish: Dawid Karabin - http://www.hinok.net/
 * Dutch: Wouter van Vliet - http://www.interpotential.com/
 * German: David Decker - http://deckerweb.de/
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.6 =
+* Added hide attachments from visitors option
+* Added option to hook in topic and reply deletion
+* Added Polish translation
+* Improved adding of plugin styling and JavaScript
+* Fixed visibility of meta settings for non admins
+
 = 1.5.3 =
 * Context Help for WordPress 3.3
 
@@ -121,8 +129,8 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.5.3 =
-Context Help for WordPress 3.3.
+= 1.6 =
+Added hide attachments from visitors option. Added option to hook in topic and reply deletion. Added Polish translation. Improved adding of plugin styling and JavaScript. Fixed visibility of meta settings for non admins.
 
 == Screenshots ==
 1. Main plugins settings panel

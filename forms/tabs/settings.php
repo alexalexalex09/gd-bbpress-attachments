@@ -25,6 +25,12 @@
                         <span class="description"><?php _e("For single topic or reply", "gd-bbpress-attachments"); ?></span>
                     </td>
                 </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="hide_from_visitors"><?php _e("Hide list of attachements from visitors", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["hide_from_visitors"] == 1) echo " checked"; ?> name="hide_from_visitors" />
+                    </td>
+                </tr>
             </tbody>
         </table>
         <h3><?php _e("Users Upload Restrictions", "gd-bbpress-attachments"); ?></h3>
@@ -91,6 +97,22 @@
         </table>
     </div>
     <div class="d4p-settings-second">
+        <h3><?php _e("Topic and Reply Deleting", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Select what to do with attachments when topic or reply with attachments is deleted.", "gd-bbpress-attachments"); ?></p>
+        <table class="form-table">
+            <tbody>
+                <tr valign="top">
+                    <th scope="row"><label for="attachment_icon"><?php _e("Attachments Action", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <select name="delete_attachments" class="regular-text">
+                            <option value="detach"<?php if ($options["delete_attachments"] == "detach") echo ' selected="selected"'; ?>><?php _e("Leave in media library", "gd-bbpress-attachments"); ?></option>
+                            <option value="delete"<?php if ($options["delete_attachments"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete", "gd-bbpress-attachments"); ?></option>
+                            <option value="nohing"<?php if ($options["delete_attachments"] == "nohing") echo ' selected="selected"'; ?>><?php _e("Do nothing", "gd-bbpress-attachments"); ?></option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <h3><?php _e("Forums Integration", "gd-bbpress-attachments"); ?></h3>
         <p><?php _e("With these options you can modify the forums to include attachment elements.", "gd-bbpress-attachments"); ?></p>
         <table class="form-table">
@@ -107,6 +129,10 @@
                         <input type="checkbox" <?php if ($options["attchment_icons"] == 1) echo " checked"; ?> name="attchment_icons" />
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table class="form-table">
+            <tbody>
             </tbody>
         </table>
         <h3><?php _e("Display of image attachments", "gd-bbpress-attachments"); ?></h3>

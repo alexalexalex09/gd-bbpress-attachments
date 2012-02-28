@@ -8,7 +8,9 @@ if (empty($attachments)) {
     foreach ($attachments as $attachment) {
         $file = get_attached_file($attachment->ID);
         $filename = pathinfo($file, PATHINFO_BASENAME);
-        echo '<li>'.$filename.'</li>';
+        echo '<li>'.$filename;
+        echo ' - <a href="'.admin_url('media.php?action=edit&attachment_id='.$attachment->ID).'">'.__("edit", "gd-bbpress-attachments").'</a>';
+        echo '</li>';
     }
     echo '</ul>';
 }

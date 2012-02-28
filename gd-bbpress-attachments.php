@@ -4,7 +4,7 @@
 Plugin Name: GD bbPress Attachments
 Plugin URI: http://www.dev4press.com/plugin/gd-bbpress-attachments/
 Description: Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
-Version: 1.5.3
+Version: 1.6
 Author: Milan Petrovic
 Author URI: http://www.dev4press.com/
 
@@ -28,6 +28,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 require_once(dirname(__FILE__)."/code/defaults.php");
 require_once(dirname(__FILE__)."/code/functions.php");
+
+if (!defined("GDBBPRESSATTACHMENTS_CAP")) {
+    define("GDBBPRESSATTACHMENTS_CAP", "edit_dashboard");
+}
 
 class gdbbPressAttachments {
     private $page_ids = array();
@@ -111,6 +115,7 @@ class gdbbPressAttachments {
 
         $this->plugin_path = dirname(__FILE__)."/";
         $this->plugin_url = plugins_url("/gd-bbpress-attachments/");
+
         define("GDBBPRESSATTACHMENTS_URL", $this->plugin_url);
         define("GDBBPRESSATTACHMENTS_PATH", $this->plugin_path);
 
@@ -128,6 +133,8 @@ class gdbbPressAttachments {
     public function load() {
         add_action("init", array(&$this, "load_translation"));
         add_action("init", array(&$this, "init_thumbnail_size"), 1);
+
+        add_action("before_delete_post", array(&$this, "delete_post"));
 
         if (is_admin()) {
             add_action("admin_init", array(&$this, "admin_init"));
@@ -152,6 +159,7 @@ class gdbbPressAttachments {
             add_action("bbp_new_topic", array(&$this, "save_topic"), 10, 4);
             add_action("bbp_get_reply_content", array(&$this, "embed_attachments"), 10, 2);
             add_action("bbp_get_topic_content", array(&$this, "embed_attachments"), 10, 2);
+            add_action("bbp_get_reply_content", array(&$this, "embed_attachments"), 10, 2);
 
             if ($this->o["attachment_icon"] == 1) {
                 add_action("bbp_theme_before_topic_title", array(&$this, "show_attachments_icon"));
@@ -180,6 +188,7 @@ class gdbbPressAttachments {
         $value = $this->o["max_file_size"];
         if (!$global_only) {
             $meta = get_post_meta(bbp_get_forum_id(), "_gdbbatt_settings", true);
+
             if (is_array($meta) && $meta["to_override"] == 1) {
                 $value = $meta["max_file_size"];
             }
@@ -224,6 +233,17 @@ class gdbbPressAttachments {
         return false;
     }
 
+    public function is_hidden_from_visitors() {
+        $value = $this->o["hide_from_visitors"];
+        $meta = get_post_meta(bbp_get_forum_id(), "_gdbbatt_settings", true);
+
+        if (is_array($meta) && $meta["to_override"] == 1) {
+            $value = $meta["hide_from_visitors"];
+        }
+
+        return $value == 1;
+    }
+
     public function admin_post_columns($columns) {
         $columns["gdbbatt_count"] = '<img src="'.GDBBPRESSATTACHMENTS_URL.'gfx/attachment.png" width="16" height="12" alt="'.__("Attachments", "gd-bbpress-attachments").'" title="'.__("Attachments", "gd-bbpress-attachments").'" />';
         return $columns;
@@ -237,9 +257,11 @@ class gdbbPressAttachments {
     }
 
     public function admin_meta() {
-        add_meta_box("gdbbattach-meta-forum", __("Attachments Settings", "gd-bbpress-attachments"), array(&$this, "metabox_forum"), "forum", "side", "high");
-        add_meta_box("gdbbattach-meta-files", __("Attachments List", "gd-bbpress-attachments"), array(&$this, "metabox_files"), "topic", "side", "high");
-        add_meta_box("gdbbattach-meta-files", __("Attachments List", "gd-bbpress-attachments"), array(&$this, "metabox_files"), "reply", "side", "high");
+        if (current_user_can(GDBBPRESSATTACHMENTS_CAP)) {
+            add_meta_box("gdbbattach-meta-forum", __("Attachments Settings", "gd-bbpress-attachments"), array(&$this, "metabox_forum"), "forum", "side", "high");
+            add_meta_box("gdbbattach-meta-files", __("Attachments List", "gd-bbpress-attachments"), array(&$this, "metabox_files"), "topic", "side", "high");
+            add_meta_box("gdbbattach-meta-files", __("Attachments List", "gd-bbpress-attachments"), array(&$this, "metabox_files"), "reply", "side", "high");
+        }
     }
 
     public function save_edit_forum($post_id) {
@@ -250,10 +272,12 @@ class gdbbPressAttachments {
         if (isset($_POST["gdbbatt_forum_meta"]) && $_POST["gdbbatt_forum_meta"] == "edit") {
             $data = (array)$_POST["gdbbatt"];
             $meta = array(
+                "disable" => isset($data["disable"]) ? 1 : 0,
                 "to_override" => isset($data["to_override"]) ? 1 : 0,
+                "hide_from_visitors" => isset($data["hide_from_visitors"]) ? 1 : 0,
                 "max_file_size" => absint(intval($data["max_file_size"])),
-                "max_to_upload" => absint(intval($data["max_to_upload"])),
-                "disable" => isset($data["disable"]) ? 1 : 0);
+                "max_to_upload" => absint(intval($data["max_to_upload"]))
+            );
             update_post_meta($post_id, "_gdbbatt_settings", $meta);
         }
     }
@@ -263,9 +287,13 @@ class gdbbPressAttachments {
 
         $meta = get_post_meta($post_ID, "_gdbbatt_settings", true);
         if (!is_array($meta)) {
-            $meta = array("disable" => 0, "to_override" => 0, 
+            $meta = array(
+                "disable" => 0, 
+                "to_override" => 0, 
+                "hide_from_visitors" => 1, 
                 "max_file_size" => $this->get_file_size(true), 
-                "max_to_upload" => $this->get_max_files(true));
+                "max_to_upload" => $this->get_max_files(true)
+            );
         }
 
         include(GDBBPRESSATTACHMENTS_PATH."forms/meta_forum.php");
@@ -291,12 +319,12 @@ class gdbbPressAttachments {
     }
 
     public function admin_menu() {
-        $this->page_ids[] = add_submenu_page("edit.php?post_type=forum", "GD bbPress Attachments", __("Attachments", "gd-bbpress-attachments"), "edit_posts", "gdbbpress_attachments", array(&$this, "menu_attachments"));
+        $this->page_ids[] = add_submenu_page("edit.php?post_type=forum", "GD bbPress Attachments", __("Attachments", "gd-bbpress-attachments"), GDBBPRESSATTACHMENTS_CAP, "gdbbpress_attachments", array(&$this, "menu_attachments"));
 
         $this->admin_load_hooks();
     }
 
-    function admin_load_hooks() {
+    public function admin_load_hooks() {
         if (GDBBPRESSATTACHMENTS_WPV < 33) return;
 
         foreach ($this->page_ids as $id) {
@@ -304,7 +332,7 @@ class gdbbPressAttachments {
         }
     }
 
-    function load_admin_page() {
+    public function load_admin_page() {
         $screen = get_current_screen();
 
         $screen->set_help_sidebar('
@@ -358,8 +386,10 @@ class gdbbPressAttachments {
             $this->o["roles_to_upload"] = (array)$_POST["roles_to_upload"];
             $this->o["attachment_icon"] = isset($_POST["attachment_icon"]) ? 1 : 0;
             $this->o["attchment_icons"] = isset($_POST["attchment_icons"]) ? 1 : 0;
+            $this->o["hide_from_visitors"] = isset($_POST["hide_from_visitors"]) ? 1 : 0;
             $this->o["include_js"] = isset($_POST["include_js"]) ? 1 : 0;
             $this->o["include_css"] = isset($_POST["include_css"]) ? 1 : 0;
+            $this->o["delete_attachments"] = strip_tags($_POST["delete_attachments"]);
             $this->o["image_thumbnail_active"] = isset($_POST["image_thumbnail_active"]) ? 1 : 0;
             $this->o["image_thumbnail_caption"] = isset($_POST["image_thumbnail_caption"]) ? 1 : 0;
             $this->o["image_thumbnail_rel"] = strip_tags($_POST["image_thumbnail_rel"]);
@@ -440,6 +470,26 @@ class gdbbPressAttachments {
                 /* ]]> */
             </script>
         <?php }
+    }
+
+    public function delete_post($id) {
+        if (!function_exists("bbp_is_reply")) exit;
+
+        if (bbp_is_reply($id) || bbp_is_topic($id)) {
+            if ($this->o["delete_attachments"] == "delete") {
+                $files = d4p_get_post_attachments($id);
+
+                if (is_array($files) && !empty($files)) {
+                    foreach ($files as $file) {
+                        wp_delete_attachment($file->ID);
+                    }
+                }
+            } else if ($this->o["delete_attachments"] == "detach") {
+                global $wpdb;
+
+                $wpdb->update($wpdb->posts, array('post_parent' => 0), array('post_parent' => $id, 'post_type' => 'attachment'));
+            }
+        }
     }
 
     public function save_topic($topic_id, $forum_id, $anonymous_data, $topic_author) {
@@ -528,73 +578,88 @@ class gdbbPressAttachments {
     }
 
     public function embed_attachments($content, $id) {
-        global $user_ID;
-
         $attachments = d4p_get_post_attachments($id);
+        $content = '';
+
         if (!empty($attachments)) {
             $content.= '<div class="bbp-attachments">';
             $content.= '<h6>'.__("Attachments", "gd-bbpress-attachments").':</h6>';
-            $content.= '<ol';
-            if ($this->o["attchment_icons"] == 1) {
-                $content.= ' class="with-icons"';
-            }
-            $content.= '>';
 
-            foreach ($attachments as $attachment) {
-                $file = get_attached_file($attachment->ID);
-                $ext = pathinfo($file, PATHINFO_EXTENSION);
-                $filename = pathinfo($file, PATHINFO_BASENAME);
-                $url = wp_get_attachment_url($attachment->ID);
+            if (!is_user_logged_in() && $this->is_hidden_from_visitors()) {
+                $content.= sprintf(__("You must be <a href='%s'>logged in</a> to view attched files.", "gd-bbpress-attachments"), wp_login_url(get_permalink()));
+            } else {
+                global $user_ID;
 
-                $html = $class_li = $class_a = $rel_a = "";
-                $a_title = $filename;
-                $caption = false;
-                if ($this->o["image_thumbnail_active"] == 1) {
-                    $html = wp_get_attachment_image($attachment->ID, "d4p-bbp-thumb");
-                    if ($html != "") {
-                        $class_li = "bbp-atthumb";
-                        $class_a = $this->o["image_thumbnail_css"];
-                        $caption = $this->o["image_thumbnail_caption"] == 1;
-                        $rel_a = ' rel="'.$this->o["image_thumbnail_rel"].'"';
-                        $rel_a = str_replace("%ID%", $id, $rel_a);
-                        $rel_a = str_replace("%TOPIC%", bbp_get_topic_id(), $rel_a);
-                    }
-                }
-                if ($html == "") {
-                    $html = $filename;
+                if (!empty($attachments)) {
+                    $content.= '<ol';
                     if ($this->o["attchment_icons"] == 1) {
-                        $class_li = "bbp-atticon bbp-atticon-".$this->_icon($ext);
+                        $content.= ' class="with-icons"';
+                    }
+                    $content.= '>';
+
+                    foreach ($attachments as $attachment) {
+                        $file = get_attached_file($attachment->ID);
+                        $ext = pathinfo($file, PATHINFO_EXTENSION);
+                        $filename = pathinfo($file, PATHINFO_BASENAME);
+                        $url = wp_get_attachment_url($attachment->ID);
+
+                        $html = $class_li = $class_a = $rel_a = "";
+                        $a_title = $filename;
+                        $caption = false;
+                        if ($this->o["image_thumbnail_active"] == 1) {
+                            $html = wp_get_attachment_image($attachment->ID, "d4p-bbp-thumb");
+
+                            if ($html != "") {
+                                $class_li = "bbp-atthumb";
+                                $class_a = $this->o["image_thumbnail_css"];
+                                $caption = $this->o["image_thumbnail_caption"] == 1;
+                                $rel_a = ' rel="'.$this->o["image_thumbnail_rel"].'"';
+                                $rel_a = str_replace("%ID%", $id, $rel_a);
+                                $rel_a = str_replace("%TOPIC%", bbp_get_topic_id(), $rel_a);
+                            }
+                        }
+                        if ($html == "") {
+                            $html = $filename;
+
+                            if ($this->o["attchment_icons"] == 1) {
+                                $class_li = "bbp-atticon bbp-atticon-".$this->_icon($ext);
+                            }
+                        }
+
+                        $content.= '<li id="d4p-bbp-attachment_'.$attachment->ID.'" class="d4p-bbp-attachment d4p-bbp-attachment-'.$ext.' '.$class_li.'">';
+                        if ($caption) {
+                            $content.= '<div style="width: '.$this->o["image_thumbnail_size_x"].'px" class="wp-caption">';
+                        }
+
+                        $content.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$url.'" title="'.$a_title.'">'.$html.'</a>';
+                        if ($caption) {
+                            $content.= '<p class="wp-caption-text">'.$a_title.'</p></div>';
+                        }
+
+                        $content.= '</li>';
+                    }
+
+                    $content.= '</ol></div>';
+                }
+
+                $post = get_post($id);
+                $author_id = $post->post_author;
+
+                if (($this->o["errors_visible_to_author"] == 1 && $author_id == $user_ID) || ($this->o["errors_visible_to_admins"] == 1 && d4p_is_user_admin())) {
+                    $errors = get_post_meta($id, "_bbp_attachment_upload_error");
+
+                    if (!empty($errors)) {
+                        $content.= '<div class="bbp-attachments-errors">';
+                        $content.= '<h6>'.__("Upload Errors", "gd-bbpress-attachments").':</h6>';
+                        $content.= '<ol>';
+
+                        foreach ($errors as $error) {
+                            $content.= '<li><strong>'.$error["file"].'</strong>: '.__($error["message"], "gd-bbpress-attachments").'</li>';
+                        }
+
+                        $content.= '</ol></div>';
                     }
                 }
-
-                $content.= '<li id="d4p-bbp-attachment_'.$attachment->ID.'" class="d4p-bbp-attachment d4p-bbp-attachment-'.$ext.' '.$class_li.'">';
-                if ($caption) {
-                    $content.= '<div style="width: '.$this->o["image_thumbnail_size_x"].'px" class="wp-caption">';
-                }
-                $content.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$url.'" title="'.$a_title.'">'.$html.'</a>';
-                if ($caption) {
-                    $content.= '<p class="wp-caption-text">'.$a_title.'</p></div>';
-                }
-
-                $content.= '</li>';
-            }
-
-            $content.= '</ol></div>';
-        }
-
-        $post = get_post($id);
-        $author_id = $post->post_author;
-
-        if (($this->o["errors_visible_to_author"] == 1 && $author_id == $user_ID) || ($this->o["errors_visible_to_admins"] == 1 && d4p_is_user_admin())) {
-            $errors = get_post_meta($id, "_bbp_attachment_upload_error");
-            if (!empty($errors)) {
-                $content.= '<div class="bbp-attachments-errors">';
-                $content.= '<h6>'.__("Upload Errors", "gd-bbpress-attachments").':</h6>';
-                $content.= '<ol>';
-                foreach ($errors as $error) {
-                    $content.= '<li><strong>'.$error["file"].'</strong>: '.__($error["message"], "gd-bbpress-attachments").'</li>';
-                }
-                $content.= '</ol></div>';
             }
         }
 

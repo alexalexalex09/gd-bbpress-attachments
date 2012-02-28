@@ -1,34 +1,34 @@
-#: gd-bbpress-attachments.php:169
+#: gd-bbpress-attachments.php:177
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: code/defaults.php:36
+#: code/defaults.php:38
 msgid "File not uploaded."
 msgstr ""
 
-#: code/defaults.php:37
+#: code/defaults.php:39
 msgid "Upload file size exceeds PHP maximum file size allowed."
 msgstr ""
 
-#: code/defaults.php:38
+#: code/defaults.php:40
 msgid "Upload file size exceeds FORM specified file size."
 msgstr ""
 
-#: code/defaults.php:39
+#: code/defaults.php:41
 msgid "Upload file only partially uploaded."
 msgstr ""
 
-#: code/defaults.php:40
+#: code/defaults.php:42
 msgid "Can't write file to the disk."
 msgstr ""
 
-#: code/defaults.php:41
+#: code/defaults.php:43
 msgid "Temporary folder for upload is missing."
 msgstr ""
 
-#: code/defaults.php:42
+#: code/defaults.php:44
 msgid "Server extension restriction stopped upload."
 msgstr ""
 
@@ -106,117 +106,146 @@ msgstr ""
 msgid "For single topic or reply"
 msgstr ""
 
-#: forms/tabs/settings.php:29
+#: forms/tabs/settings.php:28
+#: forms/meta_forum.php:24
+msgid "Hide list of attachements from visitors"
+msgstr ""
+
+#: forms/tabs/settings.php:35
 msgid "Users Upload Restrictions"
 msgstr ""
 
-#: forms/tabs/settings.php:30
+#: forms/tabs/settings.php:36
 msgid "Only users having one of the selected roles will be able to attach files."
 msgstr ""
 
-#: forms/tabs/settings.php:34
-#: forms/tabs/settings.php:37
+#: forms/tabs/settings.php:40
+#: forms/tabs/settings.php:43
 msgid "Allow upload to"
 msgstr ""
 
-#: forms/tabs/settings.php:49
+#: forms/tabs/settings.php:55
 msgid "Error logging"
 msgstr ""
 
-#: forms/tabs/settings.php:50
+#: forms/tabs/settings.php:56
 msgid "Each failed upload will be logged in postmeta table. Administrators and topic/reply authors can see the log."
 msgstr ""
 
-#: forms/tabs/settings.php:54
-#: forms/tabs/settings.php:116
+#: forms/tabs/settings.php:60
+#: forms/tabs/settings.php:142
 msgid "Activated"
 msgstr ""
 
-#: forms/tabs/settings.php:60
+#: forms/tabs/settings.php:66
 msgid "Visible to administrators"
 msgstr ""
 
-#: forms/tabs/settings.php:66
+#: forms/tabs/settings.php:72
 msgid "Visible to author"
 msgstr ""
 
-#: forms/tabs/settings.php:73
+#: forms/tabs/settings.php:79
 msgid "JavaScript and CSS Settings"
 msgstr ""
 
-#: forms/tabs/settings.php:74
+#: forms/tabs/settings.php:80
 msgid "You can disable including styles and JavaScript by the plugin, if you want to do it some other way."
 msgstr ""
 
-#: forms/tabs/settings.php:78
+#: forms/tabs/settings.php:84
 msgid "Include JavaScript"
 msgstr ""
 
-#: forms/tabs/settings.php:84
+#: forms/tabs/settings.php:90
 msgid "Include CSS"
 msgstr ""
 
-#: forms/tabs/settings.php:93
-msgid "Forums Integration"
+#: forms/tabs/settings.php:99
+msgid "Topic and Reply Deleting"
 msgstr ""
 
-#: forms/tabs/settings.php:94
-msgid "With these options you can modify the forums to include attachment elements."
-msgstr ""
-
-#: forms/tabs/settings.php:98
-msgid "Attachment Icon"
+#: forms/tabs/settings.php:100
+msgid "Select what to do with attachments when topic or reply with attachments is deleted."
 msgstr ""
 
 #: forms/tabs/settings.php:104
+msgid "Attachments Action"
+msgstr ""
+
+#: forms/tabs/settings.php:107
+msgid "Leave in media library"
+msgstr ""
+
+#: forms/tabs/settings.php:108
+msgid "Delete"
+msgstr ""
+
+#: forms/tabs/settings.php:109
+msgid "Do nothing"
+msgstr ""
+
+#: forms/tabs/settings.php:115
+msgid "Forums Integration"
+msgstr ""
+
+#: forms/tabs/settings.php:116
+msgid "With these options you can modify the forums to include attachment elements."
+msgstr ""
+
+#: forms/tabs/settings.php:120
+msgid "Attachment Icon"
+msgstr ""
+
+#: forms/tabs/settings.php:126
 msgid "File Type Icons"
 msgstr ""
 
-#: forms/tabs/settings.php:111
+#: forms/tabs/settings.php:137
 msgid "Display of image attachments"
 msgstr ""
 
-#: forms/tabs/settings.php:112
+#: forms/tabs/settings.php:138
 msgid "Attached images can be displayed as thumbnails, and from here you can control this."
 msgstr ""
 
-#: forms/tabs/settings.php:122
+#: forms/tabs/settings.php:148
 msgid "With caption"
 msgstr ""
 
-#: forms/tabs/settings.php:128
+#: forms/tabs/settings.php:154
 msgid "CSS class"
 msgstr ""
 
-#: forms/tabs/settings.php:134
+#: forms/tabs/settings.php:160
 msgid "REL attribute"
 msgstr ""
 
-#: forms/tabs/settings.php:137
+#: forms/tabs/settings.php:163
 msgid "You can use these tags"
 msgstr ""
 
-#: forms/tabs/settings.php:142
+#: forms/tabs/settings.php:168
 msgid "Image thumbnails size"
 msgstr ""
 
-#: forms/tabs/settings.php:143
+#: forms/tabs/settings.php:169
 msgid "Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using"
 msgstr ""
 
-#: forms/tabs/settings.php:143
+#: forms/tabs/settings.php:169
 msgid "plugin"
 msgstr ""
 
-#: forms/tabs/settings.php:147
+#: forms/tabs/settings.php:173
 msgid "Thumbnail width"
 msgstr ""
 
-#: forms/tabs/settings.php:154
+#: forms/tabs/settings.php:180
 msgid "Thumbnail height"
 msgstr ""
 
-#: forms/tabs/settings.php:164
+#: forms/tabs/settings.php:190
 msgid "Save Changes"
 msgstr ""
 
@@ -224,8 +253,12 @@ msgstr ""
 msgid "No attachments here."
 msgstr ""
 
-#: forms/meta_files.php:18
-#: gd-bbpress-attachments.php:591
+#: forms/meta_files.php:11
+msgid "edit"
+msgstr ""
+
+#: forms/meta_files.php:20
+#: gd-bbpress-attachments.php:652
 msgid "Upload Errors"
 msgstr ""
 
@@ -239,8 +272,16 @@ msgstr ""
 msgid "Override Defaults"
 msgstr ""
 
+#: forms/meta_forum.php:11
+msgid "Settings to override"
+msgstr ""
+
+#: forms/meta_forum.php:25
+msgid "Hide From Visitors"
+msgstr ""
+
 #: forms/panels.php:3
-#: gd-bbpress-attachments.php:286
+#: gd-bbpress-attachments.php:314
 msgid "Settings"
 msgstr ""
 
@@ -253,10 +294,10 @@ msgid "About"
 msgstr ""
 
 #: forms/uploader.php:5
-#: gd-bbpress-attachments.php:227
-#: gd-bbpress-attachments.php:227
-#: gd-bbpress-attachments.php:293
-#: gd-bbpress-attachments.php:535
+#: gd-bbpress-attachments.php:247
+#: gd-bbpress-attachments.php:247
+#: gd-bbpress-attachments.php:321
+#: gd-bbpress-attachments.php:585
 msgid "Attachments"
 msgstr ""
 
@@ -268,104 +309,108 @@ msgstr ""
 msgid "Maximum file size allowed is"
 msgstr ""
 
-#: gd-bbpress-attachments.php:239
+#: gd-bbpress-attachments.php:260
 msgid "Attachments Settings"
 msgstr ""
 
-#: gd-bbpress-attachments.php:240
-#: gd-bbpress-attachments.php:241
+#: gd-bbpress-attachments.php:261
+#: gd-bbpress-attachments.php:262
 msgid "Attachments List"
 msgstr ""
 
-#: gd-bbpress-attachments.php:311
+#: gd-bbpress-attachments.php:339
 msgid "Website"
 msgstr ""
 
-#: gd-bbpress-attachments.php:312
+#: gd-bbpress-attachments.php:340
 msgid "On Twitter"
 msgstr ""
 
-#: gd-bbpress-attachments.php:313
+#: gd-bbpress-attachments.php:341
 msgid "On Facebook"
 msgstr ""
 
-#: gd-bbpress-attachments.php:317
+#: gd-bbpress-attachments.php:345
 msgid "Get Help"
 msgstr ""
 
-#: gd-bbpress-attachments.php:318
+#: gd-bbpress-attachments.php:346
 msgid "General Plugin Information"
 msgstr ""
 
-#: gd-bbpress-attachments.php:319
+#: gd-bbpress-attachments.php:347
 msgid "Home Page on Dev4Press.com"
 msgstr ""
 
-#: gd-bbpress-attachments.php:320
+#: gd-bbpress-attachments.php:348
 msgid "Home Page on WordPress.org"
 msgstr ""
 
-#: gd-bbpress-attachments.php:321
+#: gd-bbpress-attachments.php:349
 msgid "Getting Plugin Support"
 msgstr ""
 
-#: gd-bbpress-attachments.php:322
+#: gd-bbpress-attachments.php:350
 msgid "Support Forum on Dev4Press.com"
 msgstr ""
 
-#: gd-bbpress-attachments.php:323
+#: gd-bbpress-attachments.php:351
 msgid "Support Forum on WordPress.org"
 msgstr ""
 
-#: gd-bbpress-attachments.php:324
+#: gd-bbpress-attachments.php:352
 msgid "Plugin Support Sources"
 msgstr ""
 
-#: gd-bbpress-attachments.php:329
+#: gd-bbpress-attachments.php:357
 msgid "On Dev4Press website you can find many useful plugins, themes and tutorials, all for WordPress. Please, take a few minutes to browse some of these resources, you might find some of them very useful."
 msgstr ""
 
-#: gd-bbpress-attachments.php:330
+#: gd-bbpress-attachments.php:358
 msgid "Plugins"
 msgstr ""
 
-#: gd-bbpress-attachments.php:330
+#: gd-bbpress-attachments.php:358
 msgid "We have more than 10 plugins available, some of them are commercial and some are available for free."
 msgstr ""
 
-#: gd-bbpress-attachments.php:331
+#: gd-bbpress-attachments.php:359
 msgid "Themes"
 msgstr ""
 
-#: gd-bbpress-attachments.php:331
+#: gd-bbpress-attachments.php:359
 msgid "All our themes are based on our own xScape Theme Framework, and only available as premium."
 msgstr ""
 
-#: gd-bbpress-attachments.php:332
+#: gd-bbpress-attachments.php:360
 msgid "Tutorials"
 msgstr ""
 
-#: gd-bbpress-attachments.php:332
+#: gd-bbpress-attachments.php:360
 msgid "Premium and free tutorials for our plugins themes, and many general and practical WordPress tutorials."
 msgstr ""
 
-#: gd-bbpress-attachments.php:333
+#: gd-bbpress-attachments.php:361
 msgid "Central Documentation"
 msgstr ""
 
-#: gd-bbpress-attachments.php:333
+#: gd-bbpress-attachments.php:361
 msgid "Growing collection of functions, classes, hooks, constants with examples for our plugins and themes."
 msgstr ""
 
-#: gd-bbpress-attachments.php:334
+#: gd-bbpress-attachments.php:362
 msgid "Support Forums"
 msgstr ""
 
-#: gd-bbpress-attachments.php:334
+#: gd-bbpress-attachments.php:362
 msgid "Premium support forum for all with valid licenses to get help. Also, report bugs and leave suggestions."
 msgstr ""
 
-#: code/defaults.php:35
+#: gd-bbpress-attachments.php:588
+msgid "You must be <a href='%s'>logged in</a> to view attched files."
+msgstr ""
+
+#: code/defaults.php:37
 msgid "File exceeds allowed file size."
 msgstr ""
 
