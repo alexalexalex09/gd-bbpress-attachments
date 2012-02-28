@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.6
+Version: 1.6.0.1
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
 Requires at least: 3.2
 Tested up to: 3.4
