@@ -62,6 +62,9 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.6.0.1 =
+* Fixed issue with empty topics
+
 = 1.6 =
 * Added hide attachments from visitors option
 * Added option to hook in topic and reply deletion
