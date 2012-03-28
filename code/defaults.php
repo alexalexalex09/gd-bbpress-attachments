@@ -2,9 +2,9 @@
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        "version" => "1.6.0.1",
-        "date" => "2012.02.28.",
-        "build" => 754,
+        "version" => "1.7",
+        "date" => "2012.03.28.",
+        "build" => 783,
         "status" => "Stable",
         "product_id" => "gd-bbpress-attachments",
         "edition" => "free",
@@ -28,7 +28,11 @@ class gdbbPressAttachments_Defaults {
         "image_thumbnail_size_y" => 72,
         "log_upload_errors" => 1,
         "errors_visible_to_admins" => 1,
-        "errors_visible_to_author" => 1
+        "errors_visible_to_moderators" => 1,
+        "errors_visible_to_author" => 1,
+        "delete_visible_to_admins" => "both",
+        "delete_visible_to_moderators" => "no",
+        "delete_visible_to_author" => "no"
     );
 
     function __construct() { }

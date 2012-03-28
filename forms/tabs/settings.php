@@ -53,26 +53,18 @@
                 </tr>
             </tbody>
         </table>
-        <h3><?php _e("Error logging", "gd-bbpress-attachments"); ?></h3>
-        <p><?php _e("Each failed upload will be logged in postmeta table. Administrators and topic/reply authors can see the log.", "gd-bbpress-attachments"); ?></p>
+        <h3><?php _e("Topic and Reply Deleting", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Select what to do with attachments when topic or reply with attachments is deleted.", "gd-bbpress-attachments"); ?></p>
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="log_upload_errors"><?php _e("Activated", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label><?php _e("Attachments Action", "gd-bbpress-attachments"); ?></label></th>
                     <td>
-                        <input type="checkbox" <?php if ($options["log_upload_errors"] == 1) echo " checked"; ?> name="log_upload_errors" />
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row"><label for="errors_visible_to_admins"><?php _e("Visible to administrators", "gd-bbpress-attachments"); ?></label></th>
-                    <td>
-                        <input type="checkbox" <?php if ($options["errors_visible_to_admins"] == 1) echo " checked"; ?> name="errors_visible_to_admins" />
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row"><label for="errors_visible_to_author"><?php _e("Visible to author", "gd-bbpress-attachments"); ?></label></th>
-                    <td>
-                        <input type="checkbox" <?php if ($options["errors_visible_to_author"] == 1) echo " checked"; ?> name="errors_visible_to_author" />
+                        <select name="delete_attachments" class="regular-text">
+                            <option value="detach"<?php if ($options["delete_attachments"] == "detach") echo ' selected="selected"'; ?>><?php _e("Leave in media library", "gd-bbpress-attachments"); ?></option>
+                            <option value="delete"<?php if ($options["delete_attachments"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete", "gd-bbpress-attachments"); ?></option>
+                            <option value="nohing"<?php if ($options["delete_attachments"] == "nohing") echo ' selected="selected"'; ?>><?php _e("Do nothing", "gd-bbpress-attachments"); ?></option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
@@ -95,19 +87,90 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="d4p-settings-second">
-        <h3><?php _e("Topic and Reply Deleting", "gd-bbpress-attachments"); ?></h3>
-        <p><?php _e("Select what to do with attachments when topic or reply with attachments is deleted.", "gd-bbpress-attachments"); ?></p>
+        <h3><?php _e("Image thumbnails size", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using", "gd-bbpress-attachments"); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a> <?php _e("plugin", "gd-bbpress-attachments"); ?>.</p>
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="attachment_icon"><?php _e("Attachments Action", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label for="image_thumbnail_size_x"><?php _e("Thumbnail size", "gd-bbpress-attachments"); ?></label></th>
+                    <td>x:</td>
                     <td>
-                        <select name="delete_attachments" class="regular-text">
-                            <option value="detach"<?php if ($options["delete_attachments"] == "detach") echo ' selected="selected"'; ?>><?php _e("Leave in media library", "gd-bbpress-attachments"); ?></option>
-                            <option value="delete"<?php if ($options["delete_attachments"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete", "gd-bbpress-attachments"); ?></option>
-                            <option value="nohing"<?php if ($options["delete_attachments"] == "nohing") echo ' selected="selected"'; ?>><?php _e("Do nothing", "gd-bbpress-attachments"); ?></option>
+                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_x"]; ?>" id="image_thumbnail_size_x" name="image_thumbnail_size_x" />
+                        <span class="description">px</span>
+                    </td>
+                    <td>y:</td>
+                    <td>
+                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_y"]; ?>" id="image_thumbnail_size_y" name="image_thumbnail_size_y" />
+                        <span class="description">px</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d4p-settings-second">
+        <h3><?php _e("Error logging", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Each failed upload will be logged in postmeta table. Administrators and topic/reply authors can see the log.", "gd-bbpress-attachments"); ?></p>
+        <table class="form-table">
+            <tbody>
+                <tr valign="top">
+                    <th scope="row"><label for="log_upload_errors"><?php _e("Activated", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["log_upload_errors"] == 1) echo " checked"; ?> name="log_upload_errors" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="errors_visible_to_admins"><?php _e("Visible to administrators", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["errors_visible_to_admins"] == 1) echo " checked"; ?> name="errors_visible_to_admins" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="errors_visible_to_moderators"><?php _e("Visible to moderators", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["errors_visible_to_moderators"] == 1) echo " checked"; ?> name="errors_visible_to_moderators" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="errors_visible_to_author"><?php _e("Visible to author", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["errors_visible_to_author"] == 1) echo " checked"; ?> name="errors_visible_to_author" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><?php _e("Deleting attachments", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Once uploaded and attached, attachments can be deleted. Only administrators and authors can do this.", "gd-bbpress-attachments"); ?></p>
+        <table class="form-table">
+            <tbody>
+                <tr valign="top">
+                    <th scope="row"><label><?php _e("Administrators", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <select name="delete_visible_to_author" class="regular-text">
+                            <option value="no"<?php if ($options["delete_visible_to_admins"] == "no") echo ' selected="selected"'; ?>><?php _e("Don't allow to delete", "gd-bbpress-attachments"); ?></option>
+                            <option value="delete"<?php if ($options["delete_visible_to_admins"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete from Media Library", "gd-bbpress-attachments"); ?></option>
+                            <option value="detach"<?php if ($options["delete_visible_to_admins"] == "detach") echo ' selected="selected"'; ?>><?php _e("Only detach from topic/reply", "gd-bbpress-attachments"); ?></option>
+                            <option value="both"<?php if ($options["delete_visible_to_admins"] == "both") echo ' selected="selected"'; ?>><?php _e("Allow both delete and detach", "gd-bbpress-attachments"); ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label><?php _e("Moderators", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <select name="delete_visible_to_moderators" class="regular-text">
+                            <option value="no"<?php if ($options["delete_visible_to_moderators"] == "no") echo ' selected="selected"'; ?>><?php _e("Don't allow to delete", "gd-bbpress-attachments"); ?></option>
+                            <option value="delete"<?php if ($options["delete_visible_to_moderators"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete from Media Library", "gd-bbpress-attachments"); ?></option>
+                            <option value="detach"<?php if ($options["delete_visible_to_moderators"] == "detach") echo ' selected="selected"'; ?>><?php _e("Only detach from topic/reply", "gd-bbpress-attachments"); ?></option>
+                            <option value="both"<?php if ($options["delete_visible_to_moderators"] == "both") echo ' selected="selected"'; ?>><?php _e("Allow both delete and detach", "gd-bbpress-attachments"); ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label><?php _e("Author", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <select name="delete_visible_to_author" class="regular-text">
+                            <option value="no"<?php if ($options["delete_visible_to_author"] == "no") echo ' selected="selected"'; ?>><?php _e("Don't allow to delete", "gd-bbpress-attachments"); ?></option>
+                            <option value="delete"<?php if ($options["delete_visible_to_author"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete from Media Library", "gd-bbpress-attachments"); ?></option>
+                            <option value="detach"<?php if ($options["delete_visible_to_author"] == "detach") echo ' selected="selected"'; ?>><?php _e("Only detach from topic/reply", "gd-bbpress-attachments"); ?></option>
                         </select>
                     </td>
                 </tr>
@@ -162,26 +225,6 @@
                     <td>
                         <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_rel"]; ?>" id="image_thumbnail_rel" name="image_thumbnail_rel" /><br/>
                         <em><?php _e("You can use these tags", "gd-bbpress-attachments"); ?>:<br/>%ID%, %TOPIC%</em>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h3><?php _e("Image thumbnails size", "gd-bbpress-attachments"); ?></h3>
-        <p><?php _e("Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using", "gd-bbpress-attachments"); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a> <?php _e("plugin", "gd-bbpress-attachments"); ?>.</p>
-        <table class="form-table">
-            <tbody>
-                <tr valign="top">
-                    <th scope="row"><label for="image_thumbnail_size_x"><?php _e("Thumbnail width", "gd-bbpress-attachments"); ?></label></th>
-                    <td>
-                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_x"]; ?>" id="image_thumbnail_size_x" name="image_thumbnail_size_x" />
-                        <span class="description">px</span>
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row"><label for="image_thumbnail_size_y"><?php _e("Thumbnail height", "gd-bbpress-attachments"); ?></label></th>
-                    <td>
-                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_y"]; ?>" id="image_thumbnail_size_y" name="image_thumbnail_size_y" />
-                        <span class="description">px</span>
                     </td>
                 </tr>
             </tbody>

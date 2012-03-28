@@ -1,8 +1,8 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.6.0.1
-Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library 
+Version: 1.7
+Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit
 Requires at least: 3.2
 Tested up to: 3.4
 Stable tag: trunk
@@ -62,8 +62,13 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
-= 1.6.0.1 =
-* Fixed issue with empty topics
+= 1.7 =
+* Loading optimization with separate admin and front end code
+* Added options for deleting and detaching attachments
+* Added several new filters for additional plugin control
+* Added option for error logging visibility for moderators
+* Fixed logging of multiple upload errors
+* Fixed several issues with displaying upload errors
 
 = 1.6 =
 * Added hide attachments from visitors option
@@ -132,13 +137,14 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.6 =
-Added hide attachments from visitors option. Added option to hook in topic and reply deletion. Added Polish translation. Improved adding of plugin styling and JavaScript. Fixed visibility of meta settings for non admins.
+= 1.7 =
+Loading optimization with separate admin and front end code. Added options for deleting and detaching attachments. Added several new filters for additional plugin control. Added option for error logging visibility for moderators. Fixed logging of multiple upload errors. Fixed several issues with displaying upload errors.
 
 == Screenshots ==
 1. Main plugins settings panel
 2. Reply with attachments and file type icons
 3. Image attachments with upload errors
-4. Icons for the forums with attachments
+4. Attachments with delete and detach actions
 5. Attachments upload elements in the form
 6. Single forum meta box with settings
+7. Icons for the forums with attachments

@@ -24,9 +24,24 @@ function d4p_is_bbpress() {
 }
 
 /**
- * Checks to see if the currently logged user is admin.
+ * Checks to see if the currently logged user is moderator.
  *
- * @return bool is user admin or not
+ * @return bool is user moderator or not
+ */
+function d4p_is_user_moderator() {
+    global $current_user;
+
+    if (is_array($current_user->roles)) {
+        return in_array("bbp_moderator", $current_user->roles);
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Checks to see if the currently logged user is administrator.
+ *
+ * @return bool is user administrator or not
  */
 function d4p_is_user_admin() {
     global $current_user;
@@ -71,6 +86,11 @@ function d4p_topic_attachments_count($topic_id, $include_replies = false) {
 
 function d4p_bbattachment_handle_upload_error(&$file, $message) {
     return new WP_Error("wp_upload_error", $message);
+}
+
+function d4p_bba_o($name) {
+    global $gdbbpress_attachments;
+    return $gdbbpress_attachments->o[$name];
 }
 
 ?>
