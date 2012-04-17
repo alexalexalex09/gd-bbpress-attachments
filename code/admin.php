@@ -33,6 +33,7 @@ class gdbbPA_Admin {
             $gdbbpress_attachments->o['attachment_icon'] = isset($_POST['attachment_icon']) ? 1 : 0;
             $gdbbpress_attachments->o['attchment_icons'] = isset($_POST['attchment_icons']) ? 1 : 0;
             $gdbbpress_attachments->o['hide_from_visitors'] = isset($_POST['hide_from_visitors']) ? 1 : 0;
+            $gdbbpress_attachments->o['include_always'] = isset($_POST['include_always']) ? 1 : 0;
             $gdbbpress_attachments->o['include_js'] = isset($_POST['include_js']) ? 1 : 0;
             $gdbbpress_attachments->o['include_css'] = isset($_POST['include_css']) ? 1 : 0;
             $gdbbpress_attachments->o['delete_attachments'] = strip_tags($_POST['delete_attachments']);

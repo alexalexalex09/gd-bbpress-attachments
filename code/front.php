@@ -36,7 +36,7 @@ class gdbbPA_Front {
 
     public function load() {
         add_action('bbp_head', array(&$this, 'bbp_head'));
-        
+
         add_action('bbp_theme_after_reply_form_tags', array(&$this, 'embed_form'));
         add_action('bbp_theme_after_topic_form_tags', array(&$this, 'embed_form'));
         add_action('bbp_edit_reply', array(&$this, 'save_reply'), 10, 5);
@@ -61,8 +61,9 @@ class gdbbPA_Front {
     }
 
     public function bbp_head() { 
-        if (d4p_is_bbpress()) {
+        if (d4p_bba_o('include_always') == 1 || d4p_is_bbpress()) {
             global $gdbbpress_attachments;
+
             wp_enqueue_script('jquery');
 
             if (d4p_bba_o('include_css') == 1) { ?>

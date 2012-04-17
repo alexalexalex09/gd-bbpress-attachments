@@ -1,7 +1,13 @@
 <?php
 
 $current = isset($_GET["tab"]) ? $_GET["tab"] : "settings";
-$tabs = array("settings" => __("Settings", "gd-bbpress-attachments"), "faq" => __("FAQ", "gd-bbpress-attachments"), "about" => __("About", "gd-bbpress-attachments"));
+
+$tabs = array(
+    "settings" => __("Settings", "gd-bbpress-attachments"), 
+    "faq" => __("FAQ", "gd-bbpress-attachments"), 
+    "d4p" => __("Dev4Press", "gd-bbpress-attachments"), 
+    "about" => __("About", "gd-bbpress-attachments")
+);
 
 ?>
 <div class="wrap">

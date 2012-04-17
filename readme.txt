@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.7
+Version: 1.7.1
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit
 Requires at least: 3.2
 Tested up to: 3.4
@@ -32,7 +32,7 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
 * WordPress: 3.2
 
 = bbPress Requirements =
-* bbPress Plugin: 2.0
+* bbPress Plugin: 2.0 or newer
 
 = Basic Installation =
 * Plugin folder in the WordPress plugins folder must be `gd-bbpress-attachments`
@@ -43,15 +43,18 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
 * Where can I configure the plugin?
 Open the Forums menu, and you will see Attachments item there. This will open a panel with global plugin settings.
 
-* Will this plugin work with standalone bbPress instalation?
-No. This plugin requires the plugin versions of bbPress 2.0 or higher.
-
 * What are the common problems that can prevent upload to work?
 In some cases, it can happen that jQuery is not included in the page, even so the bbPress requires it to be loaded. That can happen if something else is unloading jQuery. If the jQuery is not present, upload will not work.
 Other common issue is that WordPress Media Library upload is not working. If that is not set up, attachments upload can't work.
 
 * Why is Media Library required?
 All attachments uploads are handled by the WordPress Media Library, and plugin uses native WordPress upload functions. When file is uploaded it will be available through Media Library. Consult WordPress documentation about Media Library requirements.
+
+* Will this plugin work with standalone bbPress instalation?
+No. This plugin requires the plugin versions of bbPress 2.0 or higher.
+
+* Will this plugin work with bbPress that is part of BuddyPress plugin?
+No. Plugin requires bbPress 2.0 or higher plugin.
 
 == Translations ==
 * English
@@ -62,6 +65,11 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.7.1 =
+* Added option for improved embedding of JS and CSS code
+* Minor changes to the plugins admin interface panels
+* Updated and expanded plugin FAQ and requirements
+
 = 1.7 =
 * Loading optimization with separate admin and front end code
 * Added options for deleting and detaching attachments
@@ -137,8 +145,8 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.7 =
-Loading optimization with separate admin and front end code. Added options for deleting and detaching attachments. Added several new filters for additional plugin control. Added option for error logging visibility for moderators. Fixed logging of multiple upload errors. Fixed several issues with displaying upload errors.
+= 1.7.1 =
+Added option for improved embedding of JS and CSS code. Minor changes to the plugins admin interface panels. Updated and expanded plugin FAQ and requirements.
 
 == Screenshots ==
 1. Main plugins settings panel

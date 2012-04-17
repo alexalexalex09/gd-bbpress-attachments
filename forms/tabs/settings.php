@@ -74,34 +74,26 @@
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="max_file_size"><?php _e("Include JavaScript", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label for="include_js"><?php _e("Include JavaScript", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="checkbox" <?php if ($options["include_js"] == 1) echo " checked"; ?> name="include_js" />
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="max_file_size"><?php _e("Include CSS", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label for="include_css"><?php _e("Include CSS", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="checkbox" <?php if ($options["include_css"] == 1) echo " checked"; ?> name="include_css" />
                     </td>
                 </tr>
             </tbody>
         </table>
-        <h3><?php _e("Image thumbnails size", "gd-bbpress-attachments"); ?></h3>
-        <p><?php _e("Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using", "gd-bbpress-attachments"); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a> <?php _e("plugin", "gd-bbpress-attachments"); ?>.</p>
+        <p><?php _e("If you use shortcodes to embed forums, and you rely on plugin to add JS and CSS, you also need to enable this option to skip checking for bbPress specific pages.", "gd-bbpress-attachments"); ?></p>
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="image_thumbnail_size_x"><?php _e("Thumbnail size", "gd-bbpress-attachments"); ?></label></th>
-                    <td>x:</td>
+                    <th scope="row"><label for="include_always"><?php _e("Always Include", "gd-bbpress-attachments"); ?></label></th>
                     <td>
-                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_x"]; ?>" id="image_thumbnail_size_x" name="image_thumbnail_size_x" />
-                        <span class="description">px</span>
-                    </td>
-                    <td>y:</td>
-                    <td>
-                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_y"]; ?>" id="image_thumbnail_size_y" name="image_thumbnail_size_y" />
-                        <span class="description">px</span>
+                        <input type="checkbox" <?php if ($options["include_always"] == 1) echo " checked"; ?> name="include_always" />
                     </td>
                 </tr>
             </tbody>
@@ -225,6 +217,25 @@
                     <td>
                         <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_rel"]; ?>" id="image_thumbnail_rel" name="image_thumbnail_rel" /><br/>
                         <em><?php _e("You can use these tags", "gd-bbpress-attachments"); ?>:<br/>%ID%, %TOPIC%</em>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><?php _e("Image thumbnails size", "gd-bbpress-attachments"); ?></h3>
+        <p><?php _e("Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using", "gd-bbpress-attachments"); ?> <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a> <?php _e("plugin", "gd-bbpress-attachments"); ?>.</p>
+        <table class="form-table">
+            <tbody>
+                <tr valign="top">
+                    <th scope="row"><label for="image_thumbnail_size_x"><?php _e("Thumbnail size", "gd-bbpress-attachments"); ?></label></th>
+                    <td>x:</td>
+                    <td>
+                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_x"]; ?>" id="image_thumbnail_size_x" name="image_thumbnail_size_x" />
+                        <span class="description">px</span>
+                    </td>
+                    <td>y:</td>
+                    <td>
+                        <input type="text" class="small-text" value="<?php echo $options["image_thumbnail_size_y"]; ?>" id="image_thumbnail_size_y" name="image_thumbnail_size_y" />
+                        <span class="description">px</span>
                     </td>
                 </tr>
             </tbody>
