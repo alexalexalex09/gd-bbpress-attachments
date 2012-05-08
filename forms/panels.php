@@ -1,9 +1,9 @@
 <?php
 
-$current = isset($_GET["tab"]) ? $_GET["tab"] : "settings";
+$current = isset($_GET["tab"]) ? $_GET["tab"] : "attachments";
 
 $tabs = array(
-    "settings" => __("Settings", "gd-bbpress-attachments"), 
+    "attachments" => __("Settings", "gd-bbpress-attachments"), 
     "faq" => __("FAQ", "gd-bbpress-attachments"), 
     "d4p" => __("Dev4Press", "gd-bbpress-attachments"), 
     "about" => __("About", "gd-bbpress-attachments")

@@ -1,16 +1,8 @@
 <?php
 
-class gdbbp_Error {
-    var $errors = array();
+if (!defined('ABSPATH')) exit;
 
-    function __construct() { }
-
-    function add($code, $message, $data) {
-        $this->errors[$code][] = array($message, $data);
-    }
-}
-
-class gdbbPA_Front {
+class gdbbAtt_Front {
     private $icons = array(
         'code' => 'c|cc|h|js|class', 
         'xml' => 'xml', 
@@ -356,6 +348,6 @@ class gdbbPA_Front {
 }
 
 global $gdbbpress_attachments_front;
-$gdbbpress_attachments_front = new gdbbPA_Front();
+$gdbbpress_attachments_front = new gdbbAtt_Front();
 
 ?>

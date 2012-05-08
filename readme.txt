@@ -1,11 +1,13 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.7.2
+Version: 1.7.5
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.4
 Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Implements attachments upload to the topics and replies in bbPress plugin through media library and adds additional forum based controls.
 
@@ -59,12 +61,19 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 == Translations ==
 * English
 * Serbian
+* French: Marie Bodson - http://mariebodson.com/
 * Polish: Dawid Karabin - http://www.hinok.net/
 * Dutch: Wouter van Vliet - http://www.interpotential.com/
 * German: David Decker - http://deckerweb.de/
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.7.5 =
+* Additional loading optimization
+* Added French language
+* Updated some translations
+* Fixed minor issues with saving settings
+
 = 1.7.2 =
 * Missing license.txt file
 
@@ -148,8 +157,8 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.7.2 =
-Added option for improved embedding of JS and CSS code. Minor changes to the plugins admin interface panels. Updated and expanded plugin FAQ and requirements.
+= 1.7.5 =
+Additional loading optimization. Added French language. Updated some translations. Fixed minor issues with saving settings.
 
 == Screenshots ==
 1. Main plugins settings panel
