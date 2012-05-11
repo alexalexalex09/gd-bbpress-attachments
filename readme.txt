@@ -26,9 +26,8 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
 [Facebook Page](http://www.facebook.com/dev4press)
 
 = More from dev4Press.com for bbPress =
-[GD bbPress Tools](http://wordpress.org/extend/plugins/gd-bbpress-tools/) - various expansion tools for forums
-
-[GD CPT Tools Pro](http://www.gdcpttools.com/features/bbpress-integration/) - meta box for the topic and reply form
+* [GD bbPress Tools](http://wordpress.org/extend/plugins/gd-bbpress-tools/) - various expansion tools for forums
+* [GD CPT Tools Pro](http://www.gdcpttools.com/features/bbpress-integration/) - meta box for the topic and reply form
 
 == Installation ==
 = General Requirements =
