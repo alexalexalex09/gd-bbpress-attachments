@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.7.5
+Version: 1.7.6
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.4
@@ -24,6 +24,10 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
 [Feedburner](http://feeds2.feedburner.com/dev4press) |
 [Twitter](http://twitter.com/milangd) |
 [Facebook Page](http://www.facebook.com/dev4press)
+
+= More from dev4Press.com for bbPress =
+[GD bbPress Tools](http://wordpress.org/extend/plugins/gd-bbpress-tools/) - various expansion tools for forums
+[GD CPT Tools Pro](http://www.gdcpttools.com/features/bbpress-integration/) - meta box for the topic and reply form
 
 == Installation ==
 = General Requirements =
@@ -68,6 +72,10 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 
 == Changelog ==
+= 1.7.6 =
+* Changes to readme.txt file
+* Improvements to the shared code
+
 = 1.7.5 =
 * Additional loading optimization
 * Added French language
@@ -157,8 +165,8 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.7.5 =
-Additional loading optimization. Added French language. Updated some translations. Fixed minor issues with saving settings.
+= 1.7.6 =
+Changes to readme.txt file. Improvements to the shared code.
 
 == Screenshots ==
 1. Main plugins settings panel

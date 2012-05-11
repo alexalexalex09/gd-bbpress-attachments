@@ -4,20 +4,20 @@ msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: code/attachments/admin.php:88
-#: code/attachments/admin.php:88
+#: code/attachments/admin.php:89
+#: code/attachments/admin.php:89
 #: code/attachments/front.php:222
 #: code/admin.php:21
 #: forms/uploader.php:5
 msgid "Attachments"
 msgstr ""
 
-#: code/attachments/admin.php:101
+#: code/attachments/admin.php:102
 msgid "Attachments Settings"
 msgstr ""
 
-#: code/attachments/admin.php:102
 #: code/attachments/admin.php:103
+#: code/attachments/admin.php:104
 msgid "Attachments List"
 msgstr ""
 
