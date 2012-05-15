@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.7.6
+Version: 1.8
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.4
@@ -16,7 +16,7 @@ Attachments for forum topics and replies are handled through WordPress media lib
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments and upload errors.
 
-Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
+Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian.
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
@@ -42,7 +42,7 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish.
 
 = Basic Installation =
 * Plugin folder in the WordPress plugins folder must be `gd-bbpress-attachments`
-* Upload folder `ggd-bbpress-attachments` to the `/wp-content/plugins/` directory
+* Upload folder `gd-bbpress-attachments` to the `/wp-content/plugins/` directory
 * Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
@@ -70,8 +70,16 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Dutch: Wouter van Vliet - http://www.interpotential.com/
 * German: David Decker - http://deckerweb.de/
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
+* Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 1.8 =
+* Added option to display thumbnails in line
+* Added Persian translation
+* Improvements for the bbPress 2.1 compatibility
+* Several embedding styling improvements
+* Fixed some loading issues for admin side
+
 = 1.7.6 =
 * Changes to readme.txt file
 * Improvements to the shared code
@@ -165,8 +173,8 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.7.6 =
-Changes to readme.txt file. Improvements to the shared code.
+= 1.8 =
+Added option to display thumbnails in line. Added Persian translation. Improvements for the bbPress 2.1 compatibility. Several embedding styling improvements. Fixed some loading issues for admin side.
 
 == Screenshots ==
 1. Main plugins settings panel
@@ -176,3 +184,4 @@ Changes to readme.txt file. Improvements to the shared code.
 5. Attachments upload elements in the form
 6. Single forum meta box with settings
 7. Icons for the forums with attachments
+8. Thumbnails displayed in line

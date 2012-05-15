@@ -5,11 +5,13 @@
 }
 
 .bbp-attachments h6 {
-	margin: 0 0 5px;
+	margin: 0 0 5px !important;
+        font-size: 1.1em;
+        font-weight: bold;
 }
 
 .bbp-attachments ol {
-	margin: 0;
+	margin: 0 !important;
 	list-style: decimal inside none;
 }
 
@@ -32,10 +34,23 @@
         height: auto;
 }
 
+.bbp-attachments ol.with-icons li.bbp-atthumb.bbp-inline {
+        float: left;
+        margin-right: 5px;
+}
+
 .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption {
-	padding: 5px 5px 0;
+	padding: 5px;
         margin: 0;
         height: auto;
+}
+
+.bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption p.wp-caption-text {
+        margin: 5px !important;
+}
+
+.bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption img {
+        margin: 0;
 }
 
 .bbp-attachments-count {

@@ -1,165 +1,165 @@
-#: code/attachments/front.php:209
+#: code/attachments/front.php:212
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: code/attachments/admin.php:89
-#: code/attachments/admin.php:89
-#: code/attachments/front.php:222
-#: code/admin.php:21
+#: code/attachments/admin.php:82
+#: code/attachments/admin.php:82
+#: code/attachments/front.php:225
+#: code/admin.php:31
 #: forms/uploader.php:5
 msgid "Attachments"
 msgstr ""
 
-#: code/attachments/admin.php:102
+#: code/attachments/admin.php:95
 msgid "Attachments Settings"
 msgstr ""
 
-#: code/attachments/admin.php:103
-#: code/attachments/admin.php:104
+#: code/attachments/admin.php:96
+#: code/attachments/admin.php:97
 msgid "Attachments List"
 msgstr ""
 
-#: code/attachments/front.php:225
+#: code/attachments/front.php:228
 msgid "You must be <a href='%s'>logged in</a> to view attched files."
 msgstr ""
 
-#: code/attachments/front.php:251
+#: code/attachments/front.php:256
 msgid "delete"
 msgstr ""
 
-#: code/attachments/front.php:255
+#: code/attachments/front.php:260
 msgid "detach"
 msgstr ""
 
-#: code/attachments/front.php:320
+#: code/attachments/front.php:352
 #: forms/attachments/meta_files.php:20
 msgid "Upload Errors"
 msgstr ""
 
-#: code/admin.php:36
+#: code/admin.php:46
 #: forms/panels.php:5
 msgid "Settings"
 msgstr ""
 
-#: code/admin.php:48
+#: code/admin.php:58
 msgid "Website"
 msgstr ""
 
-#: code/admin.php:49
+#: code/admin.php:59
 msgid "On Twitter"
 msgstr ""
 
-#: code/admin.php:50
+#: code/admin.php:60
 msgid "On Facebook"
 msgstr ""
 
-#: code/admin.php:54
+#: code/admin.php:64
 msgid "Get Help"
 msgstr ""
 
-#: code/admin.php:55
+#: code/admin.php:65
 msgid "General Plugin Information"
 msgstr ""
 
-#: code/admin.php:56
+#: code/admin.php:66
 msgid "Home Page on Dev4Press.com"
 msgstr ""
 
-#: code/admin.php:57
+#: code/admin.php:67
 msgid "Home Page on WordPress.org"
 msgstr ""
 
-#: code/admin.php:58
+#: code/admin.php:68
 msgid "Getting Plugin Support"
 msgstr ""
 
-#: code/admin.php:59
+#: code/admin.php:69
 msgid "Support Forum on Dev4Press.com"
 msgstr ""
 
-#: code/admin.php:60
+#: code/admin.php:70
 msgid "Support Forum on WordPress.org"
 msgstr ""
 
-#: code/admin.php:61
+#: code/admin.php:71
 msgid "Plugin Support Sources"
 msgstr ""
 
-#: code/admin.php:66
+#: code/admin.php:76
 msgid "On Dev4Press website you can find many useful plugins, themes and tutorials, all for WordPress. Please, take a few minutes to browse some of these resources, you might find some of them very useful."
 msgstr ""
 
-#: code/admin.php:67
+#: code/admin.php:77
 msgid "Plugins"
 msgstr ""
 
-#: code/admin.php:67
+#: code/admin.php:77
 msgid "We have more than 10 plugins available, some of them are commercial and some are available for free."
 msgstr ""
 
-#: code/admin.php:68
+#: code/admin.php:78
 msgid "Themes"
 msgstr ""
 
-#: code/admin.php:68
+#: code/admin.php:78
 msgid "All our themes are based on our own xScape Theme Framework, and only available as premium."
 msgstr ""
 
-#: code/admin.php:69
+#: code/admin.php:79
 msgid "Tutorials"
 msgstr ""
 
-#: code/admin.php:69
+#: code/admin.php:79
 msgid "Premium and free tutorials for our plugins themes, and many general and practical WordPress tutorials."
 msgstr ""
 
-#: code/admin.php:70
+#: code/admin.php:80
 msgid "Central Documentation"
 msgstr ""
 
-#: code/admin.php:70
+#: code/admin.php:80
 msgid "Growing collection of functions, classes, hooks, constants with examples for our plugins and themes."
 msgstr ""
 
-#: code/admin.php:71
+#: code/admin.php:81
 msgid "Support Forums"
 msgstr ""
 
-#: code/admin.php:71
+#: code/admin.php:81
 msgid "Premium support forum for all with valid licenses to get help. Also, report bugs and leave suggestions."
 msgstr ""
 
-#: code/defaults.php:44
+#: code/defaults.php:45
 msgid "File exceeds allowed file size."
 msgstr ""
 
-#: code/defaults.php:45
+#: code/defaults.php:46
 msgid "File not uploaded."
 msgstr ""
 
-#: code/defaults.php:46
+#: code/defaults.php:47
 msgid "Upload file size exceeds PHP maximum file size allowed."
 msgstr ""
 
-#: code/defaults.php:47
+#: code/defaults.php:48
 msgid "Upload file size exceeds FORM specified file size."
 msgstr ""
 
-#: code/defaults.php:48
+#: code/defaults.php:49
 msgid "Upload file only partially uploaded."
 msgstr ""
 
-#: code/defaults.php:49
+#: code/defaults.php:50
 msgid "Can't write file to the disk."
 msgstr ""
 
-#: code/defaults.php:50
+#: code/defaults.php:51
 msgid "Temporary folder for upload is missing."
 msgstr ""
 
-#: code/defaults.php:51
+#: code/defaults.php:52
 msgid "Server extension restriction stopped upload."
 msgstr ""
 
@@ -329,29 +329,29 @@ msgstr ""
 msgid "Include CSS"
 msgstr ""
 
-#: forms/tabs/attachments.php:107
-#: forms/tabs/attachments.php:197
-msgid "Activated"
+#: forms/tabs/attachments.php:89
+msgid "If you use shortcodes to embed forums, and you rely on plugin to add JS and CSS, you also need to enable this option to skip checking for bbPress specific pages."
 msgstr ""
 
-#: forms/tabs/attachments.php:93
-msgid "Always Include"
-msgstr ""
-
-#: forms/tabs/attachments.php:132
-msgid "Deleting attachments"
-msgstr ""
-
-#: forms/tabs/attachments.php:103
-msgid "Each failed upload will be logged in postmeta table. Administrators and topic/reply authors can see the log."
+#: forms/tabs/attachments.php:113
+msgid "Visible to administrators"
 msgstr ""
 
 #: forms/tabs/attachments.php:102
 msgid "Error logging"
 msgstr ""
 
-#: forms/tabs/attachments.php:113
-msgid "Visible to administrators"
+#: forms/tabs/attachments.php:133
+msgid "Once uploaded and attached, attachments can be deleted. Only administrators and authors can do this."
+msgstr ""
+
+#: forms/tabs/attachments.php:107
+#: forms/tabs/attachments.php:197
+msgid "Activated"
+msgstr ""
+
+#: forms/tabs/attachments.php:103
+msgid "Each failed upload will be logged in postmeta table. Administrators and topic/reply authors can see the log."
 msgstr ""
 
 #: forms/tabs/attachments.php:119
@@ -362,12 +362,12 @@ msgstr ""
 msgid "Visible to author"
 msgstr ""
 
-#: forms/tabs/attachments.php:89
-msgid "If you use shortcodes to embed forums, and you rely on plugin to add JS and CSS, you also need to enable this option to skip checking for bbPress specific pages."
+#: forms/tabs/attachments.php:132
+msgid "Deleting attachments"
 msgstr ""
 
-#: forms/tabs/attachments.php:133
-msgid "Once uploaded and attached, attachments can be deleted. Only administrators and authors can do this."
+#: forms/tabs/attachments.php:93
+msgid "Always Include"
 msgstr ""
 
 #: forms/tabs/attachments.php:137
@@ -434,34 +434,38 @@ msgid "With caption"
 msgstr ""
 
 #: forms/tabs/attachments.php:209
-msgid "CSS class"
+msgid "In line"
 msgstr ""
 
 #: forms/tabs/attachments.php:215
+msgid "CSS class"
+msgstr ""
+
+#: forms/tabs/attachments.php:221
 msgid "REL attribute"
 msgstr ""
 
-#: forms/tabs/attachments.php:218
+#: forms/tabs/attachments.php:224
 msgid "You can use these tags"
 msgstr ""
 
-#: forms/tabs/attachments.php:223
+#: forms/tabs/attachments.php:229
 msgid "Image thumbnails size"
 msgstr ""
 
-#: forms/tabs/attachments.php:224
+#: forms/tabs/attachments.php:230
 msgid "Changing thumbnails size affects only new image attachments. To use new size for old attachments, resize them using"
 msgstr ""
 
-#: forms/tabs/attachments.php:224
+#: forms/tabs/attachments.php:230
 msgid "plugin"
 msgstr ""
 
-#: forms/tabs/attachments.php:228
+#: forms/tabs/attachments.php:234
 msgid "Thumbnail size"
 msgstr ""
 
-#: forms/tabs/attachments.php:244
+#: forms/tabs/attachments.php:250
 msgid "Save Changes"
 msgstr ""
 

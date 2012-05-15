@@ -9,12 +9,22 @@ class gdbbA_Admin {
     private $admin_plugin = false;
 
     function __construct() {
-        add_action('after_setup_theme', array($this, 'load'), 10);
+        add_action('after_setup_theme', array($this, 'load'));
+    }
+
+    public function admin_init() {
+        if (isset($_GET['page'])) {
+            $this->admin_plugin = $_GET['page'] == 'gdbbpress_attachments';
+        }
+
+        if ($this->admin_plugin) {
+            wp_enqueue_style('gd-bbpress-attachments', GDBBPRESSATTACHMENTS_URL."css/gd-bbpress-attachments_admin.css", array(), GDBBPRESSATTACHMENTS_VERSION);
+        }
     }
 
     public function load() {
+        add_action('admin_init', array(&$this, 'admin_init'));
         add_action('admin_menu', array(&$this, 'admin_menu'));
-
         add_filter('plugin_action_links', array(&$this, 'plugin_actions'), 10, 2);
     }
 

@@ -4,9 +4,9 @@ if (!defined('ABSPATH')) exit;
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        'version' => '1.7.6',
-        'date' => '2012.05.12.',
-        'build' => 820,
+        'version' => '1.8',
+        'date' => '2012.05.15.',
+        'build' => 840,
         'status' => 'Stable',
         'product_id' => 'gd-bbpress-attachments',
         'edition' => 'free',
@@ -24,7 +24,8 @@ class gdbbPressAttachments_Defaults {
         'attachment_icon' => 1,
         'attchment_icons' => 1,
         'image_thumbnail_active' => 1,
-        'image_thumbnail_caption' => 0,
+        'image_thumbnail_inline' => 0,
+        'image_thumbnail_caption' => 1,
         'image_thumbnail_rel' => 'lightbox',
         'image_thumbnail_css' => '',
         'image_thumbnail_size_x' => 128,

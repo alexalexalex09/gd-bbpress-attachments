@@ -62,13 +62,16 @@ class gdbbAtt_Front {
                 <style type="text/css">
                     /*<![CDATA[*/
                     .bbp-attachments, .bbp-attachments-errors { border-top: 1px solid #dddddd; margin-top: 15px; padding: 5px 0; }
-                    .bbp-attachments h6 { margin: 0 0 5px; }
-                    .bbp-attachments ol { margin: 0; list-style: decimal inside none; }
+                    .bbp-attachments h6 { margin: 0 0 5px !important; font-size: 1.1em; font-weight: bold; }
+                    .bbp-attachments ol { margin: 0 !important; list-style: decimal inside none; overflow: auto; }
                     .bbp-attachments ol.with-icons { list-style: none; }
                     .bbp-attachments li { line-height: 16px; height: 16px; margin: 0 0 4px; }
                     .bbp-attachments ol.with-icons li { padding: 0 0 0 18px; }
                     .bbp-attachments ol.with-icons li.bbp-atthumb { padding: 0; height: auto; }
-                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption { padding: 5px 5px 0; margin: 0; height: auto; }
+                    .bbp-attachments ol.with-icons li.bbp-atthumb.bbp-inline { float: left; margin-right: 5px; }
+                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption { padding: 5px; margin: 0; height: auto; }
+                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption p.wp-caption-text { margin: 5px !important; }
+                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption img { margin: 0; }
                     .bbp-attachments-count { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png); display: inline-block; width: 16px; height: 16px; float: left; margin-right: 4px; }
                     .bbp-atticon { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png) no-repeat; }
                     .bbp-atticon-generic { background-position: 0 -16px; }
@@ -226,11 +229,13 @@ class gdbbAtt_Front {
                 $content.= sprintf(__("You must be <a href='%s'>logged in</a> to view attched files.", "gd-bbpress-attachments"), wp_login_url(get_permalink()));
             } else {
                 if (!empty($attachments)) {
-                    $content.= '<ol';
+                    $listing = '<ol';
                     if (d4p_bba_o("attchment_icons") == 1) {
-                        $content.= ' class="with-icons"';
+                        $listing.= ' class="with-icons"';
                     }
-                    $content.= '>';
+                    $listing.= '>';
+                    $thumbnails = $listing;
+                    $images = $files = 0;
 
                     foreach ($attachments as $attachment) {
                         $actions = array();
@@ -271,16 +276,22 @@ class gdbbAtt_Front {
                         $a_title = $filename;
                         $caption = false;
 
-                        if (d4p_bba_o("image_thumbnail_active") == 1) {
-                            $html = wp_get_attachment_image($attachment->ID, "d4p-bbp-thumb");
+                        $img = false;
+                        if (d4p_bba_o('image_thumbnail_active') == 1) {
+                            $html = wp_get_attachment_image($attachment->ID, 'd4p-bbp-thumb');
 
                             if ($html != "") {
-                                $class_li = "bbp-atthumb";
-                                $class_a = d4p_bba_o("image_thumbnail_css");
-                                $caption = d4p_bba_o("image_thumbnail_caption") == 1;
-                                $rel_a = ' rel="'.d4p_bba_o("image_thumbnail_rel").'"';
-                                $rel_a = str_replace("%ID%", $id, $rel_a);
-                                $rel_a = str_replace("%TOPIC%", bbp_get_topic_id(), $rel_a);
+                                $img = true;
+
+                                $class_li = 'bbp-atthumb';
+                                if (d4p_bba_o('image_thumbnail_inline') == 1) {
+                                    $class_li.= ' bbp-inline';
+                                }
+                                $class_a = d4p_bba_o('image_thumbnail_css');
+                                $caption = d4p_bba_o('image_thumbnail_caption') == 1;
+                                $rel_a = ' rel="'.d4p_bba_o('image_thumbnail_rel').'"';
+                                $rel_a = str_replace('%ID%', $id, $rel_a);
+                                $rel_a = str_replace('%TOPIC%', bbp_get_topic_id(), $rel_a);
                             }
                         }
 
@@ -292,22 +303,43 @@ class gdbbAtt_Front {
                             }
                         }
 
-                        $content.= '<li id="d4p-bbp-attachment_'.$attachment->ID.'" class="d4p-bbp-attachment d4p-bbp-attachment-'.$ext.' '.$class_li.'">';
+                        $item = '<li id="d4p-bbp-attachment_'.$attachment->ID.'" class="d4p-bbp-attachment d4p-bbp-attachment-'.$ext.' '.$class_li.'">';
+
                         if ($caption) {
-                            $content.= '<div style="width: '.d4p_bba_o("image_thumbnail_size_x").'px" class="wp-caption">';
+                            $item.= '<div style="width: '.d4p_bba_o("image_thumbnail_size_x").'px" class="wp-caption">';
                         }
 
-                        $content.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$url.'" title="'.$a_title.'">'.$html.'</a>';
+                        $item.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$url.'" title="'.$a_title.'">'.$html.'</a>';
+
                         if ($caption) {
-                            $content.= '<p class="wp-caption-text">'.$a_title.'<br/>'.$actions.'</p></div>';
+                            $item.= '<p class="wp-caption-text">'.$a_title.'<br/>'.$actions.'</p></div>';
                         } else {
-                            $content.= $actions;
+                            $item.= $actions;
                         }
 
-                        $content.= '</li>';
+                        $item.= '</li>';
+
+                        if ($img) {
+                            $thumbnails.= $item;
+                            $images++;
+                        } else {
+                            $listing.= $item;
+                            $files++;
+                        }
                     }
 
-                    $content.= '</ol></div>';
+                    $thumbnails.= '</ol>';
+                    $listing.= '</ol>';
+                    
+                    if ($images > 0) {
+                        $content.= $thumbnails;
+                    }
+
+                    if ($files > 0) {
+                        $content.= $listing;
+                    }
+
+                    $content.= '</div>';
                 }
 
             }

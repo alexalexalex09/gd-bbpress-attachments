@@ -207,6 +207,12 @@
                     </td>
                 </tr>
                 <tr valign="top">
+                    <th scope="row"><label for="image_thumbnail_inline"><?php _e("In line", "gd-bbpress-attachments"); ?></label></th>
+                    <td>
+                        <input type="checkbox" <?php if ($options["image_thumbnail_inline"] == 1) echo " checked"; ?> name="image_thumbnail_inline" />
+                    </td>
+                </tr>
+                <tr valign="top">
                     <th scope="row"><label for="image_thumbnail_css"><?php _e("CSS class", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="text" class="regular-text" value="<?php echo $options["image_thumbnail_css"]; ?>" id="image_thumbnail_css" name="image_thumbnail_css" />

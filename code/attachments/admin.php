@@ -36,6 +36,7 @@ class gdbbAtt_Admin {
             $gdbbpress_attachments->o['include_css'] = isset($_POST['include_css']) ? 1 : 0;
             $gdbbpress_attachments->o['delete_attachments'] = strip_tags($_POST['delete_attachments']);
             $gdbbpress_attachments->o['image_thumbnail_active'] = isset($_POST['image_thumbnail_active']) ? 1 : 0;
+            $gdbbpress_attachments->o['image_thumbnail_inline'] = isset($_POST['image_thumbnail_inline']) ? 1 : 0;
             $gdbbpress_attachments->o['image_thumbnail_caption'] = isset($_POST['image_thumbnail_caption']) ? 1 : 0;
             $gdbbpress_attachments->o['image_thumbnail_rel'] = strip_tags($_POST['image_thumbnail_rel']);
             $gdbbpress_attachments->o['image_thumbnail_css'] = strip_tags($_POST['image_thumbnail_css']);
@@ -49,14 +50,6 @@ class gdbbAtt_Admin {
             update_option('gd-bbpress-attachments', $gdbbpress_attachments->o);
             wp_redirect(add_query_arg('settings-updated', 'true'));
             exit();
-        }
-
-        if (isset($_GET['page'])) {
-            $this->admin_plugin = $_GET['page'] == 'gdbbpress_attachments';
-        }
-
-        if ($this->admin_plugin) {
-            wp_enqueue_style('gd-bbpress-attachments', GDBBPRESSATTACHMENTS_URL."css/gd-bbpress-attachments_admin.css", array(), GDBBPRESSATTACHMENTS_VERSION);
         }
     }
 
