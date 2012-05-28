@@ -137,7 +137,7 @@
                 <tr valign="top">
                     <th scope="row"><label><?php _e("Administrators", "gd-bbpress-attachments"); ?></label></th>
                     <td>
-                        <select name="delete_visible_to_author" class="regular-text">
+                        <select name="delete_visible_to_admins" class="regular-text">
                             <option value="no"<?php if ($options["delete_visible_to_admins"] == "no") echo ' selected="selected"'; ?>><?php _e("Don't allow to delete", "gd-bbpress-attachments"); ?></option>
                             <option value="delete"<?php if ($options["delete_visible_to_admins"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete from Media Library", "gd-bbpress-attachments"); ?></option>
                             <option value="detach"<?php if ($options["delete_visible_to_admins"] == "detach") echo ' selected="selected"'; ?>><?php _e("Only detach from topic/reply", "gd-bbpress-attachments"); ?></option>
@@ -163,6 +163,7 @@
                             <option value="no"<?php if ($options["delete_visible_to_author"] == "no") echo ' selected="selected"'; ?>><?php _e("Don't allow to delete", "gd-bbpress-attachments"); ?></option>
                             <option value="delete"<?php if ($options["delete_visible_to_author"] == "delete") echo ' selected="selected"'; ?>><?php _e("Delete from Media Library", "gd-bbpress-attachments"); ?></option>
                             <option value="detach"<?php if ($options["delete_visible_to_author"] == "detach") echo ' selected="selected"'; ?>><?php _e("Only detach from topic/reply", "gd-bbpress-attachments"); ?></option>
+                            <option value="both"<?php if ($options["delete_visible_to_author"] == "both") echo ' selected="selected"'; ?>><?php _e("Allow both delete and detach", "gd-bbpress-attachments"); ?></option>
                         </select>
                     </td>
                 </tr>
@@ -179,15 +180,11 @@
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="attachment_icon"><?php _e("File Type Icons", "gd-bbpress-attachments"); ?></label></th>
+                    <th scope="row"><label for="attchment_icons"><?php _e("File Type Icons", "gd-bbpress-attachments"); ?></label></th>
                     <td>
                         <input type="checkbox" <?php if ($options["attchment_icons"] == 1) echo " checked"; ?> name="attchment_icons" />
                     </td>
                 </tr>
-            </tbody>
-        </table>
-        <table class="form-table">
-            <tbody>
             </tbody>
         </table>
         <h3><?php _e("Display of image attachments", "gd-bbpress-attachments"); ?></h3>

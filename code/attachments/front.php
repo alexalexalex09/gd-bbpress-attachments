@@ -201,6 +201,7 @@ class gdbbAtt_Front {
                 $attach_id = wp_insert_attachment($attachment, $upload['file'], $post_id);
                 $attach_data = wp_generate_attachment_metadata($attach_id, $upload['file']);
                 wp_update_attachment_metadata($attach_id, $attach_data);
+                update_post_meta($attach_id, '_bbp_attachment', '1');
             }
         }
     }

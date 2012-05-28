@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.8
+Version: 1.8.1
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.4
@@ -25,9 +25,13 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian.
 [Twitter](http://twitter.com/milangd) |
 [Facebook Page](http://www.facebook.com/dev4press)
 
-= More from dev4Press.com for bbPress =
+= More free dev4Press.com plugins for bbPress =
 * [GD bbPress Tools](http://wordpress.org/extend/plugins/gd-bbpress-tools/) - various expansion tools for forums
+* [GD bbPress Widgets](http://wordpress.org/extend/plugins/gd-bbpress-widgets/) - additional widgets for bbpress
+
+= Premium dev4Press.com plugins for bbPress =
 * [GD CPT Tools Pro](http://www.gdcpttools.com/features/bbpress-integration/) - meta box for the topic and reply form
+* [GD bbPress Toolbox Pro](http://www.gdbbpbox.com/) - our free bbPress plugins in one plus more
 
 == Installation ==
 = General Requirements =
@@ -73,6 +77,10 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 1.8.1 =
+* Adding meta field to identify file as attachment
+* Few minor issues with plugin settings
+
 = 1.8 =
 * Added option to display thumbnails in line
 * Added Persian translation
@@ -173,8 +181,8 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.8 =
-Added option to display thumbnails in line. Added Persian translation. Improvements for the bbPress 2.1 compatibility. Several embedding styling improvements. Fixed some loading issues for admin side.
+= 1.8.1 =
+Adding meta field to identify file as attachment. Few minor issues with plugin settings.
 
 == Screenshots ==
 1. Main plugins settings panel

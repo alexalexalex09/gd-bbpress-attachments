@@ -33,6 +33,13 @@ function d4p_topic_attachments_count($topic_id, $include_replies = false) {
     return count($attachments);
 }
 
+/**
+ * Handle upload file error.
+ *
+ * @param string $file file with error
+ * @param string $message error message
+ * @return WP_Error error message
+ */
 function d4p_bbattachment_handle_upload_error(&$file, $message) {
     return new WP_Error("wp_upload_error", $message);
 }
