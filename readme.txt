@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.dev4press.com/
-Version: 1.8.1
+Version: 1.8.2
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.4
@@ -16,7 +16,7 @@ Attachments for forum topics and replies are handled through WordPress media lib
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments and upload errors.
 
-Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian.
+Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian, Portuguese.
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
@@ -30,8 +30,8 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian.
 * [GD bbPress Widgets](http://wordpress.org/extend/plugins/gd-bbpress-widgets/) - additional widgets for bbpress
 
 = Premium dev4Press.com plugins for bbPress =
-* [GD CPT Tools Pro](http://www.gdcpttools.com/features/bbpress-integration/) - meta box for the topic and reply form
 * [GD bbPress Toolbox Pro](http://www.gdbbpbox.com/) - our free bbPress plugins in one plus more
+* [GD CPT Tools Pro](http://www.gdcpttools.com/features/bbpress-integration/) - meta box for the topic and reply form
 
 == Installation ==
 = General Requirements =
@@ -77,6 +77,9 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 1.8.2 =
+* Added Portuguese translation
+
 = 1.8.1 =
 * Adding meta field to identify file as attachment
 * Few minor issues with plugin settings
@@ -182,7 +185,7 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 
 == Upgrade Notice ==
 = 1.8.1 =
-Adding meta field to identify file as attachment. Few minor issues with plugin settings.
+Added Portuguese translation.
 
 == Screenshots ==
 1. Main plugins settings panel
