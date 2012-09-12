@@ -4,9 +4,9 @@ if (!defined('ABSPATH')) exit;
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        'version' => '1.8.2',
-        'date' => '2012.05.31.',
-        'build' => 903,
+        'version' => '1.8.3',
+        'date' => '2012.09.12.',
+        'build' => 1055,
         'status' => 'Stable',
         'product_id' => 'gd-bbpress-attachments',
         'edition' => 'free',
