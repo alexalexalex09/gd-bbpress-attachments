@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
-Donate link: http://www.dev4press.com/
-Version: 1.8.3
+Donate link: http://www.gdbbpbox.com/
+Version: 1.8.4
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.5
@@ -63,8 +63,11 @@ All attachments uploads are handled by the WordPress Media Library, and plugin u
 * Will this plugin work with standalone bbPress instalation?
 No. This plugin requires the plugin versions of bbPress 2.0 or higher.
 
-* Will this plugin work with bbPress that is part of BuddyPress plugin?
+* Does this plugin work with bbPress that is part of BuddyPress plugin?
 No. Plugin requires bbPress 2.0 or higher plugin.
+
+* Does this plugin work with bbPress 2.1 used as site wide forums for BuddyPress plugin?
+Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 
 == Translations ==
 * English
@@ -79,6 +82,13 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 1.8.4 =
+* Additional settings information
+* BuddyPress with site wide bbPress supported
+* Expanded list of FAQ entries
+* Panel for upgrade to GD bbPress Toolbox
+* Fixed duplicated registration for reply embed filter
+
 = 1.8.3 =
 * Added Italian translation
 * Updated several translations
@@ -190,8 +200,8 @@ No. Plugin requires bbPress 2.0 or higher plugin.
 * Screenshots added
 
 == Upgrade Notice ==
-= 1.8.3 =
-Added Italian translation. Updated several translations.
+= 1.8.4 =
+Additional settings information. BuddyPress with site wide bbPress supported. Expanded list of FAQ entries. Panel for upgrade to GD bbPress Toolbox. Fixed duplicated registration for reply embed filter.
 
 == Screenshots ==
 1. Main plugins settings panel

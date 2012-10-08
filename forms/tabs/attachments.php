@@ -98,6 +98,7 @@
                 </tr>
             </tbody>
         </table>
+        <p><?php _e("Enable this option if you use BuddyPress with bbPress plugin for site wide forums.", "gd-bbpress-attachments"); ?></p>
     </div>
     <div class="d4p-settings-second">
         <h3><?php _e("Error logging", "gd-bbpress-attachments"); ?></h3>

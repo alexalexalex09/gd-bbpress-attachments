@@ -2,9 +2,14 @@
 
 $current = isset($_GET["tab"]) ? $_GET["tab"] : "attachments";
 
+if ($current != 'toolbox') {
+    $this->upgrade_notice();
+}
+
 $tabs = array(
     "attachments" => __("Settings", "gd-bbpress-attachments"), 
     "faq" => __("FAQ", "gd-bbpress-attachments"), 
+    "toolbox" => __("Toolbox", "gd-bbpress-attachments"), 
     "d4p" => __("Dev4Press", "gd-bbpress-attachments"), 
     "about" => __("About", "gd-bbpress-attachments")
 );

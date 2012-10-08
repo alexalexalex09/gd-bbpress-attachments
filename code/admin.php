@@ -20,12 +20,42 @@ class gdbbA_Admin {
         if ($this->admin_plugin) {
             wp_enqueue_style('gd-bbpress-attachments', GDBBPRESSATTACHMENTS_URL."css/gd-bbpress-attachments_admin.css", array(), GDBBPRESSATTACHMENTS_VERSION);
         }
+
+        if (isset($_GET['proupgradebba']) && $_GET['proupgradebba'] == 'hide') {
+            global $gdbbpress_attachments;
+
+            $gdbbpress_attachments->o['upgrade_to_pro_184'] = 0;
+
+            update_option('gd-bbpress-attachments', $gdbbpress_attachments->o);
+
+            wp_redirect(remove_query_arg('proupgradebba'));
+            exit;
+        }
     }
 
     public function load() {
         add_action('admin_init', array(&$this, 'admin_init'));
         add_action('admin_menu', array(&$this, 'admin_menu'));
+
         add_filter('plugin_action_links', array(&$this, 'plugin_actions'), 10, 2);
+        add_filter('plugin_row_meta', array(&$this, 'plugin_links'), 10, 2);
+    }
+
+    function upgrade_notice() {
+        global $gdbbpress_attachments;
+
+        if ($gdbbpress_attachments->o['upgrade_to_pro_184'] == 1) {
+            $no_thanks = add_query_arg('proupgradebba', 'hide');
+
+            echo '<div class="updated d4p-updated">';
+                echo __("Thank you for using this plugin. Please, take a few minutes and check out the GD bbPress Toolbox Pro plugin with many new and improved features.", "gd-bbpress-attachments");
+                echo '<br/>'.__("Buy GD bbPress Toolbox Pro version or Dev4Press Plugins Pack and get 15% discount using this coupon", "gd-bbpress-attachments");
+                echo ': <strong style="color: #c00;">GDBBPTOPRO</strong><br/>';
+                echo '<strong><a href="http://www.gdbbpbox.com/" target="_blank">'.__("Official Website", "gd-bbpress-attachments")."</a></strong> | ";
+                echo '<strong><a href="http://d4p.me/247" target="_blank">'.__("Dev4Press Plugins Pack", "gd-bbpress-attachments")."</a></strong> | ";
+                echo '<a href="'.$no_thanks.'">'.__("Don't display this message anymore", "gd-bbpress-attachments")."</a>.";
+            echo '</div>';
+        }
     }
 
     public function admin_menu() {
@@ -46,6 +76,21 @@ class gdbbA_Admin {
         if ($file == 'gd-bbpress-attachments/gd-bbpress-attachments.php' ){
             $settings_link = '<a href="edit.php?post_type=forum&page=gdbbpress_attachments">'.__("Settings", "gd-bbpress-attachments").'</a>';
             array_unshift($links, $settings_link);
+        }
+
+        return $links;
+    }
+
+    function plugin_links($links, $file) {
+        static $this_plugin;
+
+        if (!$this_plugin) {
+            $this_plugin = 'gd-bbpress-attachments/gd-bbpress-attachments.php';
+        }
+
+        if ($file == $this_plugin){
+            $links[] = '<a href="edit.php?post_type=forum&page=gdbbpress_attachments&tab=faq">'.__("FAQ", "gd-bbpress-attachments").'</a>';
+            $links[] = '<a target="_blank" style="color: #cc0000; font-weight: bold;" href="http://www.gdbbpbox.com/">'.__("Upgrade to GD bbPress Toolbox Pro", "gd-bbpress-attachments").'</a>';
         }
 
         return $links;
