@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.gdbbpbox.com/
-Version: 1.8.4
+Version: 1.9
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.2
 Tested up to: 3.5
@@ -82,6 +82,15 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 1.9 =
+* Added support for dynamic roles from bbPress 2.2
+* Added class to attachments elements in the topic/reply forms
+* Using enqueue scripts and styles to load files on frontend
+* Admin menu now uses 'activate_plugins' capability by default
+* Screenshots removed from plugin and added into assets directory
+* Fixed problem with some themes and embedding of JavaScript
+* Fixed issues with some themes and displaying attachments
+
 = 1.8.4 =
 * Additional settings information
 * BuddyPress with site wide bbPress supported
@@ -196,12 +205,9 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Fixed upgrading plugin settings process
 * Fixed few more undefined variables warnings
 
-= 1.0.1 =
-* Screenshots added
-
 == Upgrade Notice ==
-= 1.8.4 =
-Additional settings information. BuddyPress with site wide bbPress supported. Expanded list of FAQ entries. Panel for upgrade to GD bbPress Toolbox. Fixed duplicated registration for reply embed filter.
+= 1.9 =
+Added support for dynamic roles from bbPress 2.2. Added class to attachments elements in the topic/reply forms Using enqueue scripts and styles to load files on frontend. Admin menu now uses 'activate_plugins' capability by default. Screenshots removed from plugin and added into assets directory. Fixed problem with some themes and embedding of JavaScript. Fixed issues with some themes and displaying attachments.
 
 == Screenshots ==
 1. Main plugins settings panel

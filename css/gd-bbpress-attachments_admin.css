@@ -57,7 +57,12 @@
 
 div.d4p-updated {
     font-size: 13px;
-    line-height: 20px;
+    line-height: 22px !important;
     margin: 10px 0 15px;
-    padding: 10px;
+    padding: 10px !important;
+}
+
+.d4p-tab-toolbox {
+    color: #cc0000 !important;
+    font-weight: bold !important;
 }

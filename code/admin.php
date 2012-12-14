@@ -24,7 +24,7 @@ class gdbbA_Admin {
         if (isset($_GET['proupgradebba']) && $_GET['proupgradebba'] == 'hide') {
             global $gdbbpress_attachments;
 
-            $gdbbpress_attachments->o['upgrade_to_pro_184'] = 0;
+            $gdbbpress_attachments->o['upgrade_to_pro_185'] = 0;
 
             update_option('gd-bbpress-attachments', $gdbbpress_attachments->o);
 
@@ -44,7 +44,7 @@ class gdbbA_Admin {
     function upgrade_notice() {
         global $gdbbpress_attachments;
 
-        if ($gdbbpress_attachments->o['upgrade_to_pro_184'] == 1) {
+        if ($gdbbpress_attachments->o['upgrade_to_pro_185'] == 1) {
             $no_thanks = add_query_arg('proupgradebba', 'hide');
 
             echo '<div class="updated d4p-updated">';
@@ -82,13 +82,7 @@ class gdbbA_Admin {
     }
 
     function plugin_links($links, $file) {
-        static $this_plugin;
-
-        if (!$this_plugin) {
-            $this_plugin = 'gd-bbpress-attachments/gd-bbpress-attachments.php';
-        }
-
-        if ($file == $this_plugin){
+        if ($file == 'gd-bbpress-attachments/gd-bbpress-attachments.php' ){
             $links[] = '<a href="edit.php?post_type=forum&page=gdbbpress_attachments&tab=faq">'.__("FAQ", "gd-bbpress-attachments").'</a>';
             $links[] = '<a target="_blank" style="color: #cc0000; font-weight: bold;" href="http://www.gdbbpbox.com/">'.__("Upgrade to GD bbPress Toolbox Pro", "gd-bbpress-attachments").'</a>';
         }
@@ -128,8 +122,10 @@ class gdbbA_Admin {
     }
 
     public function menu_attachments() {
-        global $wp_roles, $gdbbpress_attachments;
+        global $gdbbpress_attachments;
+
         $options = $gdbbpress_attachments->o;
+        $_user_roles = d4p_bbpress_get_user_roles();
 
         include(GDBBPRESSATTACHMENTS_PATH.'forms/panels.php');
     }

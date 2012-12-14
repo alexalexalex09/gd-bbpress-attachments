@@ -12,6 +12,33 @@ if (!class_exists('gdbbp_Error')) {
     }
 }
 
+if (!function_exists('d4p_bbpress_get_user_roles')) {
+    /**
+     * Get valid roles for forums based on bbPress version
+     *
+     * @return array list of roles
+    */
+    function d4p_bbpress_get_user_roles() {
+        $roles = array();
+
+        if (d4p_bbpress_version() < 2.2) {
+            global $wp_roles;
+
+            foreach ($wp_roles->role_names as $role => $title) {
+                $roles[$role] = $title;
+            }
+        } else {
+            $dynamic_roles = bbp_get_dynamic_roles();
+
+            foreach ($dynamic_roles as $role => $obj) {
+                $roles[$role] = $obj['name'];
+            }
+        }
+
+        return $roles;
+    }
+}
+
 if (!function_exists('d4p_is_bbpress')) {
     /**
     * Check if the current page is forum, topic or other bbPress page.

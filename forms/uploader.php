@@ -1,7 +1,7 @@
 <div class="bbp-template-notice">
     <p><?php echo __("Maximum file size allowed is", "gd-bbpress-attachments")." ".$file_size." KB."; ?></p>
 </div>
-<p>
+<p class="bbp-attachments-form">
     <label for="bbp_topic_tags">
         <?php _e("Attachments", "gd-bbpress-attachments"); ?>:
     </label><br/>

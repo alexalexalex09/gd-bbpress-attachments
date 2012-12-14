@@ -7,11 +7,11 @@ if ($current != 'toolbox') {
 }
 
 $tabs = array(
-    "attachments" => __("Settings", "gd-bbpress-attachments"), 
-    "faq" => __("FAQ", "gd-bbpress-attachments"), 
-    "toolbox" => __("Toolbox", "gd-bbpress-attachments"), 
-    "d4p" => __("Dev4Press", "gd-bbpress-attachments"), 
-    "about" => __("About", "gd-bbpress-attachments")
+    'attachments' => __("Settings", "gd-bbpress-attachments"), 
+    'faq' => __("FAQ", "gd-bbpress-attachments"), 
+    'toolbox' => __("Toolbox", "gd-bbpress-attachments"), 
+    'd4p' => __("Dev4Press", "gd-bbpress-attachments"), 
+    'about' => __("About", "gd-bbpress-attachments")
 );
 
 ?>
@@ -23,6 +23,11 @@ $tabs = array(
 
     foreach($tabs as $tab => $name){
         $class = ($tab == $current) ? ' nav-tab-active' : '';
+
+        if ($tab == 'toolbox') {
+            $class.= ' d4p-tab-toolbox';
+        }
+
         echo '<a class="nav-tab'.$class.'" href="edit.php?post_type=forum&page=gdbbpress_attachments&tab='.$tab.'">'.$name.'</a>';
     }
 

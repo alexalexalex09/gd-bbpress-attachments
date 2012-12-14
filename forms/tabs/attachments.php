@@ -42,7 +42,7 @@
                     <td>
                         <fieldset>
                             <legend class="screen-reader-text"><span><?php _e("Allow upload to", "gd-bbpress-attachments"); ?></span></legend>
-                            <?php foreach ($wp_roles->role_names as $role => $title) { ?>
+                            <?php foreach ($_user_roles as $role => $title) { ?>
                             <label for="roles_to_upload_<?php echo $role; ?>">
                                 <input type="checkbox" <?php if (!isset($options["roles_to_upload"]) || is_null($options["roles_to_upload"]) || in_array($role, $options["roles_to_upload"])) echo " checked"; ?> value="<?php echo $role; ?>" id="roles_to_upload_<?php echo $role; ?>" name="roles_to_upload[]" />
                                 <?php echo $title; ?>

@@ -1,4 +1,4 @@
-#: code/attachments/front.php:212
+#: code/attachments/front.php:183
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
@@ -6,7 +6,7 @@ msgstr[1] ""
 
 #: code/attachments/admin.php:82
 #: code/attachments/admin.php:82
-#: code/attachments/front.php:225
+#: code/attachments/front.php:196
 #: code/admin.php:61
 #: forms/uploader.php:5
 msgid "Attachments"
@@ -21,19 +21,19 @@ msgstr ""
 msgid "Attachments List"
 msgstr ""
 
-#: code/attachments/front.php:228
+#: code/attachments/front.php:199
 msgid "You must be <a href='%s'>logged in</a> to view attched files."
 msgstr ""
 
-#: code/attachments/front.php:256
+#: code/attachments/front.php:227
 msgid "delete"
 msgstr ""
 
-#: code/attachments/front.php:260
+#: code/attachments/front.php:231
 msgid "detach"
 msgstr ""
 
-#: code/attachments/front.php:352
+#: code/attachments/front.php:323
 #: forms/attachments/meta_files.php:20
 msgid "Upload Errors"
 msgstr ""
@@ -67,100 +67,100 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: code/admin.php:91
+#: code/admin.php:85
 #: forms/panels.php:10
 msgid "FAQ"
 msgstr ""
 
-#: code/admin.php:92
+#: code/admin.php:86
 msgid "Upgrade to GD bbPress Toolbox Pro"
 msgstr ""
 
-#: code/admin.php:103
+#: code/admin.php:97
 msgid "Website"
 msgstr ""
 
-#: code/admin.php:104
+#: code/admin.php:98
 msgid "On Twitter"
 msgstr ""
 
-#: code/admin.php:105
+#: code/admin.php:99
 msgid "On Facebook"
 msgstr ""
 
-#: code/admin.php:109
+#: code/admin.php:103
 msgid "Get Help"
 msgstr ""
 
-#: code/admin.php:110
+#: code/admin.php:104
 msgid "General Plugin Information"
 msgstr ""
 
-#: code/admin.php:111
+#: code/admin.php:105
 msgid "Home Page on Dev4Press.com"
 msgstr ""
 
-#: code/admin.php:112
+#: code/admin.php:106
 msgid "Home Page on WordPress.org"
 msgstr ""
 
-#: code/admin.php:113
+#: code/admin.php:107
 msgid "Getting Plugin Support"
 msgstr ""
 
-#: code/admin.php:114
+#: code/admin.php:108
 msgid "Support Forum on Dev4Press.com"
 msgstr ""
 
-#: code/admin.php:115
+#: code/admin.php:109
 msgid "Support Forum on WordPress.org"
 msgstr ""
 
-#: code/admin.php:116
+#: code/admin.php:110
 msgid "Plugin Support Sources"
 msgstr ""
 
-#: code/admin.php:121
+#: code/admin.php:115
 msgid "On Dev4Press website you can find many useful plugins, themes and tutorials, all for WordPress. Please, take a few minutes to browse some of these resources, you might find some of them very useful."
 msgstr ""
 
-#: code/admin.php:122
+#: code/admin.php:116
 msgid "Plugins"
 msgstr ""
 
-#: code/admin.php:122
+#: code/admin.php:116
 msgid "We have more than 10 plugins available, some of them are commercial and some are available for free."
 msgstr ""
 
-#: code/admin.php:123
+#: code/admin.php:117
 msgid "Themes"
 msgstr ""
 
-#: code/admin.php:123
+#: code/admin.php:117
 msgid "All our themes are based on our own xScape Theme Framework, and only available as premium."
 msgstr ""
 
-#: code/admin.php:124
+#: code/admin.php:118
 msgid "Tutorials"
 msgstr ""
 
-#: code/admin.php:124
+#: code/admin.php:118
 msgid "Premium and free tutorials for our plugins themes, and many general and practical WordPress tutorials."
 msgstr ""
 
-#: code/admin.php:125
+#: code/admin.php:119
 msgid "Central Documentation"
 msgstr ""
 
-#: code/admin.php:125
+#: code/admin.php:119
 msgid "Growing collection of functions, classes, hooks, constants with examples for our plugins and themes."
 msgstr ""
 
-#: code/admin.php:126
+#: code/admin.php:120
 msgid "Support Forums"
 msgstr ""
 
-#: code/admin.php:126
+#: code/admin.php:120
 msgid "Premium support forum for all with valid licenses to get help. Also, report bugs and leave suggestions."
 msgstr ""
 

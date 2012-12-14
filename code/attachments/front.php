@@ -28,6 +28,7 @@ class gdbbAtt_Front {
 
     public function load() {
         add_action('bbp_head', array(&$this, 'bbp_head'));
+        add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
 
         add_action('bbp_theme_after_reply_form_tags', array(&$this, 'embed_form'));
         add_action('bbp_theme_after_topic_form_tags', array(&$this, 'embed_form'));
@@ -46,65 +47,41 @@ class gdbbAtt_Front {
     private function icon($ext) {
         foreach ($this->icons as $icon => $list) {
             $list = explode('|', $list);
-            if (in_array($ext, $list)) return $icon;
+
+            if (in_array($ext, $list)) {
+                return $icon;
+            }
         }
+
         return 'generic';
+    }
+
+    public function wp_enqueue_scripts() {
+        if (d4p_bba_o('include_always') == 1 || d4p_is_bbpress()) {
+            if (d4p_bba_o('include_css') == 1) {
+                wp_enqueue_style('d4p-bbattachments-css', GDBBPRESSATTACHMENTS_URL.'css/gd-bbpress-attachments.css', array(), GDBBPRESSATTACHMENTS_VERSION);
+            }
+
+            if (d4p_bba_o('include_js') == 1) {
+                wp_enqueue_script('jquery');
+                wp_enqueue_script('d4p-bbattachments-js', GDBBPRESSATTACHMENTS_URL.'js/gd-bbpress-attachments.js', array('jquery'), GDBBPRESSATTACHMENTS_VERSION, true);
+            }
+        }
     }
 
     public function bbp_head() { 
         if (d4p_bba_o('include_always') == 1 || d4p_is_bbpress()) {
             global $gdbbpress_attachments;
 
-            wp_enqueue_script('jquery');
-
-            if (d4p_bba_o('include_css') == 1) { ?>
-                <style type="text/css">
-                    /*<![CDATA[*/
-                    .bbp-attachments, .bbp-attachments-errors { border-top: 1px solid #dddddd; margin-top: 15px; padding: 5px 0; }
-                    .bbp-attachments h6 { margin: 0 0 5px !important; font-size: 1.1em; font-weight: bold; }
-                    .bbp-attachments ol { margin: 0 !important; list-style: decimal inside none; overflow: auto; }
-                    .bbp-attachments ol.with-icons { list-style: none; }
-                    .bbp-attachments li { line-height: 16px; height: 16px; margin: 0 0 4px; }
-                    .bbp-attachments ol.with-icons li { padding: 0 0 0 18px; }
-                    .bbp-attachments ol.with-icons li.bbp-atthumb { padding: 0; height: auto; }
-                    .bbp-attachments ol.with-icons li.bbp-atthumb.bbp-inline { float: left; margin-right: 5px; }
-                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption { padding: 5px; margin: 0; height: auto; }
-                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption p.wp-caption-text { margin: 5px !important; }
-                    .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption img { margin: 0; }
-                    .bbp-attachments-count { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png); display: inline-block; width: 16px; height: 16px; float: left; margin-right: 4px; }
-                    .bbp-atticon { background: transparent url(<?php echo GDBBPRESSATTACHMENTS_URL; ?>gfx/icons.png) no-repeat; }
-                    .bbp-atticon-generic { background-position: 0 -16px; }
-                    .bbp-atticon-code { background-position: 0 -32px; }
-                    .bbp-atticon-xml { background-position: 0 -48px; }
-                    .bbp-atticon-excel { background-position: 0 -64px; }
-                    .bbp-atticon-word { background-position: 0 -80px; }
-                    .bbp-atticon-image { background-position: 0 -96px; }
-                    .bbp-atticon-psd { background-position: 0 -112px; }
-                    .bbp-atticon-ai { background-position: 0 -128px; }
-                    .bbp-atticon-archive { background-position: 0 -144px; }
-                    .bbp-atticon-text { background-position: 0 -160px; }
-                    .bbp-atticon-powerpoint { background-position: 0 -176px; }
-                    .bbp-atticon-pdf { background-position: 0 -192px; }
-                    .bbp-atticon-html { background-position: 0 -208px; }
-                    .bbp-atticon-video { background-position: 0 -224px; }
-                    .bbp-atticon-documents { background-position: 0 -240px; }
-                    .bbp-atticon-audio { background-position: 0 -256px; }
-                    .bbp-atticon-icon { background-position: 0 -272px; }
-                    /*]]>*/
-                </style>
-            <?php } ?>
-            <script type="text/javascript">
+        ?><script type="text/javascript">
                 /* <![CDATA[ */
                 var gdbbPressAttachmentsInit = {
                     max_files: <?php echo apply_filters('d4p_bbpressattchment_allow_upload', $gdbbpress_attachments->get_max_files(), bbp_get_forum_id()); ?>
                 };
-
-                <?php if (d4p_bba_o('include_js') == 1) { ?>
-                    var gdbbPressAttachments={storage:{files_counter:1},init:function(){jQuery("form#new-post").attr("enctype","multipart/form-data");jQuery("form#new-post").attr("encoding","multipart/form-data");jQuery(".d4p-attachment-addfile").live("click",function(e){e.preventDefault();if(gdbbPressAttachments.storage.files_counter<gdbbPressAttachmentsInit.max_files){jQuery(this).before('<input type="file" size="40" name="d4p_attachment[]"><br/>');gdbbPressAttachments.storage.files_counter++}if(gdbbPressAttachments.storage.files_counter==gdbbPressAttachmentsInit.max_files){jQuery(this).remove()}})}};jQuery(document).ready(function(){gdbbPressAttachments.init()});
-                <?php } ?>
                 /* ]]> */
-            </script>
-        <?php }
+        </script><?php
+
+        }
     }
 
     public function save_topic($topic_id, $forum_id, $anonymous_data, $topic_author) {
