@@ -36,12 +36,26 @@ class gdbbAtt_Front {
         add_action('bbp_edit_topic', array(&$this, 'save_topic'), 10, 4);
         add_action('bbp_new_reply', array(&$this, 'save_reply'), 10, 5);
         add_action('bbp_new_topic', array(&$this, 'save_topic'), 10, 4);
-        add_action('bbp_get_reply_content', array(&$this, 'embed_attachments'), 10, 2);
-        add_action('bbp_get_topic_content', array(&$this, 'embed_attachments'), 10, 2);
+
+        add_action('bbp_head', array(&$this, 'add_content_filters'));
+        add_action('d4p_bbpressattachments_add_content_filters', array(&$this, 'add_content_filters'));
+        add_action('d4p_bbpressattachments_remove_content_filters', array(&$this, 'remove_content_filters'));
+    }
+
+    public function add_content_filters() {
+        add_filter('bbp_get_reply_content', array(&$this, 'embed_attachments'), 100, 2);
+        add_filter('bbp_get_topic_content', array(&$this, 'embed_attachments'), 100, 2);
 
         if (d4p_bba_o('attachment_icon') == 1) {
             add_action('bbp_theme_before_topic_title', array(&$this, 'show_attachments_icon'));
         }
+    }
+
+    public function remove_content_filters() {
+        remove_filter('bbp_get_reply_content', array(&$this, 'embed_attachments'), 100, 2);
+        remove_filter('bbp_get_topic_content', array(&$this, 'embed_attachments'), 100, 2);
+
+        remove_action('bbp_theme_before_topic_title', array(&$this, 'show_attachments_icon'));
     }
 
     private function icon($ext) {
