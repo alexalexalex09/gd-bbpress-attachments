@@ -30,8 +30,9 @@ class gdbbAtt_Front {
         add_action('bbp_head', array(&$this, 'bbp_head'));
         add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
 
-        add_action('bbp_theme_after_reply_form_tags', array(&$this, 'embed_form'));
-        add_action('bbp_theme_after_topic_form_tags', array(&$this, 'embed_form'));
+        add_action('bbp_theme_before_reply_form_submit_wrapper', array(&$this, 'embed_form'));
+        add_action('bbp_theme_before_topic_form_submit_wrapper', array(&$this, 'embed_form'));
+
         add_action('bbp_edit_reply', array(&$this, 'save_reply'), 10, 5);
         add_action('bbp_edit_topic', array(&$this, 'save_topic'), 10, 4);
         add_action('bbp_new_reply', array(&$this, 'save_reply'), 10, 5);

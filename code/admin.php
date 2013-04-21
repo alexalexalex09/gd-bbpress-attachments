@@ -24,7 +24,7 @@ class gdbbA_Admin {
         if (isset($_GET['proupgradebba']) && $_GET['proupgradebba'] == 'hide') {
             global $gdbbpress_attachments;
 
-            $gdbbpress_attachments->o['upgrade_to_pro_185'] = 0;
+            $gdbbpress_attachments->o['upgrade_to_pro_192'] = 0;
 
             update_option('gd-bbpress-attachments', $gdbbpress_attachments->o);
 
@@ -44,7 +44,7 @@ class gdbbA_Admin {
     function upgrade_notice() {
         global $gdbbpress_attachments;
 
-        if ($gdbbpress_attachments->o['upgrade_to_pro_185'] == 1) {
+        if ($gdbbpress_attachments->o['upgrade_to_pro_192'] == 1) {
             $no_thanks = add_query_arg('proupgradebba', 'hide');
 
             echo '<div class="updated d4p-updated">';

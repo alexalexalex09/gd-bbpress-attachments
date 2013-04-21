@@ -23,7 +23,7 @@ class gdbbPressAttachments {
             update_option('gd-bbpress-attachments', $this->o);
         }
 
-        if ($this->o['build'] != $gdd->default_options['build']) {
+        if (!isset($this->o['build']) || $this->o['build'] != $gdd->default_options['build']) {
             $this->o = $this->_upgrade($this->o, $gdd->default_options);
 
             $this->o['version'] = $gdd->default_options['version'];

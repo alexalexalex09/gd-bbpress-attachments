@@ -46,6 +46,9 @@ class gdbbAtt_Admin {
             $gdbbpress_attachments->o['errors_visible_to_admins'] = isset($_POST['errors_visible_to_admins']) ? 1 : 0;
             $gdbbpress_attachments->o['errors_visible_to_moderators'] = isset($_POST['errors_visible_to_moderators']) ? 1 : 0;
             $gdbbpress_attachments->o['errors_visible_to_author'] = isset($_POST['errors_visible_to_author']) ? 1 : 0;
+            $gdbbpress_attachments->o['delete_visible_to_admins'] = strip_tags($_POST['delete_visible_to_admins']);
+            $gdbbpress_attachments->o['delete_visible_to_moderators'] = strip_tags($_POST['delete_visible_to_moderators']);
+            $gdbbpress_attachments->o['delete_visible_to_author'] = strip_tags($_POST['delete_visible_to_author']);
 
             update_option('gd-bbpress-attachments', $gdbbpress_attachments->o);
             wp_redirect(add_query_arg('settings-updated', 'true'));

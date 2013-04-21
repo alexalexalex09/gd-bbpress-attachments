@@ -1,10 +1,10 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.gdbbpbox.com/
-Version: 1.9.1
+Version: 1.9.2
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
-Requires at least: 3.2
-Tested up to: 3.5
+Requires at least: 3.3
+Tested up to: 3.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -36,13 +36,12 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian, 
 == Installation ==
 = General Requirements =
 * PHP: 5.2.x
-* bbPress: 2.x.x
 
 = WordPress Requirements =
-* WordPress: 3.2
+* WordPress: 3.3
 
 = bbPress Requirements =
-* bbPress Plugin: 2.0 or newer
+* bbPress Plugin: 2.1 or newer
 
 = Basic Installation =
 * Plugin folder in the WordPress plugins folder must be `gd-bbpress-attachments`
@@ -61,7 +60,7 @@ Other common issue is that WordPress Media Library upload is not working. If tha
 All attachments uploads are handled by the WordPress Media Library, and plugin uses native WordPress upload functions. When file is uploaded it will be available through Media Library. Consult WordPress documentation about Media Library requirements.
 
 * Will this plugin work with standalone bbPress instalation?
-No. This plugin requires the plugin versions of bbPress 2.0 or higher.
+No. This plugin requires the plugin versions of bbPress 2.1 or higher.
 
 * Does this plugin work with bbPress that is part of BuddyPress plugin?
 No. Plugin requires bbPress 2.0 or higher plugin.
@@ -75,13 +74,21 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Italian
 * Portuguese
 * German: David Decker - http://deckerweb.de/
+* Slovak: Branco Radenovich - http://webhostinggeeks.com/blog/
 * French: Marie Bodson - http://mariebodson.com/
-* Polish: Dawid Karabin - http://www.hinok.net/
+* Polish:Daniel Napora - http://www.hinok.net/
 * Dutch: Wouter van Vliet - http://www.interpotential.com/
 * Spanish: Jhonathan Arroyo - http://www.siswer.com/
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 1.9.2 =
+* Added Slovak translation
+* Changed upload field location to end of the form
+* Dropped support for bbPress 2.0
+* Dropped support for WordPress 3.2
+* Fixed problem with saving some settings
+
 = 1.9.1 =
 * Fixed detection of bbPress 2.2
 * Fixed missing function fatal error
@@ -210,8 +217,8 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Fixed few more undefined variables warnings
 
 == Upgrade Notice ==
-= 1.9.1 =
-Fixed detection of bbPress 2.2. Fixed missing function fatal error.
+= 1.9.2 =
+Added Slovak translation. Changed upload field location to end of the form. Dropped support for bbPress 2.0. Dropped support for WordPress 3.2. Fixed problem with saving some settings.
 
 == Screenshots ==
 1. Main plugins settings panel
