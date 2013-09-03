@@ -96,9 +96,9 @@ class gdbbAtt_Admin {
 
     public function admin_meta() {
         if (current_user_can(GDBBPRESSATTACHMENTS_CAP)) {
-            add_meta_box("gdbbattach-meta-forum", __("Attachments Settings", "gd-bbpress-attachments"), array(&$this, "metabox_forum"), "forum", "side", "high");
-            add_meta_box("gdbbattach-meta-files", __("Attachments List", "gd-bbpress-attachments"), array(&$this, "metabox_files"), "topic", "side", "high");
-            add_meta_box("gdbbattach-meta-files", __("Attachments List", "gd-bbpress-attachments"), array(&$this, "metabox_files"), "reply", "side", "high");
+            add_meta_box('gdbbattach-meta-forum', __("Attachments Settings", "gd-bbpress-attachments"), array(&$this, 'metabox_forum'), 'forum', 'side', 'high');
+            add_meta_box('gdbbattach-meta-files', __("Attachments List", "gd-bbpress-attachments"), array(&$this, 'metabox_files'), 'topic', 'side', 'high');
+            add_meta_box('gdbbattach-meta-files', __("Attachments List", "gd-bbpress-attachments"), array(&$this, 'metabox_files'), 'reply', 'side', 'high');
         }
     }
 

@@ -23,7 +23,11 @@
 .bbp-attachments li {
 	line-height: 16px;
 	height: 16px;
-	margin: 0 0 4px;
+	margin: 0 0 4px !important;
+}
+
+.bbp-attachments li:last-child {
+	margin: 0 !important;
 }
 
 .bbp-attachments ol.with-icons li {
@@ -37,7 +41,7 @@
 
 .bbp-attachments ol.with-icons li.bbp-atthumb.bbp-inline {
         float: left;
-        margin-right: 5px;
+        margin-right: 5px !important;
 }
 
 .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption {
@@ -48,6 +52,7 @@
 
 .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption p.wp-caption-text {
         margin: 5px !important;
+        word-wrap: break-word;
 }
 
 .bbp-attachments ol.with-icons li.bbp-atthumb .wp-caption img {

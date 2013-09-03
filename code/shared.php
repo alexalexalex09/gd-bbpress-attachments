@@ -74,13 +74,13 @@ if (!function_exists('d4p_is_bbpress')) {
     function d4p_is_bbpress() {
         $is = false;
 
-        if (function_exists("bbp_get_forum_id")) {
+        if (function_exists('bbp_get_forum_id')) {
             $is = bbp_get_forum_id() > 0 || bbp_get_reply_id() > 0 || bbp_get_topic_id() > 0;
 
             if (!$is) {
                 global $template;
 
-                $templates = array("single-reply-edit.php", "single-topic-edit.php");
+                $templates = array('single-reply-edit.php', 'single-topic-edit.php');
                 $file = pathinfo($template, PATHINFO_BASENAME);
                 $is = in_array($file, $templates);
             }
@@ -100,7 +100,7 @@ if (!function_exists('d4p_is_user_moderator')) {
         global $current_user;
 
         if (is_array($current_user->roles)) {
-            return in_array("bbp_moderator", $current_user->roles);
+            return in_array('bbp_moderator', $current_user->roles);
         } else {
             return false;
         }
@@ -117,7 +117,7 @@ if (!function_exists('d4p_is_user_admin')) {
         global $current_user;
 
         if (is_array($current_user->roles)) {
-            return in_array("administrator", $current_user->roles);
+            return in_array('administrator', $current_user->roles);
         } else {
             return false;
         }

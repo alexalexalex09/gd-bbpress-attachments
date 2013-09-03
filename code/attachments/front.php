@@ -23,7 +23,7 @@ class gdbbAtt_Front {
     );
 
     function __construct() {
-        add_action('after_setup_theme', array($this, 'load'), 10);
+        add_action('bbp_init', array($this, 'load'));
     }
 
     public function load() {
@@ -38,25 +38,12 @@ class gdbbAtt_Front {
         add_action('bbp_new_reply', array(&$this, 'save_reply'), 10, 5);
         add_action('bbp_new_topic', array(&$this, 'save_topic'), 10, 4);
 
-        add_action('bbp_head', array(&$this, 'add_content_filters'));
-        add_action('d4p_bbpressattachments_add_content_filters', array(&$this, 'add_content_filters'));
-        add_action('d4p_bbpressattachments_remove_content_filters', array(&$this, 'remove_content_filters'));
-    }
-
-    public function add_content_filters() {
         add_filter('bbp_get_reply_content', array(&$this, 'embed_attachments'), 100, 2);
         add_filter('bbp_get_topic_content', array(&$this, 'embed_attachments'), 100, 2);
 
         if (d4p_bba_o('attachment_icon') == 1) {
             add_action('bbp_theme_before_topic_title', array(&$this, 'show_attachments_icon'));
         }
-    }
-
-    public function remove_content_filters() {
-        remove_filter('bbp_get_reply_content', array(&$this, 'embed_attachments'), 100, 2);
-        remove_filter('bbp_get_topic_content', array(&$this, 'embed_attachments'), 100, 2);
-
-        remove_action('bbp_theme_before_topic_title', array(&$this, 'show_attachments_icon'));
     }
 
     private function icon($ext) {
@@ -218,13 +205,15 @@ class gdbbAtt_Front {
             $content.= '<h6>'.__("Attachments", "gd-bbpress-attachments").':</h6>';
 
             if (!is_user_logged_in() && $gdbbpress_attachments->is_hidden_from_visitors()) {
-                $content.= sprintf(__("You must be <a href='%s'>logged in</a> to view attched files.", "gd-bbpress-attachments"), wp_login_url(get_permalink()));
+                $content.= sprintf(__("You must be <a href='%s'>logged in</a> to view attached files.", "gd-bbpress-attachments"), wp_login_url(get_permalink()));
             } else {
                 if (!empty($attachments)) {
                     $listing = '<ol';
+
                     if (d4p_bba_o("attchment_icons") == 1) {
                         $listing.= ' class="with-icons"';
                     }
+
                     $listing.= '>';
                     $thumbnails = $listing;
                     $images = $files = 0;
@@ -262,7 +251,7 @@ class gdbbAtt_Front {
                         $file = get_attached_file($attachment->ID);
                         $ext = pathinfo($file, PATHINFO_EXTENSION);
                         $filename = pathinfo($file, PATHINFO_BASENAME);
-                        $url = wp_get_attachment_url($attachment->ID);
+                        $file_url = wp_get_attachment_url($attachment->ID);
 
                         $html = $class_li = $class_a = $rel_a = "";
                         $a_title = $filename;
@@ -276,18 +265,21 @@ class gdbbAtt_Front {
                                 $img = true;
 
                                 $class_li = 'bbp-atthumb';
+
                                 if (d4p_bba_o('image_thumbnail_inline') == 1) {
                                     $class_li.= ' bbp-inline';
                                 }
+
                                 $class_a = d4p_bba_o('image_thumbnail_css');
                                 $caption = d4p_bba_o('image_thumbnail_caption') == 1;
+
                                 $rel_a = ' rel="'.d4p_bba_o('image_thumbnail_rel').'"';
                                 $rel_a = str_replace('%ID%', $id, $rel_a);
                                 $rel_a = str_replace('%TOPIC%', bbp_get_topic_id(), $rel_a);
                             }
                         }
 
-                        if ($html == "") {
+                        if ($html == '') {
                             $html = $filename;
 
                             if (d4p_bba_o("attchment_icons") == 1) {
@@ -301,7 +293,7 @@ class gdbbAtt_Front {
                             $item.= '<div style="width: '.d4p_bba_o("image_thumbnail_size_x").'px" class="wp-caption">';
                         }
 
-                        $item.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$url.'" title="'.$a_title.'">'.$html.'</a>';
+                        $item.= '<a class="'.$class_a.'"'.$rel_a.' href="'.$file_url.'" title="'.$a_title.'">'.$html.'</a>';
 
                         if ($caption) {
                             $item.= '<p class="wp-caption-text">'.$a_title.'<br/>'.$actions.'</p></div>';
@@ -330,15 +322,14 @@ class gdbbAtt_Front {
                     if ($files > 0) {
                         $content.= $listing;
                     }
-
-                    $content.= '</div>';
                 }
-
             }
+
+            $content.= '</div>';
         }
 
-        if ((d4p_bba_o("errors_visible_to_author") == 1 && $author_id == $user_ID) || (d4p_bba_o("errors_visible_to_admins") == 1 && d4p_is_user_admin()) || (d4p_bba_o("errors_visible_to_moderators") == 1 && d4p_is_user_moderator())) {
-            $errors = get_post_meta($id, "_bbp_attachment_upload_error");
+        if ((d4p_bba_o('errors_visible_to_author') == 1 && $author_id == $user_ID) || (d4p_bba_o('errors_visible_to_admins') == 1 && d4p_is_user_admin()) || (d4p_bba_o('errors_visible_to_moderators') == 1 && d4p_is_user_moderator())) {
+            $errors = get_post_meta($id, '_bbp_attachment_upload_error');
 
             if (!empty($errors)) {
                 $content.= '<div class="bbp-attachments-errors">';
@@ -346,7 +337,7 @@ class gdbbAtt_Front {
                 $content.= '<ol>';
 
                 foreach ($errors as $error) {
-                    $content.= '<li><strong>'.$error["file"].'</strong>: '.__($error["message"], "gd-bbpress-attachments").'</li>';
+                    $content.= '<li><strong>'.$error['file'].'</strong>: '.__($error['message'], "gd-bbpress-attachments").'</li>';
                 }
 
                 $content.= '</ol></div>';

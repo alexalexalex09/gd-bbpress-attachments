@@ -82,7 +82,7 @@ class gdbbPressAttachments {
     public function load_translation() {
         $this->l = get_locale();
 
-        if(!empty($this->l)) {
+        if (!empty($this->l)) {
             load_plugin_textdomain('gd-bbpress-attachments', false, 'gd-bbpress-attachments/languages');
         }
     }
@@ -104,6 +104,7 @@ class gdbbPressAttachments {
 
                 $post = get_post($bbp_id);
                 $author_ID = $post->post_author;
+
                 $file = get_attached_file($att_id);
                 $file = pathinfo($file, PATHINFO_BASENAME);
 

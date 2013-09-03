@@ -1,39 +1,39 @@
-#: code/attachments/front.php:203
+#: code/attachments/front.php:191
 msgid "attachment"
 msgid_plural "attachments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: code/attachments/admin.php:82
-#: code/attachments/admin.php:82
-#: code/attachments/front.php:216
+#: code/attachments/admin.php:85
+#: code/attachments/admin.php:85
+#: code/attachments/front.php:204
 #: code/admin.php:61
 #: forms/uploader.php:5
 msgid "Attachments"
 msgstr ""
 
-#: code/attachments/admin.php:95
+#: code/attachments/admin.php:98
 msgid "Attachments Settings"
 msgstr ""
 
-#: code/attachments/admin.php:96
-#: code/attachments/admin.php:97
+#: code/attachments/admin.php:99
+#: code/attachments/admin.php:100
 msgid "Attachments List"
 msgstr ""
 
-#: code/attachments/front.php:219
-msgid "You must be <a href='%s'>logged in</a> to view attched files."
+#: code/attachments/front.php:207
+msgid "You must be <a href='%s'>logged in</a> to view attached files."
 msgstr ""
 
-#: code/attachments/front.php:247
+#: code/attachments/front.php:237
 msgid "delete"
 msgstr ""
 
-#: code/attachments/front.php:251
+#: code/attachments/front.php:241
 msgid "detach"
 msgstr ""
 
-#: code/attachments/front.php:343
+#: code/attachments/front.php:335
 #: forms/attachments/meta_files.php:20
 msgid "Upload Errors"
 msgstr ""

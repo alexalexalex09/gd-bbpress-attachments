@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.gdbbpbox.com/
-Version: 1.9.2
+Version: 2.0
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.3
 Tested up to: 3.6
@@ -16,12 +16,17 @@ Attachments for forum topics and replies are handled through WordPress media lib
 
 On admin side, topic and reply panels have column with attachments count, and on the individual edit pages you will see meta box with list of attachments and upload errors.
 
-Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian, Portuguese.
+Supported languages: English, Serbian, Polish, Dutch, German, Italian, Slovak, French, Spanish, Persian, Portuguese.
+
+= bbPress Plugin Versions =
+GD bbPress Attachments 2.0 supports bbPress 2.2.x, 2.3.x and 2.4.x versions. bbPress 2.0.x and 2.1.x are no longer supported!
+
+= BuddyPress Support =
+GD bbPress Attachments 2.0 is tested with BuddyPress 1.8.x and it works fine if you enable BuddyPress support in bbPress plugin for Group Forums. Make sure you enable JavaScript and CSS Settings Always Include option in the Attachments plugin settings.
 
 = Important URL's =
 [Plugin Home](http://www.dev4press.com/plugins/gd-bbpress-attachments/) |
 [Support Forum](http://www.dev4press.com/forums/forum/free-plugins/gd-bbpress-attachments/) |
-[Feedburner](http://feeds2.feedburner.com/dev4press) |
 [Twitter](http://twitter.com/milangd) |
 [Facebook Page](http://www.facebook.com/dev4press)
 
@@ -35,13 +40,13 @@ Supported languages: English, Serbian, Polish, Dutch, German, Spanish, Persian, 
 
 == Installation ==
 = General Requirements =
-* PHP: 5.2.x
+* PHP: 5.2.4 or newer
 
 = WordPress Requirements =
-* WordPress: 3.3
+* WordPress: 3.3 or newer
 
 = bbPress Requirements =
-* bbPress Plugin: 2.1 or newer
+* bbPress Plugin: 2.2 or newer
 
 = Basic Installation =
 * Plugin folder in the WordPress plugins folder must be `gd-bbpress-attachments`
@@ -60,12 +65,12 @@ Other common issue is that WordPress Media Library upload is not working. If tha
 All attachments uploads are handled by the WordPress Media Library, and plugin uses native WordPress upload functions. When file is uploaded it will be available through Media Library. Consult WordPress documentation about Media Library requirements.
 
 * Will this plugin work with standalone bbPress instalation?
-No. This plugin requires the plugin versions of bbPress 2.1 or higher.
+No. This plugin requires the plugin versions of bbPress 2.2 or higher.
 
 * Does this plugin work with bbPress that is part of BuddyPress plugin?
-No. Plugin requires bbPress 2.0 or higher plugin.
+No. Plugin requires bbPress 2.2 or higher plugin.
 
-* Does this plugin work with bbPress 2.1 used as site wide forums for BuddyPress plugin?
+* Does this plugin work with bbPress plugin used as site wide forums for BuddyPress plugin?
 Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 
 == Translations ==
@@ -82,6 +87,14 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Changelog ==
+= 2.0 =
+* Improved default styling for the list of attachments
+* Removed obsolete hooks and functions
+* Removed support for bbPress 2.1.x
+* Fixed method for adding some of the plugin hooks
+* Fixed issue with attachments DIV not closed properly
+* Fixed few typos and missing translation strings
+
 = 1.9.2 =
 * Added Slovak translation
 * Changed upload field location to end of the form
