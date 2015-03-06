@@ -167,6 +167,7 @@ class gdbbAtt_Front {
         }
 
         if (!empty($uploads)) {
+            require_once(ABSPATH.'wp-admin/includes/media.php');
             require_once(ABSPATH.'wp-admin/includes/image.php');
 
             foreach ($uploads as $upload) {
