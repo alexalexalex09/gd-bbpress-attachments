@@ -1,10 +1,10 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.gdbbpbox.com/
-Version: 2.2
+Version: 2.3
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.3
-Tested up to: 4.1
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -85,10 +85,16 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Persian: Ramin Firooz - http://shayverd.com/
 
 == Upgrade Notice ==
-= 2.2 =
-Fixed problem with uploading video or audio files in some cases.
+= 2.3 =
+Updated several Dev4Press links. Fixed potential XSS security issue with unsanitized input. Fixed order of displayed attachments to match upload order. Fixed inline image alignment when there is no image caption.
 
 == Changelog ==
+= 2.3 =
+* Updated several Dev4Press links
+* Fixed potential XSS security issue with unsanitized input
+* Fixed order of displayed attachments to match upload order
+* Fixed inline image alignment when there is no image caption
+
 = 2.2 =
 * Fixed problem with uploading video or audio files in some cases
 

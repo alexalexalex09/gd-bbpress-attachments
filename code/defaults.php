@@ -4,14 +4,14 @@ if (!defined('ABSPATH')) exit;
 
 class gdbbPressAttachments_Defaults {
     var $default_options = array(
-        'version' => '2.2',
-        'date' => '2015.03.06.',
-        'build' => 1422,
+        'version' => '2.3',
+        'date' => '2015.06.04.',
+        'build' => 1751,
         'status' => 'Stable',
         'product_id' => 'gd-bbpress-attachments',
         'edition' => 'free',
         'revision' => 0,
-        'upgrade_to_pro_220' => 1,
+        'upgrade_to_pro_230' => 1,
         'grid_topic_counter' => 1,
         'grid_reply_counter' => 1,
         'delete_attachments' => 'detach',

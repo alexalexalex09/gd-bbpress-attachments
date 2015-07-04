@@ -9,7 +9,8 @@ if (!defined('ABSPATH')) exit;
  * @return array list of attachments objects
  */
 function d4p_get_post_attachments($post_id) {
-    $args = array('post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $post_id); 
+    $args = array('post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $post_id, 'orderby' => 'ID', 'order' => 'ASC');
+
     return get_posts($args);
 }
 

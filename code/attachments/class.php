@@ -99,8 +99,8 @@ class gdbbPressAttachments {
                 global $user_ID;
 
                 $action = $_GET['d4pbbaction'];
-                $att_id = $_GET['att_id'];
-                $bbp_id = $_GET['bbp_id'];
+                $att_id = intval($_GET['att_id']);
+                $bbp_id = intval($_GET['bbp_id']);
 
                 $post = get_post($bbp_id);
                 $author_ID = $post->post_author;

@@ -76,6 +76,10 @@
     margin: 0;
 }
 
+#bbpress-forums .bbp-attachments li a img {
+    display: block;
+}
+
 #bbpress-forums .bbp-attachments-count {
     background: transparent url(../gfx/icons.png);
     display: inline-block;
