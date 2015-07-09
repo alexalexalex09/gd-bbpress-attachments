@@ -1,7 +1,7 @@
 === GD bbPress Attachments ===
 Contributors: GDragoN
 Donate link: http://www.gdbbpbox.com/
-Version: 2.3
+Version: 2.3.1
 Tags: bbpress, attachments, gdragon, dev4press, upload, forum, topic, reply, media library, limit, meta
 Requires at least: 3.3
 Tested up to: 4.3
@@ -76,6 +76,7 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 * Serbian
 * Italian
 * Portuguese
+* Russian: Pavel Kuznetsov - https://wordpress.org/support/profile/pavel-kuznetsov
 * German: David Decker - http://deckerweb.de/
 * Slovak: Branco Radenovich - http://webhostinggeeks.com/blog/
 * French: Marie Bodson - http://mariebodson.com/
@@ -86,12 +87,16 @@ Yes. But, make sure to enable 'Always Include' option for JavaScript and CSS.
 
 == Upgrade Notice ==
 = 2.3 =
-Updated several Dev4Press links. Fixed potential XSS security issue with unsanitized input. Fixed order of displayed attachments to match upload order. Fixed inline image alignment when there is no image caption.
+Updated several Dev4Press links. Fixed XSS and LFI security issues with unsanitized input. Fixed order of displayed attachments to match upload order. Fixed inline image alignment when there is no image caption.
 
 == Changelog ==
+= 2.3.1 =
+* Added Russian translation
+* Updated readme file
+
 = 2.3 =
 * Updated several Dev4Press links
-* Fixed potential XSS security issue with unsanitized input
+* Fixed XSS and LFI security issues with unsanitized input
 * Fixed order of displayed attachments to match upload order
 * Fixed inline image alignment when there is no image caption
 
