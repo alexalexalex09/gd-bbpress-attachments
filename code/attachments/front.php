@@ -99,6 +99,41 @@ class gdbbAtt_Front {
             require_once(ABSPATH.'wp-admin/includes/file.php');
 
             $errors = new gdbbp_Error();
+            
+            //-----------------------------------------//
+			//----Prepare Attachment for BuddyDrive----//
+			//-----------------------------------------//
+			//--Derived from save_reply in GD bbPress--//
+			//-----------------------------------------//
+			
+            $overrides = array('test_form' => false);
+            
+			$tmppath = $_FILES['d4p_attachment']['tmp_name'][0];
+			$tmpcopypath = __DIR__ . '/' . $_FILES['d4p_attachment']['name'][0];
+			
+
+			if (copy($tmppath, $tmpcopypath)) {
+				// Copied
+			} else {
+				// Not copied
+				echo ('File not copied');
+			}
+			
+			//Attach to BuddyDrive using custom function
+			$this->double_attach_bd($_FILES);
+			
+			
+			if (copy($tmpcopypath, $tmppath)) {
+				// Copied back
+			} else {
+				// Not copied back
+				return "Not copied back";
+			}
+			
+			//-----------------------------------------//
+			//-------------End Custom Edits------------//
+			//-----------------------------------------//
+            
             $overrides = array('test_form' => false, 'upload_error_handler' => 'd4p_bbattachment_handle_upload_error');
 
             foreach ($_FILES['d4p_attachment']['error'] as $key => $error) {
@@ -184,6 +219,149 @@ class gdbbAtt_Front {
             }
         }
     }
+    
+    public function double_attach_bd($files) {
+		//-----------------------------------------//
+		//------Save Attachment in BuddyDrive------//
+		//-----------------------------------------//
+		//--Derived from buddydrive_upload_file()--//
+		//-----------------------------------------//
+		
+		/**
+		 * Sending the json response will be different if
+		 * the current Plupload runtime is html4
+		 */
+		$is_html4 = false;
+		if ( ! empty( $_POST['html4' ] ) ) {
+			$is_html4 = true;
+		}
+
+		// (Don't) Use deprecated function for the deprecated UI (because it shouldn't be allowed)
+		//if ( empty( $_POST['bp_params'] ) && buddydrive_use_deprecated_ui() ) {
+		//	buddydrive_save_new_buddyfile();
+		//	return;
+		//}
+		
+		//TODO
+		// (Don't) Check the nonce (because it will fail - but why? And does it matter?)
+		// check_admin_referer( 'bp-uploader' );
+		
+		//Init the BuddyPress parameters
+		$bp_params = array(
+			'object'			=> 'buddydrive-file',
+			'item_id' 			=> bp_loggedin_user_id(),
+			'parent_folder_id'	=> 0,
+			'privacy'			=> 'groups',
+			'privacy_item_id'	=> 3
+		);
+		
+		$to_bd_files = array(
+			'buddyfile-upload'	=> array(
+				'name'				=> $files['d4p_attachment']['name'][0],
+				'type'				=>$files['d4p_attachment']['type'][0],
+				'tmp_name'			=>$files['d4p_attachment']['tmp_name'][0],
+				'error'				=>$files['d4p_attachment']['error'][0],
+				'size'				=>$files['d4p_attachment']['size'][0]
+			)
+		);
+		
+		//Stop wp_handle_upload from giving an "Invalid Forum Submission" error
+		$_POST['action'] = 'buddydrive_upload';
+
+		//I don't know if bpcustom_attachments_json_response actually works in this context
+		//Check params
+		if ( empty( $bp_params['item_id'] ) ) {
+			$this->bpcustom_attachments_json_response( false, $is_html4 );
+		}
+		// Capability check
+		if ( ! is_user_logged_in() || ( (int) bp_loggedin_user_id() !== (int) $bp_params['item_id'] && ! bp_current_user_can( 'bp_moderate' ) ) ) {
+			$this->bpcustom_attachments_json_response( false, $is_html4 );
+		}
+		
+		
+		// Upload the File!
+		$bd_file = buddydrive_upload_item( $to_bd_files, $bp_params['item_id'] );
+
+		// Error while trying to upload the file
+		if ( ! empty( $bd_file['error'] ) ) {
+			$this->bpcustom_attachments_json_response( false, $is_html4, array(
+				'type'    => 'upload_error',
+				'message' => $bd_file['error'],
+			) );
+		}
+				
+		$name_parts = pathinfo( $bd_file['file'] );
+		$url        = $bd_file['url'];
+		$mime       = $bd_file['type'];
+		$file       = $bd_file['file'];
+		$title      = $name_parts['filename'];
+
+		/**
+		 * @todo check it has no impact on BuddyDrive Editor
+		 */
+		$privacy    = buddydrive_get_default_privacy();
+		$groups     = array();
+
+		// Set folder
+		//TODO
+		//Make folder selectable by user
+		$parent_folder_id = 0;
+		
+		//-----------------------------------------//
+		//-------------End Custom Edits------------//
+		//-----------------------------------------//
+
+		if ( ! empty( $bp_params['parent_folder_id'] ) ) {
+			$parent_folder_id = (int) $bp_params['parent_folder_id'];
+		}
+
+		if ( ! empty( $bp_params['privacy'] ) ) {
+			$privacy = $bp_params['privacy'];
+
+			if ( ! empty( $bp_params['privacy_item_id'] ) && 'groups' === $privacy ) {
+				$groups = (array) $bp_params['privacy_item_id'];
+			}
+		}
+		
+		
+		$buddyfile_id = buddydrive_add_item( array(
+			'user_id'          => $bp_params['item_id'],
+			'type'             => buddydrive_get_file_post_type(),
+			'guid'             => $url,
+			'title'            => $title,
+			'mime_type'        => $mime,
+			'privacy'          => $privacy,
+			'groups'           => $groups,
+			'parent_folder_id' => $parent_folder_id,
+		) );
+
+		if ( empty( $buddyfile_id ) ) {
+			$this->bpcustom_attachments_json_response( false, $is_html4, array(
+				'type'    => 'upload_error',
+				'message' => __( 'Error while creating the file, sorry.', 'buddydrive' ),
+			) );
+		} else {
+			// Try to create a thumbnail if it's an image and a public file
+			if ( 'public' === $privacy ) {
+				buddydrive_set_thumbnail( $buddyfile_id, $bd_file );
+			}
+		}
+
+		$response = buddydrive_prepare_for_js( $buddyfile_id );
+		$response['buddydrive_id'] = $response['id'];
+		$response['url']           = $response['link'];
+		$response['uploaded']      = true;
+
+		unset( $response['id'] );
+
+		// Finally return file to the editor
+		$this->bpcustom_attachments_json_response( true, $is_html4, $response );
+		
+        
+        //-----------------------------------------//
+		//-----------End Custom Function-----------//
+		//-----------------------------------------//
+	}
 
     public function show_attachments_icon() {
         $topic_id = bbp_get_topic_id();
