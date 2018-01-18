@@ -100,7 +100,7 @@ class gdbbAtt_Front {
 
             $errors = new gdbbp_Error();
             
-            //-----------------------------------------//
+           		//-----------------------------------------//
 			//----Prepare Attachment for BuddyDrive----//
 			//-----------------------------------------//
 			//--Derived from save_reply in GD bbPress--//
@@ -250,14 +250,14 @@ class gdbbAtt_Front {
 		$bp_params = array(
 			'object'			=> 'buddydrive-file',
 			'item_id' 			=> bp_loggedin_user_id(),
-			'parent_folder_id'	=> 0,
+			'parent_folder_id'		=> 0,
 			'privacy'			=> 'groups',
-			'privacy_item_id'	=> 3
+			'privacy_item_id'		=> bp_get_current_group_id()
 		);
 		
 		$to_bd_files = array(
 			'buddyfile-upload'	=> array(
-				'name'				=> $files['d4p_attachment']['name'][0],
+				'name'				=>$files['d4p_attachment']['name'][0],
 				'type'				=>$files['d4p_attachment']['type'][0],
 				'tmp_name'			=>$files['d4p_attachment']['tmp_name'][0],
 				'error'				=>$files['d4p_attachment']['error'][0],
@@ -358,7 +358,7 @@ class gdbbAtt_Front {
 		$this->bpcustom_attachments_json_response( true, $is_html4, $response );
 		
         
-        //-----------------------------------------//
+        	//-----------------------------------------//
 		//-----------End Custom Function-----------//
 		//-----------------------------------------//
 	}
