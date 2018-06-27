@@ -85,6 +85,12 @@ class gdbbAtt_Front {
 
         }
     }
+	
+    public function bpcustom_attachments_json_response($success, $is_html4 = false, $data = null) {
+		/* if (!$success) {
+			echo("Error: <br/>Type: ".$data["type"]."<br/>Message: ".$data["message"]."<br/>");
+		} */
+    }
 
     public function save_topic($topic_id, $forum_id, $anonymous_data, $topic_author) {
         $this->save_reply(0, $topic_id, $forum_id, $anonymous_data, $topic_author);
